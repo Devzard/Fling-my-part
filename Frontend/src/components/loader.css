@@ -1,0 +1,52 @@
+.logo {
+  height: 4rem;
+  width: 4rem;
+  z-index: inherit;
+  border-radius: 50%;
+  padding: 1rem;
+  box-shadow: 0.8rem 0.8rem 1.2rem var(--s-d), -0.8rem -0.8rem 1.2rem var(--s-l);
+  transition: box-shadow ease 1s;
+  animation: loading 5s infinite;
+}
+.logo-container {
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  padding: 20vh 0;
+}
+
+@keyframes loading {
+  0% {
+    box-shadow: 0.8rem 0.8rem 1.3rem var(--s-d),
+      -0.8rem -0.8rem 1.3rem var(--s-l);
+  }
+  /* 12% {
+    box-shadow: 0rem 0.8rem 1.3rem var(--s-d), 0rem -0.8rem 1.3rem var(--s-l);
+  } */
+  25% {
+    box-shadow: -0.8rem 0.8rem 1.3rem var(--s-d),
+      0.8rem -0.8rem 1.3rem var(--s-l);
+  }
+  /* 37% {
+    box-shadow: -0.8rem 0rem 1.3rem var(--s-d), 0.8rem 0rem 1.3rem var(--s-l);
+  } */
+  50% {
+    box-shadow: -0.8rem -0.8rem 1.3rem var(--s-d),
+      0.8rem 0.8rem 1.3rem var(--s-l);
+  }
+  /* 62% {
+    box-shadow: 0rem -0.8rem 1.3rem var(--s-d), 0rem 0.8rem 1.3rem var(--s-l);
+  } */
+  75% {
+    box-shadow: 0.8rem -0.8rem 1.3rem var(--s-d),
+      -0.8rem 0.8rem 1.3rem var(--s-l);
+  }
+  /* 87% {
+    box-shadow: 0.8rem 0rem 1.3rem var(--s-d), -0.8rem 0rem 1.3rem var(--s-l);
+  } */
+  100% {
+    box-shadow: 0.8rem 0.8rem 1.3rem var(--s-d),
+      -0.8rem -0.8rem 1.3rem var(--s-l);
+  }
+}
