@@ -1,0 +1,102 @@
+/* card */
+.dg-card {
+  --g: #3ed12e;
+  --e: #42e0f5;
+  --r: #f56042;
+  text-align: left;
+  padding: 0.7rem;
+  margin: 1rem 0.4rem;
+  border-radius: 0.6rem;
+}
+/* person */
+.dg-card > span:nth-child(1) {
+  border-radius: 50%;
+  padding: 0.2rem;
+  box-shadow: 0.1rem 0.1rem 0.2rem #90959b, -0.1rem -0.1rem 0.2rem #ffffff;
+}
+/* username */
+.dg-card > span:nth-child(2) {
+  padding: 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+/* category */
+.dg-card > span:nth-child(3) {
+  position: relative;
+  float: right;
+  font-size: 0.85rem;
+}
+/* name */
+.dg-card > span:nth-child(5) {
+  font-size: 0.5rem;
+  font-weight: 300;
+}
+/* upload time */
+.dg-uploadtime {
+  font-size: 0.7rem;
+  font-weight: 300;
+}
+.dg-feed-content {
+  padding: 0.3rem 0rem;
+  font-size: 1rem;
+  height: 5rem;
+  display: flex;
+}
+.dg-feed-content > p {
+  padding: 0 0.5rem;
+}
+.dg-depth {
+  width: 0.5rem;
+  box-shadow: inset 0.2rem 0.2rem 0.3rem rgba(0, 0, 0, 0.5);
+}
+.dg-General {
+  /* border-left: 0.4rem solid var(--g); */
+  background: var(--g);
+}
+.dg-Event {
+  /* border-left: 0.4rem solid var(--e); */
+  background: var(--e);
+}
+.dg-Rumour {
+  /* border-left: 0.4rem solid var(--r); */
+  background: var(--r);
+}
+
+/* categories */
+.General {
+  color: var(--g);
+}
+.Event {
+  color: var(--e);
+}
+.Rumour {
+  color: var(--r);
+}
+
+/* buttons */
+.dg-eachfeed-btn {
+  width: 100%;
+  display: flex;
+}
+.dg-eachfeed-btn > div {
+  display: flex;
+  width: 33%;
+  align-items: center;
+  justify-content: center;
+}
+.dg-eachfeed-btn > div > button {
+  margin: 0.3rem 11%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #f5fdff, #ced4dd);
+  box-shadow: 0.3rem 0.3rem 0.5rem #a9afb6, -0.3rem -0.3rem 0.5rem #ffffff;
+  border-radius: 50%;
+}
+.dg-eachfeed-btn > div > button:hover {
+  background: linear-gradient(145deg, #ced4dd, #f5fdff);
+}
+.dg-eachfeed-btn > div > button:disabled {
+  background: linear-gradient(145deg, #ced4dd, #f5fdff);
+  color: red;
+}

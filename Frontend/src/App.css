@@ -29,3 +29,6 @@ a {
   text-decoration: none;
   color: var(--t-d);
 }
+button:focus {
+  outline: none;
+}
