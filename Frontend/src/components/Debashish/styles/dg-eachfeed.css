@@ -12,13 +12,18 @@
 .dg-card > span:nth-child(1) {
   border-radius: 50%;
   padding: 0.2rem;
+  background-color: linear-gradient(145deg, #ced4dd, #f5fdff);
   box-shadow: 0.1rem 0.1rem 0.2rem #90959b, -0.1rem -0.1rem 0.2rem #ffffff;
 }
 /* username */
 .dg-card > span:nth-child(2) {
-  padding: 0 0.5rem;
   font-size: 1rem;
   font-weight: 500;
+  border-radius: 0.4rem;
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  background-color: linear-gradient(145deg, #ced4dd, #f5fdff);
+  box-shadow: 0.1rem 0.1rem 0.2rem #90959b, -0.1rem -0.1rem 0.2rem #ffffff;
 }
 /* category */
 .dg-card > span:nth-child(3) {
@@ -31,6 +36,7 @@
   font-size: 0.5rem;
   font-weight: 300;
 }
+
 /* upload time */
 .dg-uploadtime {
   font-size: 0.7rem;
@@ -43,12 +49,13 @@
   display: flex;
 }
 .dg-feed-content > p {
-  padding: 0 0.5rem;
+  padding: 0 1rem;
 }
 .dg-depth {
   width: 0.5rem;
   box-shadow: inset 0.2rem 0.2rem 0.3rem rgba(0, 0, 0, 0.5);
 }
+
 .dg-General {
   /* border-left: 0.4rem solid var(--g); */
   background: var(--g);

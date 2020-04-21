@@ -1,2 +1,10 @@
 .dg-feed-container {
 }
+.dg-header {
+  padding: 1rem;
+  display: flex;
+}
+.dg-addpost-feed {
+  position: fixed;
+  right: 1rem;
+}

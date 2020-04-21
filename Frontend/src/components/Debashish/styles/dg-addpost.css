@@ -1,0 +1,10 @@
+.dg-plus {
+  margin: 2rem 0.5rem 0.5rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #f5fdff, #ced4dd);
+  box-shadow: 0.2rem 0.2rem 0.4rem #777b80, -0.2rem -0.2rem 0.4rem #ffffff;
+}
+.dg-plus:hover {
+  background: linear-gradient(145deg, #ced4dd, #f5fdff);
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AddPostFeed from "./AddPostFeed";
 import EachFeed from "./EachFeed";
 import "./styles/dg-feed.css";
+import Location from "./Location";
 
 const Feed = () => {
   const [posts, setPosts] = useState([
@@ -39,9 +40,31 @@ const Feed = () => {
       uploadTime: "10:10",
     },
   ]);
+  const [locations, setLocations] = useState([
+    "All",
+    "JEC",
+    "JB",
+    "JIST",
+    "DU",
+    "GU",
+    "MKDG",
+    "Cotton",
+  ]);
+  const [currentLoc, setCurrentLoc] = useState(locations[0]);
   return (
     <div className="dg-feed-container">
-      <AddPostFeed />
+      <div className="dg-header">
+        <span className="dg-location-feed">
+          <Location
+            locations={locations}
+            setLocations={setLocations}
+            setCurrentLoc={setCurrentLoc}
+          />
+        </span>
+        <span className="dg-addpost-feed">
+          <AddPostFeed />
+        </span>
+      </div>
       {posts.map((item, index) => {
         return <EachFeed post={item} key={index} />;
       })}
