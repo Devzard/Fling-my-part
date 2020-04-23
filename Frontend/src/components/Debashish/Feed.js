@@ -3,6 +3,7 @@ import AddPostFeed from "./AddPostFeed";
 import EachFeed from "./EachFeed";
 import "./styles/dg-feed.css";
 import Location from "./Location";
+import logo from "../loader.png";
 
 const Feed = () => {
   const [posts, setPosts] = useState([
@@ -41,7 +42,7 @@ const Feed = () => {
     },
   ]);
   const [locations, setLocations] = useState([
-    "All",
+    "Global",
     "JEC",
     "JB",
     "JIST",
@@ -53,7 +54,12 @@ const Feed = () => {
   const [currentLoc, setCurrentLoc] = useState(locations[0]);
   return (
     <div className="dg-feed-container">
+      <br />
+
       <div className="dg-header">
+        <span>
+          <img src={logo} className="dg-logo-feed"></img>
+        </span>
         <span className="dg-location-feed">
           <Location
             locations={locations}
@@ -61,9 +67,9 @@ const Feed = () => {
             setCurrentLoc={setCurrentLoc}
           />
         </span>
-        <span className="dg-addpost-feed">
-          <AddPostFeed />
-        </span>
+        <div className="dg-addpost-feed">
+          <AddPostFeed locations={locations} />
+        </div>
       </div>
       {posts.map((item, index) => {
         return <EachFeed post={item} key={index} />;

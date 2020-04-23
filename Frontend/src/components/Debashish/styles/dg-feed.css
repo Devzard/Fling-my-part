@@ -1,10 +1,16 @@
 .dg-feed-container {
 }
 .dg-header {
-  padding: 1rem;
+  padding: 0rem;
+
   display: flex;
 }
 .dg-addpost-feed {
+  z-index: 10;
   position: fixed;
   right: 1rem;
+}
+.dg-logo-feed {
+  height: 2rem;
+  width: 2rem;
 }
