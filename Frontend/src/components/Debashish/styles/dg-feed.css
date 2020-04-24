@@ -1,8 +1,9 @@
 .dg-feed-container {
 }
+.dg-eachfeed-container {
+}
 .dg-header {
   padding: 0rem;
-
   display: flex;
 }
 .dg-addpost-feed {

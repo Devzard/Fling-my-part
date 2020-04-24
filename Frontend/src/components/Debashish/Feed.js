@@ -13,7 +13,12 @@ const Feed = () => {
       username: "uti",
       name: "Delhi",
       content: "Hey its an amazing site",
-      comments: [],
+      comments: [
+        "it's nice",
+        "amazing",
+        "lol",
+        "lololololololololololololololololololololololol",
+      ],
       reportedUsers: [],
       likedUsers: [],
       uploadTime: "10:10",
@@ -24,7 +29,12 @@ const Feed = () => {
       username: "jau",
       name: "Visakhapatnam",
       content: "Hey I heard she likes him",
-      comments: [],
+      comments: [
+        "it's nice",
+        "amazing",
+        "lol",
+        "lololololololololololololololololololololololol",
+      ],
       reportedUsers: [],
       likedUsers: [],
       uploadTime: "10:10",
@@ -35,7 +45,12 @@ const Feed = () => {
       username: "jau",
       name: "Kashmir",
       content: "Party at my house",
-      comments: [],
+      comments: [
+        "it's nice",
+        "amazing",
+        "lol",
+        "lololololololololololololololololololololololol",
+      ],
       reportedUsers: [],
       likedUsers: [],
       uploadTime: "10:10",
@@ -71,9 +86,11 @@ const Feed = () => {
           <AddPostFeed locations={locations} />
         </div>
       </div>
-      {posts.map((item, index) => {
-        return <EachFeed post={item} key={index} />;
-      })}
+      <div className="dg-eachfeed-container">
+        {posts.map((item, index) => {
+          return <EachFeed post={item} key={index} />;
+        })}
+      </div>
     </div>
   );
 };
