@@ -7,11 +7,16 @@ require("dotenv/config");
 
 //middleware
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json()); // app.use(express.json());
 
-//posts routes
+//feed routes
+//feed posts routes
 const dgFeedPost = require("./routes/dgFeedPost");
 app.use("/feed", dgFeedPost);
+
+//feed user data route
+const dgUser = require("./routes/dgUsersData");
+app.use("/feed/user", dgUser);
 
 app.get("/", (req, res) => {
   res.send("Working fine");

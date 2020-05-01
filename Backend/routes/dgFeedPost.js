@@ -1,6 +1,21 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcrypt");
 const DgFeedSchema = require("../models/DgFeedSchema");
+
+//function to hash values
+const hasher = async (beforehash) => {
+  const hashed = await bcrypt.hash(beforehash, 10);
+  return hashed;
+};
+//function to compare hash value with real value
+const isHashMatching = async (real, hash) => {
+  await bcrypt.compare(real, hash, function (err, result) {
+    if (result) return result;
+    else if (!result) return result;
+    return err;
+  });
+};
 
 const spaceManager = async (locationOfPost) => {
   const delPosts = await DgFeedSchema.find({ location: locationOfPost });
@@ -15,6 +30,8 @@ const spaceManager = async (locationOfPost) => {
 router.post("/new", async (req, res) => {
   spaceManager(req.body.location);
 
+  const recogniser = await hasher(req.body.userId);
+
   const newPost = new DgFeedSchema({
     title: req.body.title,
     category: req.body.category,
@@ -22,7 +39,7 @@ router.post("/new", async (req, res) => {
     content: req.body.content,
     link: req.body.link,
     location: req.body.location,
-    userId: req.body.userId,
+    recogniser: recogniser,
     username: req.body.username,
   });
 
@@ -57,8 +74,9 @@ router.post("/:location", async (req, res) => {
 //getting posts with post id
 router.post("/posts/:id", async (req, res) => {
   const userId = req.body._user_id;
+  const postId = req.params.id;
   try {
-    const completepost = await DgFeedSchema.find({ _id: req.params.id });
+    const completepost = await DgFeedSchema.find({ _id: postId });
     res.status(200).json(completepost);
   } catch (err) {
     res.status(500).json({ message: err });
@@ -70,12 +88,22 @@ router.post("/posts/:id", async (req, res) => {
 router.delete("/delete", async (req, res) => {
   const postId = req.body._id;
   try {
-    if (req.body._user_id == req.body.userId) {
-      const removedPost = await DgFeedSchema.remove({ _id: postId });
-      res.status(200).json(removedPost);
-    } else {
-      res.status(200).send("you are not the owner of this post");
-    }
+    await bcrypt.compare(
+      req.body._user_id,
+      req.body.recogniser,
+      async function (err, result) {
+        if (isHashMatching(req.body._user_id, req.body.recogniser)) {
+          const removedPost = await DgFeedSchema.remove({ _id: postId });
+          res.status(200).json(removedPost);
+        } else if (!result) {
+          res
+            .status(200)
+            .json({ message: "you are not the owner of this post" });
+        } else {
+          res.status(500).json({ message: err });
+        }
+      }
+    );
   } catch (err) {
     res.json({ message: err });
   }
@@ -84,23 +112,33 @@ router.delete("/delete", async (req, res) => {
 //updating single post
 router.patch("/update", async (req, res) => {
   try {
-    if (req.body._user_id == req.body.userId) {
-      const updatePost = await DgFeedSchema.updateOne(
-        { _id: req.body._id },
-        {
-          $set: {
-            // category: req.body.category,
-            // content: req.body.content,
-            likedUsers: req.body.likedUsers,
-            reportedUsers: req.body.reportedUsers,
-            comments: req.body.comments,
-          },
+    await bcrypt.compare(
+      req.body._user_id,
+      req.body.recogniser,
+      async function (err, result) {
+        if (result) {
+          const updatePost = await DgFeedSchema.updateOne(
+            { _id: req.body._id },
+            {
+              $set: {
+                // category: req.body.category,
+                // content: req.body.content,
+                likedUsers: req.body.likedUsers,
+                reportedUsers: req.body.reportedUsers,
+                comments: req.body.comments,
+              },
+            }
+          );
+          res.status(200).send(updatePost);
+        } else if (!result) {
+          res
+            .status(200)
+            .json({ message: "you are not the owner of this post" });
+        } else {
+          res.status(500).json({ message: err });
         }
-      );
-      res.status(200).send(updatePost);
-    } else {
-      res.status(200).send("you are not the owner of this post");
-    }
+      }
+    );
   } catch (err) {
     res.status(500).json({ message: err });
   }

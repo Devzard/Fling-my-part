@@ -2,14 +2,14 @@ POST http://localhost:3300/feed/new
 Content-Type: application/json
 
 {
-    "title":"From vs code",
-    "category":"Rumour",
-    "template":"10",
+    "title":"The second post",
+    "category":"General",
+    "template":"100",
     "location":"DU",
-    "content":"Its new for me",
+    "content":"Glad its that level cool",
     "link":"http:....",
-    "userId":"45",
-    "username":"jheng king"
+    "userId":"46",
+    "username":"ping"
 }
 
 ###
@@ -18,12 +18,12 @@ PATCH http://localhost:3300/feed/update
 Content-Type: application/json
 
 {
-    "_id":"5ea452299c1b3d2764bcbc65",
-    "dg_user_id":"45",
-    "userId":"45",
+    "_id":"5eab0d96b1f0db1c32f65694",
+    "_user_id":"45",
+    "recogniser":"$2b$10$.H3.V40LyDTMx.Nnvljc7eZbOy2QanRQRe7IfVoeKA9pklV3z6Q2i",
     "likedUsers":[],
     "reportedUsers":[],
-    "comments":[{"name":"annonymous","comment":"nice"}]
+    "comments":[{"name":"annonymous","comment":"wow"},{"name":"annonymous","comment":"you're pretty amazing"}]
 }
 
 ###
@@ -37,4 +37,11 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3300/feed/posts/5ea452299c1b3d2764bcbc65
+POST http://localhost:3300/feed/posts/5eab0d96b1f0db1c32f65694
+Content-Type: application/json
+
+{
+    "_user_id":"45"
+}
+
+###

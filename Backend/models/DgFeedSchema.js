@@ -17,6 +17,10 @@ const DgFeed = mongoose.Schema({
     type: String,
     required: true,
   },
+  image: {
+    type: String,
+    default: "#",
+  },
   link: {
     type: String,
     default: "#",
@@ -33,7 +37,7 @@ const DgFeed = mongoose.Schema({
     type: [mongoose.Schema.Types.ObjectId],
     default: [],
   },
-  userId: {
+  recogniser: {
     type: String,
     required: true,
   },
