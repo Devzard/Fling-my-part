@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
-import Home from "./components/Debashish/Home";
-import Feed from "./components/Debashish/Feed";
+import DG_home from "./Components/Debashish/DG_home";
+import DG_feed from "./Components/Debashish/DG_feed";
 import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
 
-import Loader from "./components/Loader";
+import Loader from "./Components/Loader";
 
 function App() {
   return (
@@ -12,10 +12,10 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Home />
+            <DG_home />
           </Route>
           <Route path="/feed">
-            <Feed />
+            <DG_feed />
           </Route>
         </Switch>
       </Router>

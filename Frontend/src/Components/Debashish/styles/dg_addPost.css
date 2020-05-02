@@ -1,0 +1,39 @@
+.dg-addpost-container {
+  background: var(--bg);
+  position: absolute;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+}
+.dg-addpost-content {
+  padding: 0.5rem;
+}
+
+/* title */
+/* title */
+.dg-addpost-title {
+}
+/* input */
+.dg-addpost-title > input {
+  padding: 0.3rem 0.1rem;
+  width: 85%;
+  border: none;
+  background: whitesmoke;
+}
+/* all button */
+.dg-addpost-title button {
+  border-style: none;
+  margin: 0.3rem 0.3rem;
+  padding: 0.2rem;
+  background-color: var(--bg);
+}
+/* all div */
+.dg-addpost-title div {
+  margin: 0 0.5rem;
+}
+
+/* text color for title */
+.dg-ap-text-color > button {
+  border-radius: 50%;
+  border: solid 0.05rem rgba(0, 0, 0, 0.3);
+}

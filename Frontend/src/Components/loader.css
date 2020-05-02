@@ -6,7 +6,7 @@
   padding: 1rem;
   box-shadow: 0.8rem 0.8rem 1.2rem var(--s-d), -0.8rem -0.8rem 1.2rem var(--s-l);
   transition: box-shadow ease 1s;
-  animation: loading 5s infinite;
+  animation: loader 1s infinite linear;
 }
 .logo-container {
   height: 100%;
@@ -14,6 +14,14 @@
   justify-content: center;
   z-index: 500;
   padding: 20vh 0;
+}
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes loading {

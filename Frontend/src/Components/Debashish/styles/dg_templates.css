@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Cinzel&family=Galada&family=Modak&family=Montserrat+Subrayada&family=Poppins:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+
+/* fonts */
+.dg-font-modak {
+  font-family: "Modak", cursive;
+}
+.dg-font-poppins {
+  font-family: "Poppins", sans-serif;
+}
+.dg-font-galada {
+  font-family: "Galada", cursive;
+}
+.dg-font-montserrat {
+  font-family: "Montserrat Subrayada", sans-serif;
+}
+.dg-font-caveat {
+  font-family: "Caveat", cursive;
+}
+.dg-font-cinzel {
+  font-family: "Cinzel", serif;
+}
+.dg-font-baloo {
+  font-family: "Baloo 2", cursive;
+}
+
+/* text */
+.dg-text-red {
+  color: red;
+}
+.dg-text-yellow {
+  color: yellow;
+}
+.dg-text-green {
+  color: green;
+}
+.dg-text-blue {
+  color: blue;
+}
+.dg-text-black {
+  color: black;
+}
+.dg-text-white {
+  color: white;
+}
+
+/* text align */
+.dg-t-left {
+  text-align: left;
+}
+.dg-t-center {
+  text-align: center;
+}
+.dg-t-right {
+  text-align: right;
+}
+
+/* text size  */
+.dg-text-small {
+  font-size: 0.7rem;
+}
+.dg-text-normal {
+  font-size: 1rem;
+}
+.dg-text-large {
+  font-size: 2rem;
+}

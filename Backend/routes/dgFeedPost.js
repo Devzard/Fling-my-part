@@ -8,15 +8,8 @@ const hasher = async (beforehash) => {
   const hashed = await bcrypt.hash(beforehash, 10);
   return hashed;
 };
-//function to compare hash value with real value
-const isHashMatching = async (real, hash) => {
-  await bcrypt.compare(real, hash, function (err, result) {
-    if (result) return result;
-    else if (!result) return result;
-    return err;
-  });
-};
 
+///function to check if the posts at certain location has reached its limit and delete accordingly
 const spaceManager = async (locationOfPost) => {
   const delPosts = await DgFeedSchema.find({ location: locationOfPost });
 
@@ -53,6 +46,8 @@ router.post("/new", async (req, res) => {
 
 //getting posts
 router.post("/:location", async (req, res) => {
+  //prom : location
+  //pagenumber : each page contain 10 posts
   const skip = parseInt(10 * (req.body.pageNumber - 1));
   const location = req.params.location;
   let posts;
@@ -73,6 +68,8 @@ router.post("/:location", async (req, res) => {
 
 //getting posts with post id
 router.post("/posts/:id", async (req, res) => {
+  //userId is seeked for no reason right at the moment
+  //post mongodb _id
   const userId = req.body._user_id;
   const postId = req.params.id;
   try {
@@ -86,6 +83,8 @@ router.post("/posts/:id", async (req, res) => {
 //deleting post
 //delete a single post
 router.delete("/delete", async (req, res) => {
+  //post mongodb _id
+  //_user_id to authenticate
   const postId = req.body._id;
   try {
     await bcrypt.compare(
@@ -111,6 +110,8 @@ router.delete("/delete", async (req, res) => {
 
 //updating single post
 router.patch("/update", async (req, res) => {
+  //_user_id
+  //changed data : likedUsers, reportedUsers, comments
   try {
     await bcrypt.compare(
       req.body._user_id,
