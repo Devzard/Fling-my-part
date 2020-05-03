@@ -23,6 +23,21 @@ const DG_addPost = (props) => {
     "blue",
     "green",
   ]);
+  const [bgTemplates, setBgTemplates] = useState([
+    //SIZE-sm,md,lg,xl
+    "pattern-checks-md",
+    "pattern-grid-md",
+    "pattern-dots-md",
+    "pattern-cross-dots-md",
+    "pattern-diagonal-lines-md",
+    "pattern-horizontal-lines-md",
+    "pattern-vertical-lines-md",
+    "pattern-diagonal-stripes-md",
+    "pattern-horizontal-stripes-md",
+    "pattern-vertical-stripes-md",
+    "pattern-triangles-md",
+    "pattern-zigzag-md",
+  ]);
   const [textSize, setTextSizes] = useState(["small", "normal", "large"]);
   //variables
   const [title, setTitle] = useState({
