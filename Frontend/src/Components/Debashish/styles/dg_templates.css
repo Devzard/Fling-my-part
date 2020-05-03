@@ -60,8 +60,28 @@
   font-size: 0.7rem;
 }
 .dg-text-normal {
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 .dg-text-large {
   font-size: 2rem;
+}
+
+/* text decoration */
+.dg-t-d-overline {
+  text-decoration: overline;
+}
+.dg-t-d-underline {
+  text-decoration: underline;
+}
+.dg-t-d-both {
+  text-decoration: overline underline;
+}
+.dg-t-d-line-through {
+  text-decoration: line-through;
+}
+.dg-bold {
+  font-weight: 700;
+}
+.dg-italic {
+  font-style: italic;
 }

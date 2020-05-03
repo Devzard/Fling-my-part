@@ -37,3 +37,39 @@
   border-radius: 50%;
   border: solid 0.05rem rgba(0, 0, 0, 0.3);
 }
+
+/* content */
+/* content  */
+.dg-addpost-content-tools {
+}
+.dg-addpost-content-tools > textarea {
+  resize: none;
+  height: 7rem;
+  padding: 0.3rem 0.1rem;
+  width: 85%;
+  border: none;
+  background: whitesmoke;
+}
+.dg-ap-tool-txt-color {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0.2rem 0 0;
+}
+.dg-ap-tool-bar {
+  display: flex;
+  justify-content: space-evenly;
+}
+.dg-ap-tool-bar > button {
+  font-size: 1.5rem;
+  background-color: whitesmoke;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.2rem 0.3rem 0;
+}
+.dg-addpost-content-tools-styles {
+}
+.dg-addpost-content-tools-styles button {
+  background: var(--bg);
+  border: none;
+  padding: 0.5rem;
+}

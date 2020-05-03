@@ -1,33 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { MdDone } from "react-icons/md";
+import {
+  AiOutlineAlignCenter,
+  AiOutlineAlignLeft,
+  AiOutlineAlignRight,
+} from "react-icons/ai";
 
-const DG_addPost_title = ({ title, setTitle, toggleTitleTog }) => {
-  //defined
-  const [fonts, setFonts] = useState([
-    "baloo",
-    "modak",
-    "poppins",
-    "galada",
-    "montserrat",
-    "caveat",
-    "cinzel",
-  ]);
-
-  const [textColor, setTextColor] = useState([
-    "black",
-    "white",
-    "red",
-    "yellow",
-    "blue",
-    "green",
-  ]);
-  const [textSize, setTextSizes] = useState(["small", "normal", "large"]);
-  const [textAlign, setTextAlign] = useState(["left", "center", "right"]);
-
+const DG_addPost_title = ({
+  title,
+  setTitle,
+  toggleTitleTog,
+  fonts,
+  textColor,
+  textSize,
+}) => {
   //values
   const [font, setFont] = useState(fonts[0]);
   const [color, setColor] = useState(textColor[0]);
-  const [align, setAlign] = useState(textAlign[1]);
+  const [align, setAlign] = useState("center");
   const [size, setSize] = useState(textSize[1]);
 
   //toggler
@@ -54,9 +44,10 @@ const DG_addPost_title = ({ title, setTitle, toggleTitleTog }) => {
           {/* text color */}
           <div className={`dg-font-${font} dg-ap-text-color`}>
             <span style={{ color: color }}>Color : </span>
-            {textColor.map((item) => {
+            {textColor.map((item, index) => {
               return (
                 <button
+                  key={index}
                   onClick={() => setColor(item)}
                   style={{ background: item }}
                 >
@@ -71,9 +62,10 @@ const DG_addPost_title = ({ title, setTitle, toggleTitleTog }) => {
             className={`dg-text-${size} dg-text-${color} dg-t-${align} dg-font-${font}`}
           >
             <span>Font : </span>
-            {fonts.map((item) => {
+            {fonts.map((item, index) => {
               return (
                 <button
+                  key={index}
                   className={`dg-text-${size} dg-text-${color} dg-font-${item}`}
                   onClick={() => setFont(item)}
                 >
@@ -86,9 +78,10 @@ const DG_addPost_title = ({ title, setTitle, toggleTitleTog }) => {
           {/* header size */}
           <div className={`dg-text-${color} dg-t-${align} dg-font-${font}`}>
             <span className={`dg-text-${size}`}>Size :</span>
-            {textSize.map((item) => {
+            {textSize.map((item, index) => {
               return (
                 <button
+                  key={index}
                   className={`dg-text-${color} dg-font-${font} dg-text-${item}`}
                   onClick={() => setSize(item)}
                 >
@@ -102,26 +95,38 @@ const DG_addPost_title = ({ title, setTitle, toggleTitleTog }) => {
           <div
             className={`dg-text-${size} dg-text-${color} dg-t-${align} dg-font-${font}`}
           >
-            <span>Align :</span>
-            {textAlign.map((item) => {
-              return (
-                <button
-                  className={`dg-text-${size} dg-text-${color} dg-font-${font}`}
-                  onClick={() => {
-                    setAlign(item);
-                  }}
-                >
-                  {item}
-                </button>
-              );
-            })}
+            <button
+              className={`dg-text-${size} dg-text-${color} dg-font-${font}`}
+              onClick={() => {
+                setAlign("left");
+              }}
+            >
+              <AiOutlineAlignLeft />
+            </button>
+            <button
+              className={`dg-text-${size} dg-text-${color} dg-font-${font}`}
+              onClick={() => {
+                setAlign("center");
+              }}
+            >
+              <AiOutlineAlignCenter />
+            </button>
+            <button
+              className={`dg-text-${size} dg-text-${color} dg-font-${font}`}
+              onClick={() => {
+                setAlign("right");
+              }}
+            >
+              <AiOutlineAlignRight />
+            </button>
+
             <hr />
           </div>
         </div>
       ) : (
         <button
           onClick={() => setMoreTog(true)}
-          style={{ color: "blue", "text-decoration": "underline" }}
+          style={{ color: "blue", textDecoration: "underline" }}
         >
           more...
         </button>
