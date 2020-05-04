@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import DG_addPost_template from "./DG_addPost_template";
 import { MdDone } from "react-icons/md";
 import {
   AiOutlineAlignCenter,
@@ -18,6 +19,7 @@ const DG_addPost_content = ({
   fonts,
   textColor,
   textSize,
+  bgTemplates,
 }) => {
   //predefined
   const [tagsList, setTagLists] = useState(["p", "a"]);
@@ -30,6 +32,7 @@ const DG_addPost_content = ({
   const [textDecora, setTextDecora] = useState("");
   const [italic, setItalic] = useState("");
   const [bold, setBold] = useState("");
+  const [template, setTemplate] = useState(bgTemplates[0]);
   const [newContent, setNewContent] = useState({
     tag: "",
     text: "",
@@ -38,20 +41,24 @@ const DG_addPost_content = ({
   useEffect(() => {
     setNewContent({
       ...newContent,
-      className: `dg-text-${size} dg-t-${align} dg-text-${color} dg-font-${font} dg-t-d-${textDecora} dg-${bold} dg-${italic}`,
+      className: `${template} dg-text-${size} dg-t-${align} dg-text-${color} dg-font-${font} dg-t-d-${textDecora} dg-${bold} dg-${italic}`,
     });
-  }, [color, font, align, size, textDecora, bold, italic]);
+  }, [color, font, align, size, textDecora, bold, italic, template]);
 
   //toggler
-  const [moreTog, setMoreTog] = useState(false);
+  const [moreTog, setMoreTog] = useState(true);
+  const [templateToggler, toggleTemplateTog] = useState(true);
+  ///
   return (
     <div className="dg-addpost-content-tools">
       <textarea
+        placeholder="Type here...(maximum 500 characters at one time) "
         className={newContent.className}
         value={newContent.text}
         onChange={(e) => {
           setNewContent({ ...newContent, text: e.target.value });
         }}
+        maxLength="500"
       ></textarea>
       {/* styles */}
 
@@ -150,6 +157,16 @@ const DG_addPost_content = ({
       {moreTog ? (
         <div className="animated zoomInDown dg-addpost-content-tools-styles">
           <div>
+            <span>Template :</span>
+            {templateToggler ? (
+              <DG_addPost_template
+                bgTemplates={bgTemplates}
+                toggleTemplateTog={toggleTemplateTog}
+                setTemplate={setTemplate}
+              />
+            ) : (
+              <button onClick={() => toggleTemplateTog(true)}>Template</button>
+            )}
             <span>Type :</span>
             {tagsList.map((item, index) => {
               const names = ["Paragraph", "Link"];

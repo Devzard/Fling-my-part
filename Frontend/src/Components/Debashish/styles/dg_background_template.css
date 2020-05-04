@@ -1,3 +1,6 @@
+.template-default {
+  background: var(--bg);
+}
 .leaverou-microbial-mat {
   background: radial-gradient(
         circle at 0% 50%,

@@ -48,12 +48,11 @@
   padding: 0.3rem 0.1rem;
   width: 85%;
   border: none;
-  background: whitesmoke;
 }
 .dg-ap-tool-txt-color {
   display: flex;
   justify-content: space-evenly;
-  margin: 0.2rem 0 0;
+  margin: 0.3rem 0;
 }
 .dg-ap-tool-bar {
   display: flex;
@@ -72,4 +71,19 @@
   background: var(--bg);
   border: none;
   padding: 0.5rem;
+}
+
+/* template */
+/* template */
+.dg-ap-template-bar {
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 2;
+}
+.dg-ap-template-bar > div {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 2rem;
+  padding: 0.1rem;
+  margin: 0.2rem;
 }

@@ -25,6 +25,7 @@ const DG_addPost = (props) => {
   ]);
   const [bgTemplates, setBgTemplates] = useState([
     //SIZE-sm,md,lg,xl
+    "template-default",
     "pattern-checks-md",
     "pattern-grid-md",
     "pattern-dots-md",
@@ -141,6 +142,7 @@ const DG_addPost = (props) => {
           fonts={fonts}
           textColor={textColor}
           textSize={textSize}
+          bgTemplates={bgTemplates}
         />
       </div>
     </div>
