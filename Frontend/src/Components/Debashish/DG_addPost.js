@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./styles/dg_addPost.css";
 import DG_addPost_title from "./DG_addPost_title";
 import DG_addPost_content from "./DG_addPost_content";
+import { FaBackspace } from "react-icons/fa";
 
-const DG_addPost = (props) => {
+const DG_addPost = ({ toggleAddPost }) => {
   //predefined values
   const [fonts, setFonts] = useState([
     "baloo",
@@ -72,7 +73,22 @@ const DG_addPost = (props) => {
     "leaverou-chocolate-waves",
     "leaverou-cross-dots",
   ]);
-  const [textSize, setTextSizes] = useState(["small", "normal", "large"]);
+  const [textSize, setTextSizes] = useState([
+    "very-small",
+    "small",
+    "normal",
+    "large",
+  ]);
+  const [categoryList, setCategoryList] = useState([
+    "General",
+    "Event",
+    "Rumour",
+    "Poem",
+    "Story",
+    "News",
+    "Question",
+    "Debate",
+  ]);
   //variables
   const [title, setTitle] = useState({
     tag: "",
@@ -84,8 +100,10 @@ const DG_addPost = (props) => {
       tag: "",
       text: "",
       className: "",
+      template: "",
     },
   ]);
+  const [category, setCategory] = useState("General");
   //togglers
   const [titleTog, toggleTitleTog] = useState(false);
 
@@ -93,22 +111,54 @@ const DG_addPost = (props) => {
   const renderContent = (contents) => {
     if (contents.tag == "a")
       return (
-        <a
-          href="#"
-          onClick={() => {
-            window.open(contents.text, "_blank");
-          }}
-        >
-          {contents.text}
-        </a>
+        <div className={`main-content-txt ${contents.template}`}>
+          <a
+            href="#"
+            onClick={() => {
+              window.open(contents.text, "_blank");
+            }}
+          >
+            {contents.text}
+          </a>
+        </div>
       );
     const Tag = contents.tag.length > 0 ? contents.tag : "p";
-    return <Tag className={contents.className}>{contents.text}</Tag>;
+    return (
+      <div className={`main-content-txt ${contents.template}`}>
+        <Tag className={contents.className}>{contents.text}</Tag>
+      </div>
+    );
   };
 
   return (
-    <div className="dg-addpost-container">
-      <h2>Create New Content</h2>
+    <div className="dg-addpost-container animated fadeInDown">
+      <br />
+      <div className="dg-logo-static">fling</div>
+      <div className="dg-addpost-header">
+        <span
+          onClick={() => {
+            toggleAddPost(false);
+          }}
+        >
+          <FaBackspace />
+        </span>
+        <span className="dg-label">Category</span> &nbsp; : &nbsp;
+        <select
+          className="dg-label"
+          value={category}
+          onChange={(e) => {
+            setCategory(e.target.value);
+          }}
+        >
+          {categoryList.map((item, index) => {
+            return (
+              <option key={index} value={item}>
+                {item}
+              </option>
+            );
+          })}
+        </select>
+      </div>
       <br />
 
       {/* title */}
@@ -132,7 +182,7 @@ const DG_addPost = (props) => {
         )}
       </div>
       {/* content */}
-      <div>
+      <div className="main-content">
         {content.map((item) => {
           return renderContent(item);
         })}
@@ -145,6 +195,8 @@ const DG_addPost = (props) => {
           bgTemplates={bgTemplates}
         />
       </div>
+      <br />
+      <br />
     </div>
   );
 };

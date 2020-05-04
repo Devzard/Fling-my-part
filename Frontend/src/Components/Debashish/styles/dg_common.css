@@ -1,0 +1,32 @@
+/* logo */
+.dg-logo-static {
+  padding: 0.6rem 1rem;
+  margin: 0 0 0.6rem 0;
+  border-radius: 0 0 0.6rem 0.6rem;
+  color: white;
+  font-weight: 600;
+  font-size: 1.5rem;
+  font-style: italic;
+  background: var(--p);
+}
+
+/* buttons */
+.dg-r-sm-btn {
+  border: none;
+  border-radius: 50%;
+  padding: 0.6rem !important;
+  background: linear-gradient(145deg, #f5fdff #ced4dd);
+  box-shadow: 0.2rem 0.2rem 0.35rem #5c5e62, -0.2rem -0.2rem 0.35rem #ffffff;
+}
+.dg-r-sm-btn:hover {
+  background: linear-gradient(145deg, #ced4dd, #f5fdff);
+}
+
+/* label */
+.dg-label {
+  background-color: var(--p-d);
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  color: white;
+  font-weight: 500;
+}

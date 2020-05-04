@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MdDone } from "react-icons/md";
+import { FcCheckmark } from "react-icons/fc";
 import {
   AiOutlineAlignCenter,
   AiOutlineAlignLeft,
@@ -42,8 +42,8 @@ const DG_addPost_title = ({
       {moreTog ? (
         <div className="animated zoomInDown">
           {/* text color */}
-          <div className={`dg-font-${font} dg-ap-text-color`}>
-            <span style={{ color: color }}>Color : </span>
+          <div className={` dg-ap-text-color`}>
+            <span className="dg-label">Color</span> :
             {textColor.map((item, index) => {
               return (
                 <button
@@ -58,10 +58,8 @@ const DG_addPost_title = ({
             <hr />
           </div>
           {/* fonts */}
-          <div
-            className={`dg-text-${size} dg-text-${color} dg-t-${align} dg-font-${font}`}
-          >
-            <span>Font : </span>
+          <div className={`dg-text-${color} dg-t-${align}`}>
+            <span className="dg-label">Font</span> :
             {fonts.map((item, index) => {
               return (
                 <button
@@ -76,8 +74,8 @@ const DG_addPost_title = ({
             <hr />
           </div>
           {/* header size */}
-          <div className={`dg-text-${color} dg-t-${align} dg-font-${font}`}>
-            <span className={`dg-text-${size}`}>Size :</span>
+          <div className={`dg-t-${align}`}>
+            <span className="dg-label">Size</span> :
             {textSize.map((item, index) => {
               return (
                 <button
@@ -135,8 +133,9 @@ const DG_addPost_title = ({
         onClick={() => {
           toggleTitleTog(true);
         }}
+        className="dg-r-sm-btn"
       >
-        <MdDone />
+        <FcCheckmark />
       </button>
     </div>
   );
