@@ -21,6 +21,23 @@
 .dg-r-sm-btn:hover {
   background: linear-gradient(145deg, #ced4dd, #f5fdff);
 }
+.dg-r-sm-p-btn {
+  border: none;
+  border-radius: 50%;
+  padding: 0.6rem !important;
+  background: linear-gradient(145deg, #2ebcf2, #0085b8);
+  box-shadow: 0.3rem 0.3rem 0.7rem #003b52, -0.3rem -0.3rem 0.7rem #00edff;
+}
+.dg-r-sm-p-btn:hover {
+  background: linear-gradient(145deg, #0085b8, #2ebcf2);
+}
+
+/* center with flex */
+.dg-center {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* label */
 .dg-label {
@@ -29,4 +46,5 @@
   border-radius: 0.5rem;
   color: white;
   font-weight: 500;
+  background: linear-gradient(145deg, #0085b8, #2ebcf2);
 }

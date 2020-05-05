@@ -19,6 +19,14 @@
   justify-content: center;
   align-items: center;
 }
+.dg-addpost-header > select {
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.dg-addpost-header > select > option {
+  color: black;
+}
 .dg-addpost-header > span:nth-child(1) {
   display: flex;
   justify-content: center;

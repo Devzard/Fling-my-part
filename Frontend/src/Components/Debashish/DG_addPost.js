@@ -132,7 +132,6 @@ const DG_addPost = ({ toggleAddPost }) => {
 
   return (
     <div className="dg-addpost-container animated fadeInDown">
-      <br />
       <div className="dg-logo-static">fling</div>
       <div className="dg-addpost-header">
         <span

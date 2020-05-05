@@ -32,3 +32,6 @@ a {
 button:focus {
   outline: none;
 }
+select:focus {
+  outline: none;
+}

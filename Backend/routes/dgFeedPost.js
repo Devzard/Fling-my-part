@@ -28,9 +28,7 @@ router.post("/new", async (req, res) => {
   const newPost = new DgFeedSchema({
     title: req.body.title,
     category: req.body.category,
-    template: req.body.template,
     content: req.body.content,
-    link: req.body.link,
     location: req.body.location,
     recogniser: recogniser,
     username: req.body.username,

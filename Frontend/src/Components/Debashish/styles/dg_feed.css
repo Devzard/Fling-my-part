@@ -1,0 +1,13 @@
+.dg-feed-header {
+  background-color: var(--p-d);
+  padding: 1rem;
+  color: white;
+  border-radius: 0 0 1rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dg-feed-header button {
+  color: white;
+  font-size: 1.2rem;
+}
