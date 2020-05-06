@@ -7,6 +7,7 @@ import { FaBackspace } from "react-icons/fa";
 const DG_location = ({ toggleLocation, userLocation, setUserLocation }) => {
   const [inputLocation, setInputLocation] = useState("");
   const [locationList, setLocationList] = useState([
+    "Global",
     "Jorhat Engineering College",
     "Jorhat Institute of Science and Technology",
     "Jayanta Boruah College",

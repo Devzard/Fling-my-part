@@ -136,3 +136,41 @@
   border-radius: 1rem;
   background-color: wheat;
 }
+
+/* categories */
+.dg-General {
+  color: #20ba1e;
+}
+.dg-General-bg {
+  background: #20ba1e;
+}
+.dg-Event {
+  color: #2ca3a1;
+}
+.dg-Event-bg {
+  background: #2ca3a1;
+}
+.dg-Rumour {
+  color: #e05441;
+}
+.dg-Rumour-bg {
+  background: #e05441;
+}
+.dg-Poem {
+  color: #e04176;
+}
+.dg-Poem-bg {
+  background: #e04176;
+}
+.dg-Story {
+  color: #4173e0;
+}
+.dg-Story-bg {
+  background: #4173e0;
+}
+.dg-News {
+  color: #37b0ac;
+}
+.dg-News-bg {
+  background: #37b0ac;
+}

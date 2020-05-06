@@ -4,7 +4,7 @@ import DG_addPost_title from "./DG_addPost_title";
 import DG_addPost_content from "./DG_addPost_content";
 import { FaBackspace } from "react-icons/fa";
 
-const DG_addPost = ({ toggleAddPost }) => {
+const DG_addPost = ({ toggleAddPost, posts, setPosts }) => {
   //predefined values
   const [fonts, setFonts] = useState([
     "baloo",
@@ -91,13 +91,13 @@ const DG_addPost = ({ toggleAddPost }) => {
   ]);
   //variables
   const [title, setTitle] = useState({
-    tag: "",
+    tag: "p",
     text: "",
     className: "",
   });
   const [content, setContent] = useState([
     {
-      tag: "",
+      tag: "p",
       text: "",
       className: "",
       template: "",
@@ -127,6 +127,23 @@ const DG_addPost = ({ toggleAddPost }) => {
       <div className={`main-content-txt ${contents.template}`}>
         <Tag className={contents.className}>{contents.text}</Tag>
       </div>
+    );
+  };
+
+  //addpost event handler
+  const addPostHandler = () => {
+    setPosts(
+      posts.concat({
+        title: title,
+        category: category,
+        content: content,
+        location: "Jorhat Engineering College",
+        likedUsers: [],
+        reportedUsers: [],
+        username: "Debashish",
+        uploadTime: "67;67;67",
+        comments: [],
+      })
     );
   };
 
@@ -194,6 +211,7 @@ const DG_addPost = ({ toggleAddPost }) => {
           bgTemplates={bgTemplates}
         />
       </div>
+      <button onClick={addPostHandler}>Send</button>
       <br />
       <br />
     </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DG_addPost from "./DG_addPost";
 import DG_Location from "./DG_location";
+import DG_Post from "./DG_Post";
 import Cookies from "js-cookie";
 import "./styles/pattern.min.css";
 import "./styles/dg_background_template.css";
@@ -14,13 +15,93 @@ function DG_feed() {
   const [locationToggler, toggleLocation] = useState(false);
   const [userLocation, setUserLocation] = useState("Global");
 
+  //posts
+  const [posts, setPosts] = useState([
+    {
+      title: {
+        tag: "",
+        text: "New topic",
+        className: "",
+      },
+      category: "General",
+      content: [
+        {
+          tag: "",
+          text: "NIcely working",
+          className: "",
+          template: "",
+        },
+        {
+          tag: "",
+          text: "you you",
+          className: "",
+          template: "",
+        },
+      ],
+      location: "Dibrugarh University",
+      recogniser: "#",
+      likedUsers: [],
+      reportedUsers: [],
+      username: "Mithical",
+      uploadTime: "00;00;00",
+      comments: [
+        {
+          name: "Mathew",
+          comment: "Nice",
+        },
+        {
+          name: "anonymous",
+          comment: "It's a nice one",
+        },
+      ],
+    },
+    {
+      title: {
+        tag: "",
+        text: "New topic",
+        className: "",
+      },
+      category: "Rumour",
+      content: [
+        {
+          tag: "",
+          text: "NIcely working",
+          className: "",
+          template: "",
+        },
+      ],
+      location: "Dibrugarh University",
+      recogniser: "#",
+      likedUsers: [],
+      reportedUsers: [],
+      username: "Mithical",
+      uploadTime: "00;00;00",
+      comments: [
+        {
+          name: "Mathew",
+          comment: "Nice",
+        },
+        {
+          name: "anonymous",
+          comment: "It's a nice one",
+        },
+      ],
+    },
+  ]);
+
   useEffect(() => {
     const loc = Cookies.get("dg_location");
     if (loc != null) setUserLocation(loc);
   }, []);
   return (
     <div>
-      {addPostToggler && <DG_addPost toggleAddPost={toggleAddPost} />}
+      {addPostToggler && (
+        <DG_addPost
+          toggleAddPost={toggleAddPost}
+          posts={posts}
+          setPosts={setPosts}
+        />
+      )}
       {locationToggler && (
         <DG_Location
           toggleLocation={toggleLocation}
@@ -39,7 +120,7 @@ function DG_feed() {
         >
           <MdLocationOn />
         </button>{" "}
-        {userLocation}
+        <span style={{ width: "50%" }}>{userLocation}</span>
         {/* addpost  */}
         <button
           onClick={() => {
@@ -52,6 +133,11 @@ function DG_feed() {
         <button className="dg-r-sm-p-btn dg-center dg-feed-add-btn">
           <MdFeedback />
         </button>
+      </div>
+
+      {/* posts  */}
+      <div>
+        <DG_Post posts={posts} setPosts={setPosts} />
       </div>
     </div>
   );

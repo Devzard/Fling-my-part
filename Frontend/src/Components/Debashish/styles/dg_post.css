@@ -1,0 +1,53 @@
+/* post container */
+.dg-posts-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.dg-eachpost {
+  padding: 1rem;
+}
+/* each post  */
+/* header */
+.dg-ep-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.dg-ep-h-username {
+}
+.dg-ep-h-category {
+}
+.dg-ep-h-location {
+  display: flex;
+  justify-content: left;
+  font-size: 0.5rem;
+  font-style: italic;
+}
+/* content */
+.dg-ep-container {
+  display: flex;
+}
+.dg-ep-depth {
+  width: 0.5rem;
+  box-shadow: inset 0.2rem 0.2rem 0.3rem rgba(0, 0, 0, 0.5);
+}
+.dg-ep-content-mid {
+  width: 100%;
+}
+
+/* buttons */
+.dg-ep-btns {
+  display: flex;
+  justify-content: space-evenly;
+}
+.dg-ep-btns button {
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.dg-ep-btns-like:disabled {
+  color: #fc4828;
+}
