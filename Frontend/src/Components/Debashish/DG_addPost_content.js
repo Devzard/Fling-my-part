@@ -63,7 +63,7 @@ const DG_addPost_content = ({
       <div className={newContent.template}>
         <textarea
           placeholder="Type here...(maximum 500 characters at a time) "
-          className={newContent.className}
+          className={`inside-content-txt ${newContent.className}`}
           value={newContent.text}
           onChange={(e) => {
             setNewContent({ ...newContent, text: e.target.value });

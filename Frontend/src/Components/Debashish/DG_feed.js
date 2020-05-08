@@ -14,10 +14,12 @@ function DG_feed() {
   const [addPostToggler, toggleAddPost] = useState(false);
   const [locationToggler, toggleLocation] = useState(false);
   const [userLocation, setUserLocation] = useState("Global");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   //posts
   const [posts, setPosts] = useState([
     {
+      _id: 1,
       title: {
         tag: "",
         text: "New topic",
@@ -56,6 +58,7 @@ function DG_feed() {
       ],
     },
     {
+      _id: 2,
       title: {
         tag: "",
         text: "New topic",
@@ -92,7 +95,48 @@ function DG_feed() {
   useEffect(() => {
     const loc = Cookies.get("dg_location");
     if (loc != null) setUserLocation(loc);
+
+    const isLoggedInCookie = Cookies.get("isLoggedIn");
+    if (isLoggedInCookie == "true") setIsLoggedIn(true);
   }, []);
+
+  const postsContainer = () => {
+    return (
+      <>
+        <div className="dg-feed-header">
+          {/* location  */}
+          <button
+            onClick={() => {
+              toggleLocation(true);
+            }}
+            className="dg-r-sm-p-btn dg-center dg-feed-loc-btn"
+          >
+            <MdLocationOn />
+          </button>{" "}
+          <span style={{ width: "50%" }}>{userLocation}</span>
+          {/* addpost  */}
+          <button
+            onClick={() => {
+              toggleAddPost(true);
+            }}
+            className="dg-r-sm-p-btn dg-center dg-feed-add-btn"
+            disabled={!isLoggedIn}
+          >
+            <MdAdd />
+          </button>
+          <button className="dg-r-sm-p-btn dg-center dg-feed-add-btn">
+            <MdFeedback />
+          </button>
+        </div>
+
+        {/* posts  */}
+        <div>
+          <DG_Post posts={posts} setPosts={setPosts} />
+        </div>
+      </>
+    );
+  };
+
   return (
     <div>
       {addPostToggler && (
@@ -110,37 +154,9 @@ function DG_feed() {
         />
       )}
       {/* logo, location, apppost, feedback or report */}
-      <div className="dg-feed-header">
-        {/* location  */}
-        <button
-          onClick={() => {
-            toggleLocation(true);
-          }}
-          className="dg-r-sm-p-btn dg-center dg-feed-loc-btn"
-        >
-          <MdLocationOn />
-        </button>{" "}
-        <span style={{ width: "50%" }}>{userLocation}</span>
-        {/* addpost  */}
-        <button
-          onClick={() => {
-            toggleAddPost(true);
-          }}
-          className="dg-r-sm-p-btn dg-center dg-feed-add-btn"
-        >
-          <MdAdd />
-        </button>
-        <button className="dg-r-sm-p-btn dg-center dg-feed-add-btn">
-          <MdFeedback />
-        </button>
-      </div>
-
-      {/* posts  */}
-      <div>
-        <DG_Post posts={posts} setPosts={setPosts} />
-      </div>
+      {!(addPostToggler || locationToggler) && <>{postsContainer()}</>}
     </div>
   );
 }
 
-export default DG_feed;
+export default React.memo(DG_feed);

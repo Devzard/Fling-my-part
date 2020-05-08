@@ -14,6 +14,7 @@ const DG_Post = ({ posts, setPosts }) => {
       reportedUsers: posts.reportedUsers.concat(userId),
     });
   };
+
   return (
     <div className="dg-posts-container">
       {posts.map((item, index) => {
@@ -29,4 +30,4 @@ const DG_Post = ({ posts, setPosts }) => {
   );
 };
 
-export default DG_Post;
+export default React.memo(DG_Post);

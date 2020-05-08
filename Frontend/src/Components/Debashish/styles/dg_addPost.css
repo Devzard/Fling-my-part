@@ -13,6 +13,11 @@
 }
 .main-content-txt {
   padding: 0 0.5rem;
+  padding: 0;
+}
+.inside-content-txt {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);
 }
 .dg-addpost-header {
   display: flex;
@@ -77,7 +82,6 @@
   padding: 0.3rem 0.1rem;
   width: 100%;
   border: none;
-  background-color: rgba(0, 0, 0, 0);
 }
 .dg-ap-tool-txt-color {
   display: flex;

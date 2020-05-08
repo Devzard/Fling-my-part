@@ -113,6 +113,7 @@ const DG_addPost = ({ toggleAddPost, posts, setPosts }) => {
       return (
         <div className={`main-content-txt ${contents.template}`}>
           <a
+            className={`inside-content-txt ${contents.className}`}
             href="#"
             onClick={() => {
               window.open(contents.text, "_blank");
@@ -125,7 +126,9 @@ const DG_addPost = ({ toggleAddPost, posts, setPosts }) => {
     const Tag = contents.tag.length > 0 ? contents.tag : "p";
     return (
       <div className={`main-content-txt ${contents.template}`}>
-        <Tag className={contents.className}>{contents.text}</Tag>
+        <Tag className={`inside-content-txt ${contents.className}`}>
+          {contents.text}
+        </Tag>
       </div>
     );
   };

@@ -103,4 +103,4 @@ const DG_location = ({ toggleLocation, userLocation, setUserLocation }) => {
   );
 };
 
-export default DG_location;
+export default React.memo(DG_location);

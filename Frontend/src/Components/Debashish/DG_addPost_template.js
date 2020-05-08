@@ -26,4 +26,4 @@ const DG_addPost_template = ({
   );
 };
 
-export default DG_addPost_template;
+export default React.memo(DG_addPost_template);
