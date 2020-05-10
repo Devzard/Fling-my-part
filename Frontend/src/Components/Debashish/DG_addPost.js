@@ -86,8 +86,7 @@ const DG_addPost = ({ toggleAddPost, posts, setPosts }) => {
     "Poem",
     "Story",
     "News",
-    "Question",
-    "Debate",
+    "Confession",
   ]);
   //variables
   const [title, setTitle] = useState({

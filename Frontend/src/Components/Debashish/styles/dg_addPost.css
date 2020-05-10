@@ -5,6 +5,10 @@
   height: 100%;
   width: 100%;
 }
+.dg-ap-tool-box {
+  border: 0.06rem solid rgba(0, 0, 0, 0.7);
+  padding: 0.5rem 0;
+}
 .dg-addpost-content {
   padding: 0.5rem;
 }
@@ -138,9 +142,13 @@
     inset -0.1rem -0.1rem 0.2rem #ffffff;
 }
 .dg-ap-template-bar > button {
-  padding: 0 1.1rem;
+  font-size: 2rem;
+  color: var(--p-d);
+  padding: 0 0.6rem;
+  display: flex;
+  align-items: center;
   border-radius: 50%;
-  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  background: linear-gradient(145deg, #adadad, #ffffff);
 }
 .dg-ap-template-bar > div {
   height: 2rem;
