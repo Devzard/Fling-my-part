@@ -174,3 +174,9 @@
 .dg-News-bg {
   background: #37b0ac;
 }
+.dg-Confession {
+  color: var(--dg-c);
+}
+.dg-Confession-bg {
+  background: var(--dg-c);
+}

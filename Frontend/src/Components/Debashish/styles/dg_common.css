@@ -1,3 +1,13 @@
+:root {
+  --dg-g: #20ba1e;
+  --dg-e: #2ca3a1;
+  --dg-r: #e05441;
+  --dg-p: #e04176;
+  --dg-s: #4173e0;
+  --dg-n: #37b0ac;
+  --dg-c: #fc03ca;
+}
+
 /* logo */
 .dg-logo-static {
   padding: 0.6rem 1rem;
@@ -22,7 +32,9 @@
   background: linear-gradient(145deg, #cccccc, #ffffff);
 }
 .dg-r-sm-btn:disabled {
-  background: linear-gradient(145deg, #cccccc, #ffffff);
+  background: whitesmoke;
+  box-shadow: inset 0.18rem 0.18rem 0.27rem #5c5e62,
+    inset -0.18rem -0.18rem 0.27rem #ffffff;
 }
 /* // */
 .dg-r-sm-p-btn {
@@ -36,7 +48,42 @@
   background: linear-gradient(145deg, #0085b8, #2ebcf2);
 }
 .dg-r-sm-p-btn:disabled {
-  background: linear-gradient(145deg, #0085b8, #2ebcf2);
+  background: var(--p-d);
+  box-shadow: inset 0.3rem 0.3rem 0.7rem #003b52,
+    inset -0.3rem -0.3rem 0.7rem #00edff;
+}
+
+.dg-btn {
+  border: none;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.7rem;
+  background: linear-gradient(145deg, #ffffff, #dddddd);
+  box-shadow: 0.18rem 0.18rem 0.27rem #626262, -0.18rem -0.18rem 0.27rem #ffffff;
+}
+.dg-btn:hover {
+  background: linear-gradient(145deg, #dddddd, #ffffff);
+}
+.dg-btn:disabled {
+  background: whitesmoke;
+  box-shadow: inset 0.18rem 0.18rem 0.27rem #626262,
+    inset -0.18rem -0.18rem 0.27rem #ffffff;
+}
+/* //  */
+.dg-btn-p {
+  color: white;
+  border: none;
+  padding: 0.9rem !important;
+  border-radius: 0.7rem;
+  background: linear-gradient(145deg, #009eda, #0085b8);
+  box-shadow: 0.18rem 0.18rem 0.27rem #003b52, -0.18rem -0.18rem 0.27rem #00edff;
+}
+.dg-btn-p:hover {
+  background: linear-gradient(145deg, #0085b8, #009eda);
+}
+.dg-btn-p:disabled {
+  background: var(--p-d);
+  box-shadow: inset 0.18rem 0.18rem 0.27rem #003b52,
+    inset -0.18rem -0.18rem 0.27rem #00edff;
 }
 
 /* center with flex */
@@ -48,10 +95,20 @@
 
 /* label */
 .dg-label {
-  background-color: var(--p-d);
   padding: 0.3rem;
   border-radius: 0.5rem;
   color: white;
   font-weight: 500;
   background: linear-gradient(145deg, #0085b8, #2ebcf2);
+}
+
+/* toggler  */
+.dg-toggler-true {
+  background: var(--p-l);
+  color: black;
+  padding: 0.3rem 0.5rem;
+  font-weight: 600;
+  border-radius: 0.3rem;
+  box-shadow: inset 0.1rem 0.1rem 0.2rem #346366,
+    inset -0.1rem -0.1rem 0.2rem #d0ffff;
 }

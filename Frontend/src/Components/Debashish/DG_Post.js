@@ -14,7 +14,6 @@ const DG_Post = ({ posts, setPosts }) => {
       reportedUsers: posts.reportedUsers.concat(userId),
     });
   };
-
   return (
     <div className="dg-posts-container">
       {posts.map((item, index) => {
