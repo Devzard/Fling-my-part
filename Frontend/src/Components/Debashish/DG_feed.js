@@ -9,96 +9,60 @@ import "./styles/dg_templates.css";
 import "./styles/dg_common.css";
 import "./styles/dg_feed.css";
 import { MdLocationOn, MdAdd, MdFeedback } from "react-icons/md";
+import axios from "axios";
 
 function DG_feed() {
+  const path = "https://my-fling.herokuapp.com";
   const [addPostToggler, toggleAddPost] = useState(false);
   const [locationToggler, toggleLocation] = useState(false);
-  const [userLocation, setUserLocation] = useState("Global");
+  const [postsLocation, setPostsLocation] = useState("Global");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [displayLoadMore, setDisplayLoadMore] = useState({ display: "block" });
+  //userdetails
+  const [userDetails, setUserDetails] = useState({
+    username: "",
+    name: "",
+    userId: "",
+    location: "",
+  });
 
   //posts
-  const [posts, setPosts] = useState([
-    {
-      _id: 1,
-      title: {
-        tag: "",
-        text: "New topic",
-        className: "",
-      },
-      category: "General",
-      content: [
-        {
-          tag: "",
-          text: "NIcely working",
-          className: "",
-          template: "",
-        },
-        {
-          tag: "",
-          text: "you you",
-          className: "",
-          template: "",
-        },
-      ],
-      location: "Dibrugarh University",
-      recogniser: "#",
-      likedUsers: [],
-      reportedUsers: [],
-      username: "Mithical",
-      uploadTime: "00;00;00",
-      comments: [
-        {
-          name: "Mathew",
-          comment: "Nice",
-        },
-        {
-          name: "anonymous",
-          comment: "It's a nice one",
-        },
-      ],
-    },
-    {
-      _id: 2,
-      title: {
-        tag: "",
-        text: "New topic",
-        className: "",
-      },
-      category: "Rumour",
-      content: [
-        {
-          tag: "",
-          text: "NIcely working",
-          className: "",
-          template: "",
-        },
-      ],
-      location: "Dibrugarh University",
-      recogniser: "#",
-      likedUsers: [],
-      reportedUsers: [],
-      username: "Mithical",
-      uploadTime: "00;00;00",
-      comments: [
-        {
-          name: "Mathew",
-          comment: "Nice",
-        },
-        {
-          name: "anonymous",
-          comment: "It's a nice one",
-        },
-      ],
-    },
-  ]);
+  const [posts, setPosts] = useState([]);
+
+  const postsDataHandler = () => {
+    axios
+      .post(`${path}/feed/${postsLocation}`, { pageNumber: pageNumber })
+      .then((res) => {
+        setPosts(res.data);
+        if (res.data.length < 10) setDisplayLoadMore({ display: "none" });
+      })
+      .catch((err) => console.error(err));
+  };
 
   useEffect(() => {
     const loc = Cookies.get("dg_location");
-    if (loc != null) setUserLocation(loc);
+    if (loc != null) setPostsLocation(loc);
 
     const isLoggedInCookie = Cookies.get("isLoggedIn");
     if (isLoggedInCookie == "true") setIsLoggedIn(true);
+
+    const username = Cookies.get("username");
+    const name = Cookies.get("name");
+    const location = Cookies.get("location");
+    const userId = Cookies.get("_user_id");
+
+    setUserDetails({
+      username: username,
+      name: name,
+      location: location,
+      userId: userId,
+    });
+
+    postsDataHandler();
   }, []);
+
+  useEffect(() => postsDataHandler(), [postsLocation, pageNumber]);
 
   const postsContainer = () => {
     return (
@@ -113,7 +77,7 @@ function DG_feed() {
           >
             <MdLocationOn />
           </button>{" "}
-          <span style={{ width: "50%" }}>{userLocation}</span>
+          <span style={{ width: "50%" }}>{postsLocation}</span>
           {/* addpost  */}
           <button
             onClick={() => {
@@ -133,6 +97,15 @@ function DG_feed() {
         <div>
           <DG_Post posts={posts} setPosts={setPosts} />
         </div>
+
+        {/* load more  */}
+        <button
+          style={displayLoadMore}
+          className="dg-btn"
+          onClick={() => setPageNumber(pageNumber + 1)}
+        >
+          Load More
+        </button>
       </>
     );
   };
@@ -144,13 +117,14 @@ function DG_feed() {
           toggleAddPost={toggleAddPost}
           posts={posts}
           setPosts={setPosts}
+          userDetails={userDetails}
         />
       )}
       {locationToggler && (
         <DG_Location
           toggleLocation={toggleLocation}
-          userLocation={userLocation}
-          setUserLocation={setUserLocation}
+          postsLocation={postsLocation}
+          setPostsLocation={setPostsLocation}
         />
       )}
       {/* logo, location, apppost, feedback or report */}

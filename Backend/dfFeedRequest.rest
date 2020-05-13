@@ -7,7 +7,7 @@ Content-Type: application/json
         "text":"Welcome",
         "className":""
     },
-    "category":"General",
+    "category":"Rumour",
     "content":[{
         "tags":"a",
         "text":"https://www.google.com",
@@ -16,7 +16,7 @@ Content-Type: application/json
     },
     {
         "tags":"",
-        "text":"Go to Google",
+        "text":"To get help from google",
         "className":"",
         "template":""
     }],
@@ -60,3 +60,37 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3300/feed/user/posts/debashish
+
+/////////////////////////////////////////////////
+
+###
+GET https://my-fling.herokuapp.com/feed/user/posts/debashish
+
+###
+POST https://my-fling.herokuapp.com/feed/new
+Content-Type: application/json
+
+{
+    "title":{
+        "tag":"",
+        "text":"Welcome",
+        "className":""
+    },
+    "category":"Rumour",
+    "content":[{
+        "tags":"a",
+        "text":"https://www.google.com",
+        "className":"",
+        "template":""
+    },
+    {
+        "tags":"",
+        "text":"To get help from google",
+        "className":"",
+        "template":""
+    }],
+    "location":"Jorhat Engineering College",
+    "userId":"5ebbf98818f9562bb5b55f99",
+    "username":"debashish",
+    "name":"Debashish Gogoi"
+}

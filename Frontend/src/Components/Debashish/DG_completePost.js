@@ -15,53 +15,13 @@ import Cookies from "js-cookie";
 import DG_complete_comment from "./DG_complete_comment";
 
 function DG_everyPost() {
-  //send its own request and retrieve posts with comments
+  const path = "https://my-fling.herokuapp.com";
   let { id } = useParams();
   let history = useHistory();
 
   const [isUserIdPresent, setUserIdPresent] = useState(false);
-  const [post, setPost] = useState({
-    _id: 2,
-    title: {
-      tag: "",
-      text: "New topic",
-      className: "",
-    },
-    category: "General",
-    content: [
-      {
-        tag: "",
-        text: "NIcely working",
-        className: "",
-        template: "",
-      },
-    ],
-    location: "Dibrugarh University",
-    recogniser: "#",
-    likedUsers: [],
-    reportedUsers: [],
-    username: "Mithical",
-    uploadTime: "00;00;00",
-    comments: [
-      {
-        _id: "1",
-        name: "Mathew",
-        comment: "Nice",
-      },
-      {
-        _id: "2",
-        name: "anonymous",
-        comment: "It's a nice one",
-      },
-    ],
-  });
-
-  useEffect(() => {
-    window.scroll(0, 0);
-    const user = Cookies.get("_user_id");
-    if (user == null) setUserIdPresent(false);
-    else setUserIdPresent(true);
-  }, []);
+  const [userId, setUserId] = useState("");
+  const [post, setPost] = useState({});
 
   const renderContent = (contents) => {
     if (contents.tag == "a")
@@ -87,6 +47,18 @@ function DG_everyPost() {
       </div>
     );
   };
+
+  const bringPost = () => {
+    axios.post(`${path}/feed/`);
+  };
+
+  useEffect(() => {
+    window.scroll(0, 0);
+    const user = Cookies.get("_user_id");
+    setUserId(user);
+    if (user == null) setUserIdPresent(false);
+    else setUserIdPresent(true);
+  }, []);
 
   return (
     <div className="dg-cmp animated fadeInDown">

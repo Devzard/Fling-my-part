@@ -84,7 +84,8 @@ router.post("/posts/:id", async (req, res) => {
 });
 
 //getting posts of a particular user
-router.get("/user/posts/:username", async (req, res) => {
+router.post("/user/posts/:username", async (req, res) => {
+  const userId = req.post.userId;
   //username is asked
   try {
     const completepost = await DgFeedSchema.find({

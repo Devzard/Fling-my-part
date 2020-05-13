@@ -4,8 +4,12 @@ import DG_addPost_title from "./DG_addPost_title";
 import DG_addPost_content from "./DG_addPost_content";
 import { FaBackspace } from "react-icons/fa";
 import { IoIosSend } from "react-icons/io";
+import Loader from "../Loader";
+import axios from "axios";
 
-const DG_addPost = ({ toggleAddPost, posts, setPosts }) => {
+const DG_addPost = ({ toggleAddPost, posts, setPosts, userDetails }) => {
+  const path = "https://my-fling.herokuapp.com";
+  const [isUploading, setIsUploading] = useState(false);
   //predefined values
   const fonts = [
     "baloo",
@@ -123,19 +127,37 @@ const DG_addPost = ({ toggleAddPost, posts, setPosts }) => {
 
   //addpost event handler
   const addPostHandler = () => {
-    setPosts(
-      posts.concat({
+    // setPosts(
+    //   posts.concat({
+    //     title: title,
+    //     category: category,
+    //     content: content,
+    //     location: "Jorhat Engineering College",
+    //     likedUsers: [],
+    //     reportedUsers: [],
+    //     username: "Debashish",
+    //     uploadTime: "67;67;67",
+    //     comments: [],
+    //   })
+    // );
+    setIsUploading(true);
+    axios
+      .post(`${path}/feed/new`, {
         title: title,
         category: category,
         content: content,
-        location: "Jorhat Engineering College",
-        likedUsers: [],
-        reportedUsers: [],
-        username: "Debashish",
-        uploadTime: "67;67;67",
-        comments: [],
+        location: userDetails.location,
+        userId: userDetails.userId,
+        name: userDetails.name,
+        username: userDetails.username,
       })
-    );
+      .then((res) => {
+        setPosts(posts.concat(res.data));
+        setIsUploading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
@@ -202,7 +224,11 @@ const DG_addPost = ({ toggleAddPost, posts, setPosts }) => {
           bgTemplates={bgTemplates}
         />
       </div>
-      <button onClick={addPostHandler} className="dg-ap-send dg-r-sm-btn">
+      <button
+        disabled={isUploading}
+        onClick={addPostHandler}
+        className="dg-ap-send dg-r-sm-btn"
+      >
         <IoIosSend />
       </button>
       <br />
