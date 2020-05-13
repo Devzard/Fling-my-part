@@ -15,7 +15,7 @@ const dgFeedPost = require("./routes/dgFeedPost");
 app.use("/feed", dgFeedPost);
 
 //feed user data route
-const dgUser = require("./routes/dgUsersData");
+const dgUser = require("./routes/dgNewUser");
 app.use("/feed/user", dgUser);
 
 app.get("/", (req, res) => {

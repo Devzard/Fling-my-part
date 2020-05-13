@@ -1,21 +1,20 @@
-POST http://localhost:3300/feed/user/create
+POST http://localhost:3300/feed/user/new
 Content-Type: application/json
 
 {
-    "username":"Debashish Gogoi",
+    "username":"",
+    "name":"",
     "password": "12345",
-    "location": "JEC"
+    "location": "Jorhat Engineering College"
 }
 
 ###
-GET http://localhost:3300/feed/user/
-
-###
-POST http://localhost:3300/feed/user/myposts/
+POST http://localhost:3300/feed/user/del
 Content-Type: application/json
 
 {
-    "_user_id":"47",
-    "location":"DU"
+    "username":"debashish"
 }
+
+
 

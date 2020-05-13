@@ -3,6 +3,7 @@ import DG_EachPost from "./DG_EachPost";
 import "./styles/dg_post.css";
 
 const DG_Post = ({ posts, setPosts }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   //gets called on like
   const likeHandler = (userId, recogniser) => {
     setPosts({ ...setPosts, likedUsers: posts.likedUsers.concat(userId) });
@@ -14,6 +15,11 @@ const DG_Post = ({ posts, setPosts }) => {
       reportedUsers: posts.reportedUsers.concat(userId),
     });
   };
+
+  useEffect(() => {
+    const userId = Cookies.get("_user_id");
+    if (userId != null) setIsLoggedIn(true);
+  }, []);
   return (
     <div className="dg-posts-container">
       {posts.map((item, index) => {
@@ -22,6 +28,7 @@ const DG_Post = ({ posts, setPosts }) => {
             post={item}
             likeHandler={likeHandler}
             reportHandler={reportHandler}
+            isLoggedIn={isLoggedIn}
           />
         );
       })}

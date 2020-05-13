@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import "./styles/dg_background_template.css";
 import "./styles/pattern.min.css";
 import "./styles/dg_templates.css";
 import "./styles/dg_common.css";
 import "./styles/dg_post.css";
 import "./styles/dg_completepost.css";
-import { Link } from "react-router-dom";
 import { FaBackspace } from "react-icons/fa";
 import { FaComment } from "react-icons/fa";
 import { AiTwotoneFire } from "react-icons/ai";
@@ -18,6 +17,7 @@ import DG_complete_comment from "./DG_complete_comment";
 function DG_everyPost() {
   //send its own request and retrieve posts with comments
   let { id } = useParams();
+  let history = useHistory();
 
   const [isUserIdPresent, setUserIdPresent] = useState(false);
   const [post, setPost] = useState({
@@ -92,11 +92,11 @@ function DG_everyPost() {
     <div className="dg-cmp animated fadeInDown">
       {/* header  */}
       <div className="dg-cmp-header">
-        <Link to="/feed">
-          <span>
-            <FaBackspace className="dg-cmp-back" />
-          </span>
-        </Link>
+        {/* <Link to="/feed"> */}
+        <span onClick={() => history.goBack()}>
+          <FaBackspace className="dg-cmp-back" />
+        </span>
+        {/* </Link> */}
         <span>{post.username}</span>
         <span className={`dg-${post.category}`}>{post.category}</span>
       </div>

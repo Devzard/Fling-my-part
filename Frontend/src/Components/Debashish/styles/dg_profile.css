@@ -1,0 +1,38 @@
+.dg-p-header {
+  background: linear-gradient(90deg, var(--p-d), #fc03ca);
+  color: white;
+  padding: 0.8rem;
+  border-radius: 0 0 0.8rem 0.8rem;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dg-p-header > span:nth-child(1) {
+  font-size: 1.4rem;
+}
+.dg-p-header > span:nth-child(2) {
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* info  */
+.dg-p-info {
+  margin: 0.5rem 0 0;
+  color: white;
+  height: 25vh;
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(45deg, var(--p), var(--p-l));
+  border-radius: 1rem;
+}
+.dg-p-username {
+  font-size: 1.7rem;
+  margin: 0 0.4rem 0.4rem;
+  font-weight: 700;
+}
+.dg-p-location {
+  font-style: italic;
+  font-size: 0.8rem;
+  margin: 0 0 0.6rem;
+}

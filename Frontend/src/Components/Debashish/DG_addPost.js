@@ -3,10 +3,11 @@ import "./styles/dg_addPost.css";
 import DG_addPost_title from "./DG_addPost_title";
 import DG_addPost_content from "./DG_addPost_content";
 import { FaBackspace } from "react-icons/fa";
+import { IoIosSend } from "react-icons/io";
 
 const DG_addPost = ({ toggleAddPost, posts, setPosts }) => {
   //predefined values
-  const [fonts, setFonts] = useState([
+  const fonts = [
     "baloo",
     "modak",
     "poppins",
@@ -14,16 +15,9 @@ const DG_addPost = ({ toggleAddPost, posts, setPosts }) => {
     "montserrat",
     "caveat",
     "cinzel",
-  ]);
+  ];
 
-  const [textColor, setTextColor] = useState([
-    "black",
-    "white",
-    "red",
-    "yellow",
-    "blue",
-    "green",
-  ]);
+  const textColor = ["black", "white", "red", "yellow", "blue", "green"];
   const [bgTemplates, setBgTemplates] = useState([
     //SIZE-sm,md,lg,xl
     "template-default",
@@ -73,13 +67,8 @@ const DG_addPost = ({ toggleAddPost, posts, setPosts }) => {
     "leaverou-chocolate-waves",
     "leaverou-cross-dots",
   ]);
-  const [textSize, setTextSizes] = useState([
-    "very-small",
-    "small",
-    "normal",
-    "large",
-  ]);
-  const [categoryList, setCategoryList] = useState([
+  const textSize = ["very-small", "small", "normal", "large"];
+  const categoryList = [
     "General",
     "Event",
     "Rumour",
@@ -87,7 +76,7 @@ const DG_addPost = ({ toggleAddPost, posts, setPosts }) => {
     "Story",
     "News",
     "Confession",
-  ]);
+  ];
   //variables
   const [title, setTitle] = useState({
     tag: "p",
@@ -213,7 +202,9 @@ const DG_addPost = ({ toggleAddPost, posts, setPosts }) => {
           bgTemplates={bgTemplates}
         />
       </div>
-      <button onClick={addPostHandler}>Send</button>
+      <button onClick={addPostHandler} className="dg-ap-send dg-r-sm-btn">
+        <IoIosSend />
+      </button>
       <br />
       <br />
     </div>

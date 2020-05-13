@@ -6,7 +6,7 @@
   padding: 1rem;
   box-shadow: 0.8rem 0.8rem 1.2rem var(--s-d), -0.8rem -0.8rem 1.2rem var(--s-l);
   transition: box-shadow ease 1s;
-  animation: loader 1s infinite linear;
+  animation: loading 1s infinite linear;
 }
 .logo-container {
   height: 100%;

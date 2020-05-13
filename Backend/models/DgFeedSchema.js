@@ -2,24 +2,26 @@ const mongoose = require("mongoose");
 
 const DgFeed = mongoose.Schema({
   title: {
-    type:{
-    tag:String,
-    text:String,
-    className:String
-  }
+    type: {
+      tag: String,
+      text: String,
+      className: String,
+    },
   },
   category: {
     type: String,
     default: "General",
   },
   content: {
-    type: [{
-    tags:String,
-    text:String,
-    className:String,
-    template:String
-  }],
-    required:true
+    type: [
+      {
+        tags: String,
+        text: String,
+        className: String,
+        template: String,
+      },
+    ],
+    required: true,
   },
   image: {
     type: String,
@@ -42,6 +44,10 @@ const DgFeed = mongoose.Schema({
     required: true,
   },
   username: {
+    type: String,
+    required: true,
+  },
+  name: {
     type: String,
     required: true,
   },

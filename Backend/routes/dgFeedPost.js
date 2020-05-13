@@ -32,6 +32,7 @@ router.post("/new", async (req, res) => {
     location: req.body.location,
     recogniser: recogniser,
     username: req.body.username,
+    name: req.body.name,
   });
 
   try {
@@ -52,11 +53,15 @@ router.post("/:location", async (req, res) => {
 
   try {
     if (location == "Global") {
-      posts = await DgFeedSchema.find().skip(skip).limit(10);
+      posts = await DgFeedSchema.find()
+        .skip(skip)
+        .limit(10)
+        .select({ image: 0, reportedUsers: 0, comments: 0 });
     } else {
       posts = await DgFeedSchema.find({ location: location })
         .skip(skip)
-        .limit(10);
+        .limit(10)
+        .select({ image: 0, reportedUsers: 0, comments: 0 });
     }
     res.status(200).json(posts);
   } catch (err) {
@@ -72,6 +77,19 @@ router.post("/posts/:id", async (req, res) => {
   const postId = req.params.id;
   try {
     const completepost = await DgFeedSchema.find({ _id: postId });
+    res.status(200).json(completepost);
+  } catch (err) {
+    res.status(500).json({ message: err });
+  }
+});
+
+//getting posts of a particular user
+router.get("/user/posts/:username", async (req, res) => {
+  //username is asked
+  try {
+    const completepost = await DgFeedSchema.find({
+      username: req.params.username,
+    });
     res.status(200).json(completepost);
   } catch (err) {
     res.status(500).json({ message: err });

@@ -1,11 +1,18 @@
 import React from "react";
 import "./App.css";
+
+// DG
 import DG_home from "./Components/Debashish/DG_home";
 import DG_feed from "./Components/Debashish/DG_feed";
 import DG_completePost from "./Components/Debashish/DG_completePost";
-import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
+import DG_profile from "./Components/Debashish/DG_profile";
 
-import Loader from "./Components/Loader";
+//RG
+
+//RJD
+
+//
+import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -15,15 +22,18 @@ function App() {
           <Route exact path="/">
             <DG_home />
           </Route>
+          {/* feed routes */}
           <Route exact path="/feed">
             <DG_feed />
           </Route>
           <Route path="/feed/post/:id">
             <DG_completePost />
           </Route>
+          <Route path="/feed/:username/:recogniser">
+            <DG_profile />
+          </Route>
         </Switch>
       </Router>
-      {/* <Loader /> */}
     </div>
   );
 }

@@ -2,14 +2,28 @@ POST http://localhost:3300/feed/new
 Content-Type: application/json
 
 {
-    "title":"The second post",
+    "title":{
+        "tag":"",
+        "text":"Welcome",
+        "className":""
+    },
     "category":"General",
-    "template":"100",
-    "location":"DU",
-    "content":"Glad its that level cool",
-    "link":"http:....",
-    "userId":"46",
-    "username":"ping"
+    "content":[{
+        "tags":"a",
+        "text":"https://www.google.com",
+        "className":"",
+        "template":""
+    },
+    {
+        "tags":"",
+        "text":"Go to Google",
+        "className":"",
+        "template":""
+    }],
+    "location":"Jorhat Engineering College",
+    "userId":"5ebbf98818f9562bb5b55f99",
+    "username":"debashish",
+    "name":"Debashish Gogoi"
 }
 
 ###
@@ -18,9 +32,9 @@ PATCH http://localhost:3300/feed/update
 Content-Type: application/json
 
 {
-    "_id":"5eab0d96b1f0db1c32f65694",
-    "_user_id":"45",
-    "recogniser":"$2b$10$.H3.V40LyDTMx.Nnvljc7eZbOy2QanRQRe7IfVoeKA9pklV3z6Q2i",
+    "_id":"5ebbfd6a3076732cca3e7fdd",
+    "_user_id":"5ebbf98818f9562bb5b55f99",
+    "recogniser":"$2b$10$NZ0OW67I/u5S..CyWmkBgeS9Pb2Y3pxDNYwzNyWYWd4lj1SvbAuma",
     "likedUsers":[],
     "reportedUsers":[],
     "comments":[{"name":"annonymous","comment":"wow"},{"name":"annonymous","comment":"you're pretty amazing"}]
@@ -37,11 +51,12 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3300/feed/posts/5eab0d96b1f0db1c32f65694
+POST http://localhost:3300/feed/posts/5ebbfd6a3076732cca3e7fdd
 Content-Type: application/json
 
 {
-    "_user_id":"45"
+    "_user_id":"5ebbfd6a3076732cca3e7fdd"
 }
 
 ###
+GET http://localhost:3300/feed/user/posts/debashish

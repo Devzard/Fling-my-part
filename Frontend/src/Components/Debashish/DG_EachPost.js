@@ -4,7 +4,7 @@ import { AiTwotoneFire } from "react-icons/ai";
 import { MdMoreHoriz } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-function DG_EachPost({ post, likeHandler, reportHandler }) {
+function DG_EachPost({ post, likeHandler, reportHandler, isLoggedIn }) {
   const renderContent = (contents) => {
     if (contents.tag == "a")
       return (
@@ -53,9 +53,14 @@ function DG_EachPost({ post, likeHandler, reportHandler }) {
         </div>
       </div>
       <br />
+
+      {/* buttons  */}
       <div className="dg-ep-btns">
         <span>
-          <button className="dg-ep-btns-like dg-r-sm-btn">
+          <button
+            className="dg-ep-btns-like dg-r-sm-btn"
+            disabled={!isLoggedIn}
+          >
             <AiTwotoneFire />
           </button>
           &nbsp;&nbsp;
@@ -63,17 +68,30 @@ function DG_EachPost({ post, likeHandler, reportHandler }) {
         </span>
         <span>
           <Link to={`/feed/post/${post._id}`}>
-            <button className="dg-ep-btns-comment dg-r-sm-btn">
+            <button
+              className="dg-ep-btns-comment dg-r-sm-btn"
+              disabled={!isLoggedIn}
+            >
               <FaComment />
             </button>
           </Link>
           &nbsp;&nbsp;
           {post.comments.length}
         </span>
-        <button className="dg-ep-btns-more dg-r-sm-btn">
+        <button className="dg-ep-btns-more dg-r-sm-btn" disabled={!isLoggedIn}>
           <MdMoreHoriz />
         </button>
       </div>
+      {isLoggedIn ? (
+        <></>
+      ) : (
+        <h4>
+          <Link to="/login">
+            <u style={{ color: "blue" }}>Sign in or Login</u>
+          </Link>{" "}
+          to like and comment
+        </h4>
+      )}
       <br />
       <hr />
     </div>
