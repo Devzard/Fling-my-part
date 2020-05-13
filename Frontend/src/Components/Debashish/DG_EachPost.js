@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 function DG_EachPost({ post, likeHandler, reportHandler, isLoggedIn }) {
   const renderContent = (contents) => {
+    if (contents.tag == null) return;
     if (contents.tag == "a")
       return (
         <div className={`main-content-txt ${contents.template}`}>
@@ -76,7 +77,6 @@ function DG_EachPost({ post, likeHandler, reportHandler, isLoggedIn }) {
             </button>
           </Link>
           &nbsp;&nbsp;
-          {post.comments.length}
         </span>
         <button className="dg-ep-btns-more dg-r-sm-btn" disabled={!isLoggedIn}>
           <MdMoreHoriz />

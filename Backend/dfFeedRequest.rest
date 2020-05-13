@@ -59,12 +59,22 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3300/feed/user/posts/debashish
+POST http://localhost:3300/feed/user/posts/debashish
+Content-Type: application/json
+
+{
+    "_user_id":"5ebbfd6a3076732cca3e7fdd"
+}
 
 /////////////////////////////////////////////////
 
 ###
-GET https://my-fling.herokuapp.com/feed/user/posts/debashish
+POST  https://my-fling.herokuapp.com/feed/user/posts/debashish
+Content-Type: application/json
+
+{
+    "_user_id":"5ebbfd6a3076732cca3e7fdd"
+}
 
 ###
 POST https://my-fling.herokuapp.com/feed/new
@@ -85,7 +95,7 @@ Content-Type: application/json
     },
     {
         "tags":"",
-        "text":"To get help from google",
+        "text":"To get help  google",
         "className":"",
         "template":""
     }],

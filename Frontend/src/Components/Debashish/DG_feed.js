@@ -10,6 +10,7 @@ import "./styles/dg_common.css";
 import "./styles/dg_feed.css";
 import { MdLocationOn, MdAdd, MdFeedback } from "react-icons/md";
 import axios from "axios";
+import Loader from "../Loader";
 
 function DG_feed() {
   const path = "https://my-fling.herokuapp.com";
@@ -19,6 +20,7 @@ function DG_feed() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
   const [displayLoadMore, setDisplayLoadMore] = useState({ display: "block" });
+  const [isPostsLoaded, setIsPostsLoaded] = useState(false);
   //userdetails
   const [userDetails, setUserDetails] = useState({
     username: "",
@@ -64,6 +66,11 @@ function DG_feed() {
 
   useEffect(() => postsDataHandler(), [postsLocation, pageNumber]);
 
+  useEffect(() => {
+    if (posts != null && posts.length >= 0) setIsPostsLoaded(true);
+    else setIsPostsLoaded(false);
+  }, [posts]);
+
   const postsContainer = () => {
     return (
       <>
@@ -94,9 +101,13 @@ function DG_feed() {
         </div>
 
         {/* posts  */}
-        <div>
-          <DG_Post posts={posts} setPosts={setPosts} />
-        </div>
+        {isPostsLoaded ? (
+          <div>
+            <DG_Post posts={posts} setPosts={setPosts} />
+          </div>
+        ) : (
+          <Loader />
+        )}
 
         {/* load more  */}
         <button

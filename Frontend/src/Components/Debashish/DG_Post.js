@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DG_EachPost from "./DG_EachPost";
 import "./styles/dg_post.css";
+import Cookies from "js-cookie";
 
 const DG_Post = ({ posts, setPosts }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

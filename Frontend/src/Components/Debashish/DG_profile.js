@@ -4,85 +4,29 @@ import Cookies from "js-cookie";
 import { FaBackspace } from "react-icons/fa";
 import DG_Post from "./DG_Post";
 import "./styles/dg_profile.css";
+import axios from "axios";
 
 function DG_profile() {
-  let { username, recogniser } = useParams();
+  const path = "https://my-fling.herokuapp.com";
+  let { username } = useParams();
   let history = useHistory();
 
-  const [posts, setPosts] = useState([
-    {
-      _id: 1,
-      title: {
-        tag: "",
-        text: "New topic",
-        className: "",
-      },
-      category: "General",
-      content: [
-        {
-          tag: "",
-          text: "NIcely working",
-          className: "",
-          template: "",
-        },
-        {
-          tag: "",
-          text: "you you",
-          className: "",
-          template: "",
-        },
-      ],
-      location: "Dibrugarh University",
-      recogniser: "#",
-      likedUsers: [],
-      reportedUsers: [],
-      username: "Mithical",
-      uploadTime: "00;00;00",
-      comments: [
-        {
-          name: "Mathew",
-          comment: "Nice",
-        },
-        {
-          name: "anonymous",
-          comment: "It's a nice one",
-        },
-      ],
-    },
-    {
-      _id: 2,
-      title: {
-        tag: "",
-        text: "New topic",
-        className: "",
-      },
-      category: "Rumour",
-      content: [
-        {
-          tag: "",
-          text: "NIcely working",
-          className: "",
-          template: "",
-        },
-      ],
-      location: "Dibrugarh University",
-      recogniser: "#",
-      likedUsers: [],
-      reportedUsers: [],
-      username: "Mithical",
-      uploadTime: "00;00;00",
-      comments: [
-        {
-          name: "Mathew",
-          comment: "Nice",
-        },
-        {
-          name: "anonymous",
-          comment: "It's a nice one",
-        },
-      ],
-    },
-  ]);
+  const [userId, setUserId] = useState("");
+  const [posts, setPosts] = useState([]);
+
+  const bringPost = () => {
+    axios
+      .post(`${path}/feed/user/posts/${username}`, { _user_id: userId })
+      .then((res) => setPosts(res.data))
+      .catch((err) => console.error(err));
+  };
+
+  useEffect(() => {
+    const user = Cookies.get("_user_id");
+    setUserId(user);
+
+    bringPost();
+  }, []);
 
   return (
     <div>

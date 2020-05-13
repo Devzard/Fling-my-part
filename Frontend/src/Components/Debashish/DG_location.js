@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import "./styles/dg_location.css";
 import { FaBackspace } from "react-icons/fa";
 
-const DG_location = ({ toggleLocation, userLocation, setUserLocation }) => {
+const DG_location = ({ toggleLocation, userLocation, setPostsLocation }) => {
   const [inputLocation, setInputLocation] = useState("");
   const [locationList, setLocationList] = useState([
     "Global",
@@ -42,7 +42,7 @@ const DG_location = ({ toggleLocation, userLocation, setUserLocation }) => {
                   <li
                     key={index}
                     onClick={() => {
-                      setUserLocation(item);
+                      setPostsLocation(item);
                       toggleLocation(false);
                       Cookies.set("dg_location", item);
                     }}
@@ -63,7 +63,7 @@ const DG_location = ({ toggleLocation, userLocation, setUserLocation }) => {
                   <li
                     key={index}
                     onClick={() => {
-                      setUserLocation(item);
+                      setPostsLocation(item);
                       toggleLocation(false);
                       Cookies.set("dg_location", item);
                     }}

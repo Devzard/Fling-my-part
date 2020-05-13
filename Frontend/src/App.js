@@ -29,7 +29,7 @@ function App() {
           <Route path="/feed/post/:id">
             <DG_completePost />
           </Route>
-          <Route path="/feed/:username/:recogniser">
+          <Route path="/feed/:username">
             <DG_profile />
           </Route>
         </Switch>
