@@ -8,7 +8,7 @@ import "./styles/dg_post.css";
 import "./styles/dg_completepost.css";
 import { FaBackspace } from "react-icons/fa";
 import { FaComment } from "react-icons/fa";
-import { AiTwotoneFire } from "react-icons/ai";
+import { AiTwotoneFire, AiOutlineLink } from "react-icons/ai";
 import { MdMoreHoriz } from "react-icons/md";
 import Cookies from "js-cookie";
 import axios from "axios";
@@ -39,6 +39,8 @@ function DG_everyPost() {
               window.open(contents.text, "_blank");
             }}
           >
+            <AiOutlineLink />
+            &nbsp;
             {contents.text}
           </a>
         </div>

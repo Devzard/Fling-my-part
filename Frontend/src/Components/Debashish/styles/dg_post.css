@@ -11,18 +11,25 @@
 /* each post  */
 /* header */
 .dg-ep-header {
+  font-size: 0.7rem;
   display: flex;
-  width: 100%;
   justify-content: space-between;
+  text-align: right;
+  width: 100%;
 }
 .dg-ep-h-username {
+  font-size: 0.85rem;
+  font-weight: 450;
+}
+.dg-ep-h-username > i {
+  font-weight: 380;
 }
 .dg-ep-h-category {
 }
 .dg-ep-h-location {
   display: flex;
   justify-content: left;
-  font-size: 0.5rem;
+  font-size: 0.6rem;
   font-style: italic;
 }
 /* content */

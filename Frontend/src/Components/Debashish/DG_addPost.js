@@ -4,6 +4,8 @@ import DG_addPost_title from "./DG_addPost_title";
 import DG_addPost_content from "./DG_addPost_content";
 import { FaBackspace } from "react-icons/fa";
 import { IoIosSend } from "react-icons/io";
+import { AiOutlineLink } from "react-icons/ai";
+
 import Loader from "../Loader";
 import axios from "axios";
 
@@ -111,6 +113,8 @@ const DG_addPost = ({ toggleAddPost, posts, setPosts, userDetails }) => {
               window.open(contents.text, "_blank");
             }}
           >
+            <AiOutlineLink />
+            &nbsp;
             {contents.text}
           </a>
         </div>
@@ -127,19 +131,6 @@ const DG_addPost = ({ toggleAddPost, posts, setPosts, userDetails }) => {
 
   //addpost event handler
   const addPostHandler = () => {
-    // setPosts(
-    //   posts.concat({
-    //     title: title,
-    //     category: category,
-    //     content: content,
-    //     location: "Jorhat Engineering College",
-    //     likedUsers: [],
-    //     reportedUsers: [],
-    //     username: "Debashish",
-    //     uploadTime: "67;67;67",
-    //     comments: [],
-    //   })
-    // );
     setIsUploading(true);
     axios
       .post(`${path}/feed/new`, {
@@ -154,6 +145,7 @@ const DG_addPost = ({ toggleAddPost, posts, setPosts, userDetails }) => {
       .then((res) => {
         setPosts(posts.concat(res.data));
         setIsUploading(false);
+        toggleAddPost(false);
       })
       .catch((err) => {
         console.error(err);

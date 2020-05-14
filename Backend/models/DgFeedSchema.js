@@ -15,7 +15,7 @@ const DgFeed = mongoose.Schema({
   content: {
     type: [
       {
-        tags: String,
+        tag: String,
         text: String,
         className: String,
         template: String,

@@ -88,13 +88,13 @@ Content-Type: application/json
     },
     "category":"Rumour",
     "content":[{
-        "tags":"a",
+        "tag":"a",
         "text":"https://www.google.com",
         "className":"",
         "template":""
     },
     {
-        "tags":"",
+        "tag":"",
         "text":"To get help  google",
         "className":"",
         "template":""
@@ -103,4 +103,13 @@ Content-Type: application/json
     "userId":"5ebbf98818f9562bb5b55f99",
     "username":"debashish",
     "name":"Debashish Gogoi"
+}
+
+###
+
+POST https://my-fling.herokuapp.com/feed/Global
+Content-Type: application/json
+
+{
+    "pageNumber":1
 }

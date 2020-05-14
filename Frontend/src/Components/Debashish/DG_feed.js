@@ -19,7 +19,7 @@ function DG_feed() {
   const [postsLocation, setPostsLocation] = useState("Global");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
-  const [displayLoadMore, setDisplayLoadMore] = useState({ display: "block" });
+  const [displayLoadMore, setDisplayLoadMore] = useState({ display: "none" });
   const [isPostsLoaded, setIsPostsLoaded] = useState(false);
   //userdetails
   const [userDetails, setUserDetails] = useState({
@@ -30,7 +30,34 @@ function DG_feed() {
   });
 
   //posts
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState([
+    {
+      category: "",
+      image: "",
+      location: "",
+      likedUsers: [],
+      reportedUsers: [],
+      _id: "",
+      title: {
+        tag: "",
+        text: "",
+        className: "",
+      },
+      content: [
+        {
+          tags: "",
+          text: "",
+          className: "",
+          template: "",
+        },
+      ],
+      recogniser: "",
+      username: "",
+      name: "",
+      uploadTime: "",
+      comments: [],
+    },
+  ]);
 
   const postsDataHandler = () => {
     axios
@@ -38,6 +65,8 @@ function DG_feed() {
       .then((res) => {
         setPosts(res.data);
         if (res.data.length < 10) setDisplayLoadMore({ display: "none" });
+        else setDisplayLoadMore({ display: "block" });
+        setIsPostsLoaded(true);
       })
       .catch((err) => console.error(err));
   };
@@ -65,11 +94,6 @@ function DG_feed() {
   }, []);
 
   useEffect(() => postsDataHandler(), [postsLocation, pageNumber]);
-
-  useEffect(() => {
-    if (posts != null && posts.length >= 0) setIsPostsLoaded(true);
-    else setIsPostsLoaded(false);
-  }, [posts]);
 
   const postsContainer = () => {
     return (

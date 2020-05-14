@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { FaUser, FaComment } from "react-icons/fa";
-import { AiTwotoneFire } from "react-icons/ai";
+import { AiTwotoneFire, AiOutlineLink } from "react-icons/ai";
 import { MdMoreHoriz } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 function DG_EachPost({ post, likeHandler, reportHandler, isLoggedIn }) {
   const renderContent = (contents) => {
-    if (contents.tag == null) return;
     if (contents.tag == "a")
       return (
         <div className={`main-content-txt ${contents.template}`}>
@@ -17,6 +16,8 @@ function DG_EachPost({ post, likeHandler, reportHandler, isLoggedIn }) {
               window.open(contents.text, "_blank");
             }}
           >
+            <AiOutlineLink />
+            &nbsp;
             {contents.text}
           </a>
         </div>
@@ -33,15 +34,7 @@ function DG_EachPost({ post, likeHandler, reportHandler, isLoggedIn }) {
 
   return (
     <div className="dg-eachpost">
-      <div className="dg-ep-header">
-        <span className="dg-ep-h-username">
-          <FaUser /> {post.username}
-        </span>
-        <span className={`dg-${post.category} dg-ep-h-category`}>
-          {post.category}
-        </span>
-      </div>
-      <div className="dg-ep-h-location">{post.location}</div>
+      {/* content  */}
       <div className="dg-ep-container">
         <span className={`dg-ep-depth dg-${post.category}-bg`}></span>
         <div className="dg-ep-content-mid">
@@ -53,6 +46,20 @@ function DG_EachPost({ post, likeHandler, reportHandler, isLoggedIn }) {
           </div>
         </div>
       </div>
+      <br />
+
+      {/* header  */}
+      <div className="dg-ep-header">
+        <span className={`dg-${post.category} dg-ep-h-category`}>
+          {post.category}
+        </span>
+        &nbsp;
+        <span className={`dg-ep-h-username`}>
+          <i>from</i>&nbsp;&nbsp;
+          <FaUser /> {post.username}
+        </span>
+      </div>
+      <div className="dg-ep-h-location">{post.location}</div>
       <br />
 
       {/* buttons  */}
