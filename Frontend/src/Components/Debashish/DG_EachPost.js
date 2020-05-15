@@ -3,8 +3,38 @@ import { FaUser, FaComment } from "react-icons/fa";
 import { AiTwotoneFire, AiOutlineLink } from "react-icons/ai";
 import { MdMoreHoriz } from "react-icons/md";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
-function DG_EachPost({ post, likeHandler, reportHandler, isLoggedIn }) {
+function DG_EachPost({ index, post, likeHandler, reportHandler, isLoggedIn }) {
+  const [userId, setUserId] = useState("");
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [status, setStatus] = useState({
+    isLiked: false,
+    isReported: false,
+  });
+
+  const isLiked = (userId, userLists) => {
+    if (userLists == null) return false;
+    if (userLists.length < 0) return false;
+    else {
+      return userLists.map((item, index) => {
+        if (item == userId) return true;
+        if (index == userLists.length - 1) return false;
+      });
+    }
+  };
+
+  const isReported = (userId, userLists) => {
+    if (userLists == null) return false;
+    if (userLists.length < 0) return false;
+    else {
+      return userLists.map((item, index) => {
+        if (item == userId) return true;
+        if (index == userLists.length - 1) return false;
+      });
+    }
+  };
+
   const renderContent = (contents) => {
     if (contents.tag == "a")
       return (
@@ -32,6 +62,21 @@ function DG_EachPost({ post, likeHandler, reportHandler, isLoggedIn }) {
     );
   };
 
+  useEffect(() => {
+    setUserId(Cookies.get("_user_id"));
+    if (isLoggedIn) setIsDisabled(false);
+    else setIsDisabled(true);
+  }, []);
+
+  useEffect(() => {
+    let newStatus = isLiked(userId, post.likedUsers);
+    let newStatus2 = isReported(userId, post.reportedUsers);
+    setStatus({
+      isLiked: newStatus,
+      isReported: newStatus2,
+    });
+  }, [post]);
+
   return (
     <div className="dg-eachpost">
       {/* content  */}
@@ -39,11 +84,13 @@ function DG_EachPost({ post, likeHandler, reportHandler, isLoggedIn }) {
         <span className={`dg-ep-depth dg-${post.category}-bg`}></span>
         <div className="dg-ep-content-mid">
           <div className="dg-ep-title">{renderContent(post.title)}</div>
-          <div className="dg-ep-content">
-            {post.content.map((item) => {
-              return renderContent(item);
-            })}
-          </div>
+          <Link to={`/feed/post/${post._id}`}>
+            <div className="dg-ep-content">
+              {post.content.map((item) => {
+                return renderContent(item);
+              })}
+            </div>
+          </Link>
         </div>
       </div>
       <br />
@@ -55,8 +102,9 @@ function DG_EachPost({ post, likeHandler, reportHandler, isLoggedIn }) {
         </span>
         &nbsp;
         <span className={`dg-ep-h-username`}>
-          <i>from</i>&nbsp;&nbsp;
-          <FaUser /> {post.username}
+          <i>-by</i>&nbsp;&nbsp;
+          {/* <FaUser /> */}
+          {post.username}
         </span>
       </div>
       <div className="dg-ep-h-location">{post.location}</div>
@@ -66,8 +114,11 @@ function DG_EachPost({ post, likeHandler, reportHandler, isLoggedIn }) {
       <div className="dg-ep-btns">
         <span>
           <button
+            onClick={() => {
+              likeHandler(index, userId);
+            }}
             className="dg-ep-btns-like dg-r-sm-btn"
-            disabled={!isLoggedIn}
+            disabled={isDisabled}
           >
             <AiTwotoneFire />
           </button>
@@ -75,19 +126,18 @@ function DG_EachPost({ post, likeHandler, reportHandler, isLoggedIn }) {
           {post.likedUsers.length}
         </span>
         <span>
-          <Link to={`/feed/post/${post._id}`}>
-            <button
-              className="dg-ep-btns-comment dg-r-sm-btn"
-              disabled={!isLoggedIn}
-            >
-              <FaComment />
-            </button>
-          </Link>
-          &nbsp;&nbsp;
+          <span>
+            <Link to={`/feed/post/${post._id}`}>
+              <button className="dg-ep-btns-comment" disabled={isDisabled}>
+                <FaComment />
+              </button>
+            </Link>
+            &nbsp;&nbsp;
+          </span>
+          <button className="dg-ep-btns-more" disabled={isDisabled}>
+            <MdMoreHoriz />
+          </button>
         </span>
-        <button className="dg-ep-btns-more dg-r-sm-btn" disabled={!isLoggedIn}>
-          <MdMoreHoriz />
-        </button>
       </div>
       {isLoggedIn ? (
         <></>

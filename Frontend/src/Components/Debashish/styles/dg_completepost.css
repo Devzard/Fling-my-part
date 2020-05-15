@@ -41,6 +41,9 @@
   padding: 0.5rem 0 0;
   font-style: italic;
 }
+.dg-cmp-btns {
+  margin: 0 0.5rem;
+}
 
 /* comments  */
 .dg-cmp-comment-form {

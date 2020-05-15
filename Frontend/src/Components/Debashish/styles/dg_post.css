@@ -22,6 +22,7 @@
   font-weight: 450;
 }
 .dg-ep-h-username > i {
+  font-size: 0.7rem;
   font-weight: 380;
 }
 .dg-ep-h-category {
@@ -47,14 +48,21 @@
 /* buttons */
 .dg-ep-btns {
   display: flex;
-  justify-content: space-evenly;
+  align-items: center;
+  justify-content: space-between;
 }
 .dg-ep-btns button {
-  font-size: 0.9rem;
+  font-size: 1rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 .dg-ep-btns-like:disabled {
   color: #fc4828;
+}
+.dg-ep-btns-comment,
+.dg-ep-btns-more {
+  background: var(--bg);
+  border: none;
+  padding: 0 0.3rem;
 }

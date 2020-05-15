@@ -107,7 +107,7 @@ function DG_everyPost() {
           </div>
           <br />
           {/* buttons  */}
-          <div className="dg-ep-btns">
+          <div className="dg-ep-btns dg-cmp-btns">
             <span>
               <button
                 disabled={!isUserIdPresent}
@@ -119,23 +119,20 @@ function DG_everyPost() {
               {post.likedUsers.length}
             </span>
             <span>
-              <Link to={`/feed`}>
-                <button
-                  disabled={!isUserIdPresent}
-                  className="dg-ep-btns-comment dg-r-sm-btn"
-                >
-                  <FaComment />
-                </button>
-              </Link>
-              &nbsp;&nbsp;
-              {post.comments.length}
+              <span>
+                <Link to={`/feed`}>
+                  <button
+                    disabled={!isUserIdPresent}
+                    className="dg-ep-btns-comment"
+                  >
+                    <FaComment />
+                  </button>
+                </Link>
+              </span>
+              <button disabled={!isUserIdPresent} className="dg-ep-btns-more">
+                <MdMoreHoriz />
+              </button>
             </span>
-            <button
-              disabled={!isUserIdPresent}
-              className="dg-ep-btns-more dg-r-sm-btn"
-            >
-              <MdMoreHoriz />
-            </button>
           </div>
           <br />
           <hr />

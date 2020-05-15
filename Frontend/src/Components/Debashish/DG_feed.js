@@ -30,40 +30,13 @@ function DG_feed() {
   });
 
   //posts
-  const [posts, setPosts] = useState([
-    {
-      category: "",
-      image: "",
-      location: "",
-      likedUsers: [],
-      reportedUsers: [],
-      _id: "",
-      title: {
-        tag: "",
-        text: "",
-        className: "",
-      },
-      content: [
-        {
-          tags: "",
-          text: "",
-          className: "",
-          template: "",
-        },
-      ],
-      recogniser: "",
-      username: "",
-      name: "",
-      uploadTime: "",
-      comments: [],
-    },
-  ]);
+  const [posts, setPosts] = useState([]);
 
   const postsDataHandler = () => {
     axios
       .post(`${path}/feed/${postsLocation}`, { pageNumber: pageNumber })
       .then((res) => {
-        setPosts(res.data);
+        setPosts(posts.concat(res.data));
         if (res.data.length < 10) setDisplayLoadMore({ display: "none" });
         else setDisplayLoadMore({ display: "block" });
         setIsPostsLoaded(true);
