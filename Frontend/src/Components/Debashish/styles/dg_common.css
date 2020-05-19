@@ -86,6 +86,27 @@
     inset -0.18rem -0.18rem 0.27rem #00edff;
 }
 
+/* // */
+.dg-flat-btn-p {
+  border: none;
+  padding: 0.5rem;
+  margin: 0.1rem;
+  background: var(--p);
+  color: white;
+  font-weight: 600;
+  border-radius: 0.2rem;
+}
+.dg-flat-btn-p:hover {
+  background: var(--p-l);
+  color: black;
+  box-shadow: none;
+}
+.dg-flat-btn-p:disabled {
+  background: var(--s);
+  color: gray;
+  box-shadow: none;
+}
+
 /* center with flex */
 .dg-center {
   display: inline-flex;

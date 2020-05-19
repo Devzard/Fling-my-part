@@ -6,6 +6,7 @@ import axios from "axios";
 
 const DG_Post = ({ posts, setPosts }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   //gets called on like
   const likeHandler = (index, userId) => {
     let newPosts = [...posts];

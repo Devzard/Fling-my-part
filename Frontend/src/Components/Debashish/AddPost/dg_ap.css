@@ -1,0 +1,63 @@
+.dg-ap-head-container {
+  min-height: 100vh;
+  background: whitesmoke;
+}
+.dg-separater {
+  overflow: visible;
+  height: 1.8rem;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.4);
+  border-width: 0.1rem 0 0 0;
+  border-radius: 1rem;
+}
+.dg-separater::before {
+  display: block;
+  content: "";
+  height: 1.9rem;
+  margin-top: -2rem;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.4);
+  border-width: 0 0 0.1rem 0;
+  border-radius: 1rem;
+}
+/* page head */
+/* /////  */
+.dg-ap-head {
+  background-color: var(--p-d);
+  color: white;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0 0 0.8rem 0.8rem;
+}
+.dg-ap-head > span {
+  width: 4rem;
+}
+/* back btn */
+.dg-ap-head > span:nth-child(1) {
+}
+/* fling */
+.dg-ap-head > span:nth-child(2) {
+  font-size: 1.4rem;
+  font-style: italic;
+}
+
+/* rendered block  */
+/* ////  */
+.dg-ap-preview {
+  min-height: 4rem;
+}
+
+/* addmore btn*/
+.dg-ap-addmore-btn {
+  display: flex;
+  margin: 0.1rem 1rem;
+}
+
+/* options create  */
+.dg-ap-addblock-opt {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}

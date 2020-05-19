@@ -5,7 +5,7 @@ import { MdMoreHoriz } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 
-function DG_EachPost({ index, post, likeHandler, reportHandler, isLoggedIn }) {
+function DG_EachPost({ index, post, isLoggedIn, likeHandler, reportHandler }) {
   const [userId, setUserId] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
   const [status, setStatus] = useState({

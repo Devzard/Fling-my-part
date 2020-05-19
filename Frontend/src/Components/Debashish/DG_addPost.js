@@ -131,25 +131,25 @@ const DG_addPost = ({ toggleAddPost, posts, setPosts, userDetails }) => {
 
   //addpost event handler
   const addPostHandler = () => {
-    setIsUploading(true);
-    axios
-      .post(`${path}/feed/new`, {
-        title: title,
-        category: category,
-        content: content,
-        location: userDetails.location,
-        userId: userDetails.userId,
-        name: userDetails.name,
-        username: userDetails.username,
-      })
-      .then((res) => {
-        setPosts(posts.concat(res.data));
-        setIsUploading(false);
-        toggleAddPost(false);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    // setIsUploading(true);
+    // axios
+    //   .post(`${path}/feed/new`, {
+    //     title: title,
+    //     category: category,
+    //     content: content,
+    //     location: userDetails.location,
+    //     userId: userDetails.userId,
+    //     name: userDetails.name,
+    //     username: userDetails.username,
+    //   })
+    //   .then((res) => {
+    //     setPosts(posts.concat(res.data));
+    //     setIsUploading(false);
+    //     toggleAddPost(false);
+    //   })
+    //   .catch((err) => {
+    //     console.error(err);
+    //   });
   };
 
   return (
@@ -216,6 +216,7 @@ const DG_addPost = ({ toggleAddPost, posts, setPosts, userDetails }) => {
           bgTemplates={bgTemplates}
         />
       </div>
+      <br />
       <button
         disabled={isUploading}
         onClick={addPostHandler}

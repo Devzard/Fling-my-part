@@ -13,6 +13,7 @@ import { MdMoreHoriz } from "react-icons/md";
 import Cookies from "js-cookie";
 import axios from "axios";
 import Loader from "../Loader";
+import DG_EachPost from "./DG_EachPost";
 
 import DG_complete_comment from "./DG_complete_comment";
 

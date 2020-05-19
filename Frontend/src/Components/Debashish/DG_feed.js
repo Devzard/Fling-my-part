@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DG_addPost from "./DG_addPost";
+import DG_addPost from "./AddPost/DG_addPost";
 import DG_Location from "./DG_location";
 import DG_Post from "./DG_Post";
 import Cookies from "js-cookie";
@@ -14,7 +14,7 @@ import Loader from "../Loader";
 
 function DG_feed() {
   const path = "https://my-fling.herokuapp.com";
-  const [addPostToggler, toggleAddPost] = useState(false);
+  const [addPostToggler, toggleAddPost] = useState(true);
   const [locationToggler, toggleLocation] = useState(false);
   const [postsLocation, setPostsLocation] = useState("Global");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
