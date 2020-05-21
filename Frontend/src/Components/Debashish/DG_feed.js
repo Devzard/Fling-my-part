@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DG_addPost from "./AddPost/DG_addPost";
+import DG_AddPost_Editor from "./AddPost/DG_AddPost_Editor";
 import DG_Location from "./DG_location";
 import DG_Post from "./DG_Post";
 import Cookies from "js-cookie";
@@ -121,7 +121,7 @@ function DG_feed() {
   return (
     <div>
       {addPostToggler && (
-        <DG_addPost
+        <DG_AddPost_Editor
           toggleAddPost={toggleAddPost}
           posts={posts}
           setPosts={setPosts}

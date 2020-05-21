@@ -17,7 +17,15 @@ function AddPost({ toggleAddPost, posts, setPosts, userDetails }) {
     "caveat",
     "cinzel",
   ];
-  const textColor = ["black", "white", "red", "yellow", "blue", "green"];
+  const textColor = [
+    "black",
+    "white",
+    "yellow",
+    "cyan",
+    "blue",
+    "green",
+    "red",
+  ];
   const backgroundColor = ["blue", "green", "red", "maroon", "yellow"];
   const [bgTemplates, setBgTemplates] = useState([
     //SIZE-sm,md,lg,xl
@@ -84,12 +92,12 @@ function AddPost({ toggleAddPost, posts, setPosts, userDetails }) {
     {
       _id: 1,
       tag: "Response",
-      text: "like dislike mouth feet legs",
+      text: "hey new",
       responseList: [],
-      className: "",
+      className: "3 5",
     },
   ]);
-  const [addState, setAddState] = useState("Paragraph");
+  const [addState, setAddState] = useState("Response");
   const [addMoreTog, toggleAddMoreTog] = useState(true);
   const [template, setTemplate] = useState("template-default");
 
@@ -102,6 +110,7 @@ function AddPost({ toggleAddPost, posts, setPosts, userDetails }) {
           fonts={fonts}
           blocks={blocks}
           setBlocks={setBlocks}
+          toggleAddMoreTog={toggleAddMoreTog}
         />
       );
     else if (addState == "Response")
@@ -111,6 +120,7 @@ function AddPost({ toggleAddPost, posts, setPosts, userDetails }) {
           fonts={fonts}
           blocks={blocks}
           setBlocks={setBlocks}
+          toggleAddMoreTog={toggleAddMoreTog}
         />
       );
     else if (addState == "Link")
@@ -121,6 +131,7 @@ function AddPost({ toggleAddPost, posts, setPosts, userDetails }) {
           textSize={textSize}
           blocks={blocks}
           setBlocks={setBlocks}
+          toggleAddMoreTog={toggleAddMoreTog}
         />
       );
     else setAddState("Paragraph");

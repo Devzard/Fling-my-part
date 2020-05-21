@@ -7,7 +7,7 @@ function DG_renderBlock({ blocks }) {
     if (block.tag == "")
       return <span className={block.className}>{block.text}</span>;
     else if (block.tag == "Paragraph")
-      return <p className={block.className}>{console.log("hit")}hi</p>;
+      return <p className={block.className}>{block.text}</p>;
     else if (block.tag == "Link")
       return (
         <a
@@ -22,9 +22,19 @@ function DG_renderBlock({ blocks }) {
       );
     else if (block.tag == "Response") {
       let buttonText = block.text.split(" ");
-      return buttonText.map((item) => {
-        return <button>{item}</button>;
-      });
+      let count = block.className.split(" ");
+      return (
+        <div className="dg-response">
+          {buttonText.map((item, index) => {
+            return (
+              <>
+                <button>{item}</button>
+                {count[index]}
+              </>
+            );
+          })}
+        </div>
+      );
     }
   };
   return (
