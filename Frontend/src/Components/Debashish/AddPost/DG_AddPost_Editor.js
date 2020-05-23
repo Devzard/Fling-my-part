@@ -1,50 +1,70 @@
 import React, { Component } from "react";
-import Embed from "@editorjs/embed";
-import Paragraph from "@editorjs/paragraph";
-import List from "@editorjs/list";
-import Header from "@editorjs/header";
-import SimpleImage from "@editorjs/simple-image";
 import EditorJs from "react-editor-js";
-
-const EDITOR_JS_TOOLS = {
-  embed: Embed,
-  paragraph: Paragraph,
-  list: List,
-  header: Header,
-  simpleImage: SimpleImage,
-};
+import { EDITOR_JS_TOOLS } from "../EditorjsPlugins/tools";
+import BlockRenderer from "../BlockRenderer/BlockRenderer";
 
 let data;
-
 export class DG_AddPost_Editor extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      blocks: [],
+      blocksData: null,
     };
     this.editorInstance = React.createRef();
   }
   async handleSave() {
+    console.log(this.editorInstance);
     const savedData = await this.editorInstance.save();
-    this.setState({ blocks: savedData.blocks });
-    console.log(savedData);
+    this.setState({ blocksData: savedData });
+
+    // this.editorInstance.render({
+    //   blocks: [
+    //     {
+    //       type: "header",
+    //       data: {
+    //         text: "Editor.js",
+    //         level: 2,
+    //       },
+    //     },
+    //   ],
+    // });
   }
 
-  componentDidUpdate() {
-    console.log(this.state.blocks);
-  }
+  componentDidUpdate() {}
 
   render() {
     return (
       <div>
         <EditorJs
           instanceRef={(instance) => (this.editorInstance = instance)}
-          data={data}
+          data={{
+            time: 1556098174501,
+            blocks: [
+              {
+                type: "header",
+                data: {
+                  text: "Editor.js",
+                  level: 2,
+                },
+              },
+              {
+                type: "paragraph",
+                data: {
+                  text:
+                    "Hey. Meet the new Editor. On this page you can see it in action — try to edit this text.",
+                },
+              },
+            ],
+            version: "2.12.4",
+          }}
           tools={EDITOR_JS_TOOLS}
-        />
-        <div id="elementjs" />
+          holder="holder"
+        >
+          <div id="holder" contentEditable={false}></div>
+        </EditorJs>
         <button onClick={() => this.handleSave(data)}>+</button>
+        <BlockRenderer data={this.state.blocksData} />
       </div>
     );
   }
