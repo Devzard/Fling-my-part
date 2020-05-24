@@ -3,10 +3,10 @@ import Paragraph from "@editorjs/paragraph";
 import List from "@editorjs/list";
 import Header from "@editorjs/header";
 import SimpleImage from "@editorjs/simple-image";
-import Table from "@editorjs/table";
 import Delimiter from "@editorjs/delimiter";
-import Marker from "@editorjs/marker";
-import Warning from "@editorjs/warning";
+// import Table from "@editorjs/table";
+// import Marker from "@editorjs/marker";
+// import Warning from "@editorjs/warning";
 
 export const EDITOR_JS_TOOLS = {
   embed: Embed,
@@ -15,5 +15,4 @@ export const EDITOR_JS_TOOLS = {
   header: Header,
   simpleImage: SimpleImage,
   delimiter: Delimiter,
-  marker: Marker,
 };

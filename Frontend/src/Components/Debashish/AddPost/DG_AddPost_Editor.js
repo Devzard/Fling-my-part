@@ -31,7 +31,9 @@ export class DG_AddPost_Editor extends Component {
     // });
   }
 
-  componentDidUpdate() {}
+  componentDidUpdate() {
+    console.log(this.state.blocksData);
+  }
 
   render() {
     return (
