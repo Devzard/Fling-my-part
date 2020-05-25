@@ -25,6 +25,8 @@ function BlockRenderer({ data }) {
           <iframe
             frameborder="0"
             allowfullscreen=""
+            allowTransparency="true"
+            scrolling="no"
             src={block.data.embed}
           ></iframe>
           {console.log(block.data.embed)}
@@ -43,26 +45,39 @@ function BlockRenderer({ data }) {
     } else if (block.type == "list") {
       if (block.data.style == "ordered") {
         return (
-          <ol>
+          <ul>
             {block.data.items.map((item, index) => {
               return (
                 <li key="index">
-                  {" "}
-                  {index + 1} &nbsp;{item}
+                  <span>{index + 1}.</span>
+                  <span> {item}</span>
+                  <span></span>
                 </li>
               );
             })}
-          </ol>
+          </ul>
         );
       } else {
         return (
           <ul>
             {block.data.items.map((item, index) => {
-              return <li key={index}>&bull; &nbsp;{item}</li>;
+              return (
+                <li key={index}>
+                  <span>&bull;</span>
+                  <span>{item}</span>
+                  <span></span>
+                </li>
+              );
             })}
           </ul>
         );
       }
+    } else if (block.type == "delimiter") {
+      return (
+        <div className="ebr-delimiter">
+          <span>* * *</span>
+        </div>
+      );
     } else {
       return <></>;
     }
@@ -72,7 +87,9 @@ function BlockRenderer({ data }) {
     <div className="ebr-container">
       *****
       {data != null ? (
-        <>{data.blocks.map((item, index) => renderBlock(item, index))}</>
+        <div className="ebr-content">
+          {data.blocks.map((item, index) => renderBlock(item, index))}
+        </div>
       ) : (
         <></>
       )}

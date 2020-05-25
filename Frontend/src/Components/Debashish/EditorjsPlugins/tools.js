@@ -4,6 +4,7 @@ import List from "@editorjs/list";
 import Header from "@editorjs/header";
 import SimpleImage from "@editorjs/simple-image";
 import Delimiter from "@editorjs/delimiter";
+import LinkTool from "@editorjs/link";
 // import Table from "@editorjs/table";
 // import Marker from "@editorjs/marker";
 // import Warning from "@editorjs/warning";
