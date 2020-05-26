@@ -2,38 +2,13 @@ const mongoose = require("mongoose");
 
 const DgFeed = mongoose.Schema({
   title: {
-    type: {
-      tag: String,
-      text: String,
-      className: String,
-    },
-  },
-  category: {
     type: String,
-    default: "General",
+    default: "No Title",
   },
-  content: {
-    type: [
-      {
-        tag: String,
-        text: String,
-        className: String,
-        template: String,
-      },
-    ],
-    required: true,
-  },
-  image: {
-    type: String,
-    default: "#",
-  },
+  blocks: [mongoose.Schema.Types.Mixed],
   location: {
     type: String,
     default: "Global",
-  },
-  likedUsers: {
-    type: [mongoose.Schema.Types.ObjectId],
-    default: [],
   },
   reportedUsers: {
     type: [mongoose.Schema.Types.ObjectId],
@@ -55,7 +30,11 @@ const DgFeed = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  comments: {
+  lastModified: {
+    type: Date,
+    default: Date.now,
+  },
+  response: {
     type: [{ name: String, comment: String }],
     default: [],
   },

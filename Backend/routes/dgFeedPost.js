@@ -27,8 +27,7 @@ router.post("/new", async (req, res) => {
 
   const newPost = new DgFeedSchema({
     title: req.body.title,
-    category: req.body.category,
-    content: req.body.content,
+    blocks: req.body.blocks,
     location: req.body.location,
     recogniser: recogniser,
     username: req.body.username,
@@ -56,12 +55,12 @@ router.post("/:location", async (req, res) => {
       posts = await DgFeedSchema.find()
         .skip(skip)
         .limit(10)
-        .select({ image: 0, reportedUsers: 0, comments: 0 });
+        .select({ reportedUsers: 0, response: 0, lastModified: 0 });
     } else {
       posts = await DgFeedSchema.find({ location: location })
         .skip(skip)
         .limit(10)
-        .select({ image: 0, reportedUsers: 0, comments: 0 });
+        .select({ reportedUsers: 0, response: 0, lastModified: 0 });
     }
     res.status(200).json(posts);
   } catch (err) {
@@ -76,7 +75,9 @@ router.post("/posts/:id", async (req, res) => {
   const userId = req.body._user_id;
   const postId = req.params.id;
   try {
-    const completepost = await DgFeedSchema.find({ _id: postId });
+    const completepost = await DgFeedSchema.find({ _id: postId }).select({
+      reportedUsers: 0,
+    });
     res.status(200).json(completepost);
   } catch (err) {
     res.status(500).json({ message: err });
@@ -90,7 +91,7 @@ router.post("/user/posts/:username", async (req, res) => {
   try {
     const completepost = await DgFeedSchema.find({
       username: req.params.username,
-    });
+    }).select({ reportedUsers: 0, response: 0, lastModified: 0 });
     res.status(200).json(completepost);
   } catch (err) {
     res.status(500).json({ message: err });
@@ -125,10 +126,12 @@ router.delete("/delete", async (req, res) => {
   }
 });
 
-//updating single post
-router.patch("/update", async (req, res) => {
-  //_user_id
-  //changed data : likedUsers, reportedUsers, comments
+//edit a single post
+router.patch("/edit_post", async (req, res) => {
+  //will receive user id and post id and recogniser
+  //new updated post data
+
+  let currentDate = new Date().toISOString();
   try {
     await bcrypt.compare(
       req.body._user_id,
@@ -139,11 +142,10 @@ router.patch("/update", async (req, res) => {
             { _id: req.body._id },
             {
               $set: {
-                // category: req.body.category,
-                // content: req.body.content,
-                likedUsers: req.body.likedUsers,
-                reportedUsers: req.body.reportedUsers,
-                comments: req.body.comments,
+                title: req.body.title,
+                blocks: req.body.blocks,
+                location: req.body.location,
+                lastModified: currentDate,
               },
             }
           );
@@ -151,6 +153,58 @@ router.patch("/update", async (req, res) => {
         } else if (!result) {
           res
             .status(200)
+            .json({ message: "you are not the owner of this post" });
+        } else {
+          res.status(500).json({ message: err });
+        }
+      }
+    );
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
+//updating single post
+router.patch("/update", async (req, res) => {
+  //_user_id
+  //changed data : likedUsers, reportedUsers, comments
+  const post = await DgFeedSchema.find({
+    _id: req.body._id,
+  });
+  if (post.response == null) post.response = [];
+  if (post.reportedUsers == null) post.reportedUsers = [];
+
+  let newReportedUsers, newResponses;
+
+  try {
+    await bcrypt.compare(
+      req.body._user_id,
+      req.body.recogniser,
+      async function (err, result) {
+        if (result) {
+          if (req.body.type == "report") {
+            newReportedUsers = post.reportedUsers.push(req.body._user_id);
+            newResponses = post.response;
+          } else if (req.body.type == "update_response") {
+            newReportedUsers = post.reportedUsers;
+            newResponses = post.response.push(req.body.response);
+          } else {
+            newReportedUsers = post.reportedUsers;
+            newResponses = post.response;
+          }
+          const updatePost = await DgFeedSchema.updateOne(
+            { _id: req.body._id },
+            {
+              $set: {
+                reportedUsers: newReportedUsers,
+                response: newResponses,
+              },
+            }
+          );
+          res.status(200).send(updatePost);
+        } else if (!result) {
+          res
+            .status(400)
             .json({ message: "you are not the owner of this post" });
         } else {
           res.status(500).json({ message: err });

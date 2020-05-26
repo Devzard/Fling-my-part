@@ -2,24 +2,22 @@ POST http://localhost:3300/feed/new
 Content-Type: application/json
 
 {
-    "title":{
-        "tag":"",
-        "text":"Welcome",
-        "className":""
-    },
-    "category":"Rumour",
-    "content":[{
-        "tags":"a",
-        "text":"https://www.google.com",
-        "className":"",
-        "template":""
-    },
-    {
-        "tags":"",
-        "text":"To get help from google",
-        "className":"",
-        "template":""
-    }],
+    "title":"New Using Editor",
+    "blocks":[
+            {
+              "type": "header",
+              "data": {
+                "text": "Editor.js",
+                "level": 2
+              }
+            },
+            {
+              "type": "paragraph",
+              "data": {
+                "text":
+                  "Hey. Meet the new Editor. On this page you can see it in action — try to edit this text."
+              }
+            }],
     "location":"Jorhat Engineering College",
     "userId":"5ebbf98818f9562bb5b55f99",
     "username":"debashish",
@@ -32,12 +30,11 @@ PATCH http://localhost:3300/feed/update
 Content-Type: application/json
 
 {
-    "_id":"5ebbfd6a3076732cca3e7fdd",
+    "type":"report",
+    "_id":"5ecd3ae3ec9b0c2a9390ed22",
     "_user_id":"5ebbf98818f9562bb5b55f99",
-    "recogniser":"$2b$10$NZ0OW67I/u5S..CyWmkBgeS9Pb2Y3pxDNYwzNyWYWd4lj1SvbAuma",
-    "likedUsers":[],
-    "reportedUsers":[],
-    "comments":[{"name":"annonymous","comment":"wow"},{"name":"annonymous","comment":"you're pretty amazing"}]
+    "recogniser":"$2b$10$Q5PmELyiPP8ysPfJuopZr..lKntHlQbn.ljcV3MvTnuzz5SrNHoxq",
+    "response":{"name":"java","comment":"Hey I am famous"}
 }
 
 ###
@@ -51,7 +48,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3300/feed/posts/5ebbfd6a3076732cca3e7fdd
+POST http://localhost:3300/feed/posts/5ecd3ae3ec9b0c2a9390ed22
 Content-Type: application/json
 
 {
