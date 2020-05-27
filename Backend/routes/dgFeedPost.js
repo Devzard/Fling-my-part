@@ -164,17 +164,89 @@ router.patch("/edit_post", async (req, res) => {
   }
 });
 
+//deleting a comment
+router.patch("/delete/response", async (req, res) => {
+  ///response id will be sent
+  //post id will be sent
+  //user id and recogniser will be sent
+  try {
+    await bcrypt.compare(
+      req.body._user_id,
+      req.body.recogniser,
+      async function (err, result) {
+        if (result) {
+          newResponse = await DgFeedSchema.find({
+            _id: req.body.postId,
+          }).select({ response: 1 });
+          for (let i = 0; i < newResponse.length; i++) {
+            if (newResponse[i] == req.body.responseId) newResponse.splice(i, 1);
+          }
+          const updatePost = await DgFeedSchema.updateOne(
+            { _id: req.body.postId },
+            {
+              $set: {
+                response: newResponses,
+              },
+            }
+          );
+          res.status(200).send(updatePost);
+        }
+      }
+    );
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
+//report
+router.patch("/report", async (req, res) => {
+  //userid , post id
+  try {
+    let newReportedUsers;
+    let post = await DgFeedSchema.find({
+      _id: req.body.postId,
+    }).select({ reportedUsers: 1 });
+    if (post[0].reportedUsers.length == null) newReportedUsers = [];
+    else newReportedUsers = post[0].reportedUsers;
+    if (newReportedUsers.length > 0) {
+      let found = false;
+      for (let i = 0; i < newReportedUsers.length; i++) {
+        if (newReportedUsers[i] == req.body._user_id) {
+          found = true;
+          break;
+        }
+      }
+      if (found)
+        res.status(400).json({ message: "Already reported from this user" });
+      else {
+        newReportedUsers = newReportedUsers.concat(req.body._user_id);
+        const updatedPost = await DgFeedSchema.updateOne(
+          { _id: req.body.postId },
+          {
+            $set: {
+              reportedUsers: newReportedUsers,
+            },
+          }
+        );
+        res.status(200).send(updatedPost);
+      }
+    }
+  } catch (err) {
+    res.status(500).json({ message: err });
+  }
+});
+
 //updating single post
 router.patch("/update", async (req, res) => {
   //_user_id
-  //changed data : likedUsers, reportedUsers, comments
+  //changed data : reponse
   const post = await DgFeedSchema.find({
     _id: req.body._id,
-  });
-  if (post.response == null) post.response = [];
-  if (post.reportedUsers == null) post.reportedUsers = [];
+  }).select({ response: 1 });
 
-  let newReportedUsers, newResponses;
+  if (post.response == null) post.response = [];
+
+  let newResponses;
 
   try {
     await bcrypt.compare(
@@ -182,21 +254,11 @@ router.patch("/update", async (req, res) => {
       req.body.recogniser,
       async function (err, result) {
         if (result) {
-          if (req.body.type == "report") {
-            newReportedUsers = post.reportedUsers.push(req.body._user_id);
-            newResponses = post.response;
-          } else if (req.body.type == "update_response") {
-            newReportedUsers = post.reportedUsers;
-            newResponses = post.response.push(req.body.response);
-          } else {
-            newReportedUsers = post.reportedUsers;
-            newResponses = post.response;
-          }
+          newResponses = post.response.concat(req.body.response);
           const updatePost = await DgFeedSchema.updateOne(
             { _id: req.body._id },
             {
               $set: {
-                reportedUsers: newReportedUsers,
                 response: newResponses,
               },
             }

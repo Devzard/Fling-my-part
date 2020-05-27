@@ -30,11 +30,20 @@ PATCH http://localhost:3300/feed/update
 Content-Type: application/json
 
 {
-    "type":"report",
     "_id":"5ecd3ae3ec9b0c2a9390ed22",
     "_user_id":"5ebbf98818f9562bb5b55f99",
     "recogniser":"$2b$10$Q5PmELyiPP8ysPfJuopZr..lKntHlQbn.ljcV3MvTnuzz5SrNHoxq",
     "response":{"name":"java","comment":"Hey I am famous"}
+}
+
+###
+
+PATCH http://localhost:3300/feed/report
+Content-Type: application/json
+
+{
+    "postId":"5ecd3ae3ec9b0c2a9390ed22",
+    "_user_id":"5ebbf98818f9562bb5b55f99"
 }
 
 ###
@@ -61,6 +70,17 @@ Content-Type: application/json
 
 {
     "_user_id":"5ebbfd6a3076732cca3e7fdd"
+}
+
+###
+PATCH http://localhost:3300/feed/delete/response
+Content-Type: application/json
+
+{
+    "postId":,
+    "responseId":,
+    "_user_id":"5ebbfd6a3076732cca3e7fdd",
+    "recogniser":"$2b$10$Q5PmELyiPP8ysPfJuopZr..lKntHlQbn.ljcV3MvTnuzz5SrNHoxq"
 }
 
 /////////////////////////////////////////////////
