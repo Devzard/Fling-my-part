@@ -73,6 +73,7 @@ function DG_everyPost() {
                 userId={userId}
                 post={post}
                 setPost={setPost}
+                path={path}
               />
             ) : (
               <h4 style={{ color: "blue" }}>

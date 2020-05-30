@@ -22,8 +22,8 @@ function App() {
           <Route exact path="/">
             <DG_home />
           </Route>
-          {/* feed routes */}
-          <Route exact path="/feed">
+          {/* fligazine routes */}
+          <Route exact path="/flingazine">
             <DG_feed />
           </Route>
           <Route path="/feed/post/:id">

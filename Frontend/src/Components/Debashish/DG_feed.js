@@ -33,15 +33,15 @@ function DG_feed() {
   const [posts, setPosts] = useState([]);
 
   const postsDataHandler = () => {
-    axios
-      .post(`${path}/feed/${postsLocation}`, { pageNumber: pageNumber })
-      .then((res) => {
-        setPosts(posts.concat(res.data));
-        if (res.data.length < 10) setDisplayLoadMore({ display: "none" });
-        else setDisplayLoadMore({ display: "block" });
-        setIsPostsLoaded(true);
-      })
-      .catch((err) => console.error(err));
+    // axios
+    //   .post(`${path}/feed/${postsLocation}`, { pageNumber: pageNumber })
+    //   .then((res) => {
+    //     setPosts(res.data);
+    //     if (res.data.length < 10) setDisplayLoadMore({ display: "none" });
+    //     else setDisplayLoadMore({ display: "block" });
+    //     setIsPostsLoaded(true);
+    //   })
+    //   .catch((err) => console.error(err));
   };
 
   useEffect(() => {

@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import EditorJs from "react-editor-js";
 import { EDITOR_JS_TOOLS } from "../EditorjsPlugins/tools";
 import BlockRenderer from "../BlockRenderer/BlockRenderer";
+import "./dg-addpost.css";
 
 let data;
+const path = "https://my-fling.herokuapp.com";
+
 export class DG_AddPost_Editor extends Component {
   constructor(props) {
     super(props);
@@ -17,18 +20,12 @@ export class DG_AddPost_Editor extends Component {
     console.log(this.editorInstance);
     const savedData = await this.editorInstance.save();
     this.setState({ blocksData: savedData });
+    console.log(this.state.blocksData);
 
-    // this.editorInstance.render({
-    //   blocks: [
-    //     {
-    //       type: "header",
-    //       data: {
-    //         text: "Editor.js",
-    //         level: 2,
-    //       },
-    //     },
-    //   ],
-    // });
+    // axios.post(`${path}/feed/new`,{
+
+    // }).then(res=>{})
+    // .catch(err=>{});
   }
 
   componentDidUpdate() {
@@ -40,26 +37,7 @@ export class DG_AddPost_Editor extends Component {
       <div>
         <EditorJs
           instanceRef={(instance) => (this.editorInstance = instance)}
-          data={{
-            time: 1556098174501,
-            blocks: [
-              {
-                type: "header",
-                data: {
-                  text: "Editor.js",
-                  level: 2,
-                },
-              },
-              {
-                type: "paragraph",
-                data: {
-                  text:
-                    "Hey. Meet the new Editor. On this page you can see it in action — try to edit this text.",
-                },
-              },
-            ],
-            version: "2.12.4",
-          }}
+          data={this.state.blocksData}
           tools={EDITOR_JS_TOOLS}
           holder="holder"
         >

@@ -1,21 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { MdModeComment } from "react-icons/md";
+import axios from "axios";
 
-function DG_complete_comment({ userId, post, setPost }) {
+function DG_complete_comment({ path, userId, post, setPost }) {
   const [username, setUsername] = useState("");
-  const [userId, setUserId] = useState("");
   const [comment, setComment] = useState("");
   const [isAnonymous, setIsAnonymous] = useState(false);
 
   const commentSubmitHandler = (e) => {
     e.preventDefault();
-    setComment("");
+    axios.patch(`${path}/feed/update`, {
+      _id: post._id,
+      _user_id: userId,
+      recogniser: post.recogniser,
+      response: {
+        name: username,
+        comment: comment,
+      },
+    });
   };
 
   useEffect(() => {
     if (isAnonymous) setUsername("Anonymous");
     else setUsername(post.username);
   }, [isAnonymous]);
+
+  useEffect(() => {
+    setUsername(post.username);
+  }, []);
 
   return (
     <>

@@ -85,7 +85,6 @@ function BlockRenderer({ data }) {
 
   return (
     <div className="ebr-container">
-      *****
       {data != null ? (
         <div className="ebr-content">
           {data.blocks.map((item, index) => renderBlock(item, index))}
