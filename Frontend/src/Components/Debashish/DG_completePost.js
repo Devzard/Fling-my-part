@@ -13,7 +13,7 @@ import { MdMoreHoriz } from "react-icons/md";
 import Cookies from "js-cookie";
 import axios from "axios";
 import Loader from "../Loader";
-import DG_EachPost from "./DG_EachPost";
+import BlockRenderer from "./BlockRenderer/BlockRenderer";
 
 import DG_complete_comment from "./DG_complete_comment";
 
@@ -26,35 +26,6 @@ function DG_everyPost() {
   const [isPostLoaded, setIsPostsLoaded] = useState(false);
   const [userId, setUserId] = useState("");
   const [post, setPost] = useState({});
-
-  const renderContent = (contents) => {
-    console.log(contents);
-    if (contents.tag == null) return;
-    if (contents.tag == "a")
-      return (
-        <div className={`main-content-txt ${contents.template}`}>
-          <a
-            className={`inside-content-txt ${contents.className}`}
-            href="#"
-            onClick={() => {
-              window.open(contents.text, "_blank");
-            }}
-          >
-            <AiOutlineLink />
-            &nbsp;
-            {contents.text}
-          </a>
-        </div>
-      );
-    const Tag = contents.tag.length > 0 ? contents.tag : "p";
-    return (
-      <div className={`main-content-txt ${contents.template}`}>
-        <Tag className={`inside-content-txt ${contents.className}`}>
-          {contents.text}
-        </Tag>
-      </div>
-    );
-  };
 
   const bringPost = () => {
     axios
@@ -94,54 +65,15 @@ function DG_everyPost() {
 
       {isPostLoaded ? (
         <>
-          {/* content part */}
-          <div className="dg-cmp-content">
-            <div className="dg-cmp-content-location">{post.location}</div>
-            <div className="dg-cmp-content-title">
-              {renderContent(post.title)}
-            </div>
-            <div className="dg-cmp-content-body">
-              {post.content.map((item) => {
-                return renderContent(item);
-              })}
-            </div>
-          </div>
-          <br />
-          {/* buttons  */}
-          <div className="dg-ep-btns dg-cmp-btns">
-            <span>
-              <button
-                disabled={!isUserIdPresent}
-                className="dg-ep-btns-like dg-r-sm-btn"
-              >
-                <AiTwotoneFire />
-              </button>
-              &nbsp;&nbsp;
-              {post.likedUsers.length}
-            </span>
-            <span>
-              <span>
-                <Link to={`/feed`}>
-                  <button
-                    disabled={!isUserIdPresent}
-                    className="dg-ep-btns-comment"
-                  >
-                    <FaComment />
-                  </button>
-                </Link>
-              </span>
-              <button disabled={!isUserIdPresent} className="dg-ep-btns-more">
-                <MdMoreHoriz />
-              </button>
-            </span>
-          </div>
-          <br />
-          <hr />
-          <br />
+          <BlockRenderer data={post} />
           {/* comments  */}
           <div className={`dg-cmp-comments`}>
             {isUserIdPresent ? (
-              <DG_complete_comment post={post} setPost={setPost} />
+              <DG_complete_comment
+                userId={userId}
+                post={post}
+                setPost={setPost}
+              />
             ) : (
               <h4 style={{ color: "blue" }}>
                 Sign in to comment, like or report{" "}
@@ -151,7 +83,7 @@ function DG_everyPost() {
               </h4>
             )}
             <ul>
-              {post.comments.map((item) => {
+              {post.response.map((item) => {
                 return (
                   <li
                     key={item._id}

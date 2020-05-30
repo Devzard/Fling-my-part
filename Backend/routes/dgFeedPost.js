@@ -42,7 +42,7 @@ router.post("/new", async (req, res) => {
   }
 });
 
-//getting posts
+//getting posts by location
 router.post("/:location", async (req, res) => {
   //prom : location
   //pagenumber : each page contain 10 posts
@@ -164,7 +164,7 @@ router.patch("/edit_post", async (req, res) => {
   }
 });
 
-//deleting a comment
+//deleting a response
 router.patch("/delete/response", async (req, res) => {
   ///response id will be sent
   //post id will be sent
@@ -175,22 +175,29 @@ router.patch("/delete/response", async (req, res) => {
       req.body.recogniser,
       async function (err, result) {
         if (result) {
-          newResponse = await DgFeedSchema.find({
+          let newResponse, post;
+
+          post = await DgFeedSchema.find({
             _id: req.body.postId,
           }).select({ response: 1 });
+
+          newResponse = post[0].response;
+
           for (let i = 0; i < newResponse.length; i++) {
-            if (newResponse[i] == req.body.responseId) newResponse.splice(i, 1);
+            if (newResponse[i]._id == req.body.responseId)
+              newResponse.splice(i, 1);
           }
+
           const updatePost = await DgFeedSchema.updateOne(
             { _id: req.body.postId },
             {
               $set: {
-                response: newResponses,
+                response: newResponse,
               },
             }
           );
           res.status(200).send(updatePost);
-        }
+        } else res.status(400).json({ message: "Something went wrong" });
       }
     );
   } catch (err) {
@@ -198,7 +205,7 @@ router.patch("/delete/response", async (req, res) => {
   }
 });
 
-//report
+//report a particular post
 router.patch("/report", async (req, res) => {
   //userid , post id
   try {
@@ -236,25 +243,27 @@ router.patch("/report", async (req, res) => {
   }
 });
 
-//updating single post
+//updating a single post
 router.patch("/update", async (req, res) => {
   //_user_id
   //changed data : reponse
-  const post = await DgFeedSchema.find({
-    _id: req.body._id,
-  }).select({ response: 1 });
-
-  if (post.response == null) post.response = [];
-
-  let newResponses;
 
   try {
+    let newResponses;
+
+    const post = await DgFeedSchema.find({
+      _id: req.body._id,
+    }).select({ response: 1 });
+
+    if (post[0].response == null) newResponses = [];
+    else newResponses = post[0].response;
+
     await bcrypt.compare(
       req.body._user_id,
       req.body.recogniser,
       async function (err, result) {
         if (result) {
-          newResponses = post.response.concat(req.body.response);
+          newResponses.push(req.body.response);
           const updatePost = await DgFeedSchema.updateOne(
             { _id: req.body._id },
             {

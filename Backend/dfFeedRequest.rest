@@ -2,12 +2,12 @@ POST http://localhost:3300/feed/new
 Content-Type: application/json
 
 {
-    "title":"New Using Editor",
+    "title":"This is going to be a fligazine site",
     "blocks":[
             {
               "type": "header",
               "data": {
-                "text": "Editor.js",
+                "text": "Flingazine",
                 "level": 2
               }
             },
@@ -15,10 +15,10 @@ Content-Type: application/json
               "type": "paragraph",
               "data": {
                 "text":
-                  "Hey. Meet the new Editor. On this page you can see it in action — try to edit this text."
+                  "Fligazine is a brand new site"
               }
             }],
-    "location":"Jorhat Engineering College",
+    "location":"Jorhat",
     "userId":"5ebbf98818f9562bb5b55f99",
     "username":"debashish",
     "name":"Debashish Gogoi"
@@ -33,7 +33,7 @@ Content-Type: application/json
     "_id":"5ecd3ae3ec9b0c2a9390ed22",
     "_user_id":"5ebbf98818f9562bb5b55f99",
     "recogniser":"$2b$10$Q5PmELyiPP8ysPfJuopZr..lKntHlQbn.ljcV3MvTnuzz5SrNHoxq",
-    "response":{"name":"java","comment":"Hey I am famous"}
+    "response":{"name":"java","comment":"This is new"}
 }
 
 ###
@@ -77,9 +77,9 @@ PATCH http://localhost:3300/feed/delete/response
 Content-Type: application/json
 
 {
-    "postId":,
-    "responseId":,
-    "_user_id":"5ebbfd6a3076732cca3e7fdd",
+    "postId":"5ecd3ae3ec9b0c2a9390ed22",
+    "responseId":"5ed27f59507b9b20d4e5cf34",
+    "_user_id":"5ebbf98818f9562bb5b55f99",
     "recogniser":"$2b$10$Q5PmELyiPP8ysPfJuopZr..lKntHlQbn.ljcV3MvTnuzz5SrNHoxq"
 }
 

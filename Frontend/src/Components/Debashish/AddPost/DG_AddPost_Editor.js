@@ -66,7 +66,7 @@ export class DG_AddPost_Editor extends Component {
           <div id="holder" contentEditable={false}></div>
         </EditorJs>
         <button onClick={() => this.handleSave(data)}>+</button>
-        <BlockRenderer data={this.state.blocksData} />
+        {/* <BlockRenderer data={this.state.blocksData} /> */}
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MdModeComment } from "react-icons/md";
 
-function DG_complete_comment({ post, setPost }) {
+function DG_complete_comment({ userId, post, setPost }) {
   const [username, setUsername] = useState("");
   const [userId, setUserId] = useState("");
   const [comment, setComment] = useState("");
