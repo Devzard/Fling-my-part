@@ -111,9 +111,9 @@ function DG_feed() {
 
         {/* posts  */}
         {isPostsLoaded ? (
-          <div>
+          <>
             <DG_Post posts={posts} setPosts={setPosts} />
-          </div>
+          </>
         ) : (
           <Loader />
         )}

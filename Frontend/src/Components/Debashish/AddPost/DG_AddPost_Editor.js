@@ -4,7 +4,7 @@ import { EDITOR_JS_TOOLS } from "../EditorjsPlugins/tools";
 import BlockRenderer from "../BlockRenderer/BlockRenderer";
 import "./dg-addpost.css";
 import axios from "axios";
-import { GrSend } from "react-icons/gr";
+import { MdSend, MdHelp } from "react-icons/md";
 import { FaHourglassEnd, FaBackspace } from "react-icons/fa";
 
 let data;
@@ -80,7 +80,7 @@ export class DG_AddPost_Editor extends Component {
 
   render() {
     return (
-      <div className="dg-ap-container">
+      <div className="dg-ap-container animated fadeInDown">
         <div className="dg-ap-header">
           <span
             onClick={() => {
@@ -90,7 +90,9 @@ export class DG_AddPost_Editor extends Component {
             <FaBackspace />
           </span>
           <span></span>
-          <span></span>
+          <span>
+            <MdHelp />
+          </span>
         </div>
         <div className="dg-ap-form">
           <input
@@ -127,17 +129,18 @@ export class DG_AddPost_Editor extends Component {
         </span>
 
         <span className="dg-ap-send-btn-container">
-          <button onClick={() => this.handleSave(data)}>
-            {this.state.uploadingStatus == "uploading" ? (
-              <span className="dg-ap-uploading">
-                <FaHourglassEnd />
-              </span>
-            ) : (
-              <span className="dg-ap-send-btn">
-                <GrSend />
-              </span>
-            )}
-          </button>
+          {this.state.uploadingStatus == "uploading" ? (
+            <button className="dg-ap-uploading" disabled>
+              <FaHourglassEnd />
+            </button>
+          ) : (
+            <button
+              onClick={() => this.handleSave(data)}
+              className="dg-ap-send-btn"
+            >
+              <MdSend />
+            </button>
+          )}
         </span>
       </div>
     );

@@ -31,3 +31,63 @@
 .dg-ap-form > input {
   padding: 0 0.2rem;
 }
+.dg-ap-form > select {
+  border-radius: 0.4rem;
+  background: linear-gradient(90deg, #da22ff, #9733ee);
+  color: white;
+  font-weight: 600;
+}
+.dg-ap-form > select:hover {
+  background: #9733ee;
+}
+.dg-ap-form > select > option {
+  color: black;
+}
+.dg-ap-editor > div {
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+  background-color: white;
+  margin: 0 0 1rem 0;
+}
+.dg-ap-send-btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dg-ap-uploading,
+.dg-ap-send-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 2rem;
+  width: 27vw;
+  padding: 0.4rem;
+}
+.dg-ap-send-btn {
+  color: whitesmoke;
+  background: var(--p);
+  box-shadow: inset 0.3rem 0.3rem 0.8rem var(--p-l),
+    inset -0.3rem -0.3rem 0.8rem var(--p-d), 0.2rem 0.2rem 0.5rem #999999,
+    -0.2rem -0.2rem 0.5rem #ffffff;
+}
+.dg-ap-send-btn:hover {
+  box-shadow: inset 0.3rem 0.3rem 0.4rem var(--p-l),
+    inset -0.3rem -0.3rem 0.4rem var(--p-d), 0.2rem 0.2rem 0.5rem #999999,
+    -0.2rem -0.2rem 0.5rem #ffffff;
+}
+.dg-ap-uploading {
+  color: black;
+}
+.dg-ap-uploading > svg {
+  animation: rotate 1s infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

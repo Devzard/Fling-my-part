@@ -5,64 +5,8 @@
   display: flex;
   flex-direction: column;
 }
-.dg-eachpost {
-  padding: 1rem;
-}
-/* each post  */
-/* header */
-.dg-ep-header {
-  font-size: 0.7rem;
-  display: flex;
-  justify-content: space-between;
-  text-align: right;
-  width: 100%;
-}
-.dg-ep-h-username {
-  font-size: 0.85rem;
-  font-weight: 450;
-}
-.dg-ep-h-username > i {
-  font-size: 0.7rem;
-  font-weight: 380;
-}
-.dg-ep-h-category {
-}
-.dg-ep-h-location {
-  display: flex;
-  justify-content: left;
-  font-size: 0.6rem;
-  font-style: italic;
-}
-/* content */
-.dg-ep-container {
-  display: flex;
-}
-.dg-ep-depth {
-  width: 0.5rem;
-  box-shadow: inset 0.2rem 0.2rem 0.3rem rgba(0, 0, 0, 0.5);
-}
-.dg-ep-content-mid {
-  width: 100%;
-}
-
-/* buttons */
-.dg-ep-btns {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.dg-ep-btns button {
-  font-size: 1rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.dg-ep-btns-like:disabled {
-  color: #fc4828;
-}
-.dg-ep-btns-comment,
-.dg-ep-btns-more {
-  background: var(--bg);
-  border: none;
-  padding: 0 0.3rem;
+.dg-posts-container > div {
+  min-height: 80vh;
+  background: white;
+  border: 0.05rem solid rgba(0, 0, 0, 0.3);
 }
