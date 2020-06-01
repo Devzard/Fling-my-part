@@ -14,7 +14,19 @@ import Loader from "../Loader";
 
 function DG_feed() {
   const path = "https://my-fling.herokuapp.com";
-  const [addPostToggler, toggleAddPost] = useState(true);
+  const locations = [
+    "Global",
+    "Dibrugarh",
+    "Jorhat",
+    "Guwahati",
+    "Tinsukia",
+    "Sivasagar",
+    "Naharkatia",
+    "Namrup",
+    "Lakhimpur",
+  ];
+
+  const [addPostToggler, toggleAddPost] = useState(false);
   const [locationToggler, toggleLocation] = useState(false);
   const [postsLocation, setPostsLocation] = useState("Global");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -33,15 +45,15 @@ function DG_feed() {
   const [posts, setPosts] = useState([]);
 
   const postsDataHandler = () => {
-    // axios
-    //   .post(`${path}/feed/${postsLocation}`, { pageNumber: pageNumber })
-    //   .then((res) => {
-    //     setPosts(res.data);
-    //     if (res.data.length < 10) setDisplayLoadMore({ display: "none" });
-    //     else setDisplayLoadMore({ display: "block" });
-    //     setIsPostsLoaded(true);
-    //   })
-    //   .catch((err) => console.error(err));
+    axios
+      .post(`${path}/feed/${postsLocation}`, { pageNumber: pageNumber })
+      .then((res) => {
+        setPosts(res.data);
+        if (res.data.length < 10) setDisplayLoadMore({ display: "none" });
+        else setDisplayLoadMore({ display: "block" });
+        setIsPostsLoaded(true);
+      })
+      .catch((err) => console.error(err));
   };
 
   useEffect(() => {
@@ -126,6 +138,7 @@ function DG_feed() {
           posts={posts}
           setPosts={setPosts}
           userDetails={userDetails}
+          locations={locations}
         />
       )}
       {locationToggler && (
@@ -133,6 +146,7 @@ function DG_feed() {
           toggleLocation={toggleLocation}
           postsLocation={postsLocation}
           setPostsLocation={setPostsLocation}
+          locationList={locations}
         />
       )}
       {/* logo, location, apppost, feedback or report */}

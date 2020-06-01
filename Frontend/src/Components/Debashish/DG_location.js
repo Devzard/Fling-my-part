@@ -4,18 +4,13 @@ import Cookies from "js-cookie";
 import "./styles/dg_location.css";
 import { FaBackspace } from "react-icons/fa";
 
-const DG_location = ({ toggleLocation, userLocation, setPostsLocation }) => {
+const DG_location = ({
+  locationList,
+  toggleLocation,
+  userLocation,
+  setPostsLocation,
+}) => {
   const [inputLocation, setInputLocation] = useState("");
-  const [locationList, setLocationList] = useState([
-    "Global",
-    "Jorhat Engineering College",
-    "Jorhat Institute of Science and Technology",
-    "Jayanta Boruah College",
-    "Dibrugarh University",
-    "Cotton University",
-    "Guwahati University",
-    "Tezpur University",
-  ]);
 
   //searchHandler
   const searchHandler = (item) => {

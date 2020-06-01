@@ -85,6 +85,7 @@ function BlockRenderer({ data }) {
 
   return (
     <div className="ebr-container">
+      <div>{data.title != null ? <>{data.title}</> : <></>}</div>
       {data != null ? (
         <div className="ebr-content">
           {data.blocks.map((item, index) => renderBlock(item, index))}
