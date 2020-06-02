@@ -86,3 +86,23 @@
 .ebr-location {
   float: left;
 }
+.ebr-icons {
+  font-size: 1.4rem;
+}
+
+/* // functions  */
+.ebr-dropdown {
+  background: white;
+  color: black;
+  position: sticky;
+  right: 1rem;
+  z-index: 1;
+  box-shadow: 0.3rem 0.3rem 1rem rgba(0, 0, 0, 0.5);
+}
+.ebr-dropdown > ul {
+  list-style: none;
+}
+.ebr-dropdown > ul > li {
+  border-top: 0.05rem solid rgba(0, 0, 0, 0.5);
+  padding: 0.5rem;
+}

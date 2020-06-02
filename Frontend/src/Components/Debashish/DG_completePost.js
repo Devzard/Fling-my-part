@@ -22,6 +22,7 @@ function DG_everyPost() {
   let { id } = useParams();
   let history = useHistory();
 
+  const [userName, setUserName] = useState("");
   const [isUserIdPresent, setUserIdPresent] = useState(false);
   const [isPostLoaded, setIsPostsLoaded] = useState(false);
   const [userId, setUserId] = useState("");
@@ -33,7 +34,6 @@ function DG_everyPost() {
       .then((res) => {
         setPost(res.data[0]);
         setIsPostsLoaded(true);
-        console.log(res.data);
       })
       .catch((err) => console.error(err));
   };
@@ -41,7 +41,9 @@ function DG_everyPost() {
   useEffect(() => {
     window.scroll(0, 0);
     const user = Cookies.get("_user_id");
+    const userN = Cookies.get("username");
     setUserId(user);
+    setUserName(userN);
 
     if (user == null) setUserIdPresent(false);
     else setUserIdPresent(true);
@@ -59,13 +61,16 @@ function DG_everyPost() {
         </span>
         {/* </Link> */}
         <span>{post.username}</span>
-        <span className={`dg-${post.category}`}>{post.category}</span>
+        <span></span>
       </div>
-      <span className={`dg-ep-depth dg-${post.category}-bg`}></span>
 
       {isPostLoaded ? (
         <>
-          <BlockRenderer data={post} />
+          <BlockRenderer
+            userName={userName}
+            paramName={post.username}
+            data={post}
+          />
           {/* comments  */}
           <div className={`dg-cmp-comments`}>
             {isUserIdPresent ? (

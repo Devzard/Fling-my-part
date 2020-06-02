@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { isOwner, dropDownMenu } from "./eventHandlers";
 import { MdMoreVert, MdArrowBack } from "react-icons/md";
 
-function BlockRenderer({ paramId, userId, data }) {
+function BlockRenderer({ userName, paramName, data }) {
   const [moreBtnTog, toggleMoreBtn] = useState(false);
   const [isOwned, setIsOwned] = useState(false);
 
@@ -33,7 +33,6 @@ function BlockRenderer({ paramId, userId, data }) {
             scrolling="no"
             src={block.data.embed}
           ></iframe>
-          {console.log(block.data.embed)}
           <div>{block.data.caption}</div>
         </div>
       );
@@ -88,7 +87,7 @@ function BlockRenderer({ paramId, userId, data }) {
   };
 
   useEffect(() => {
-    setIsOwned(isOwner(userId, paramId));
+    setIsOwned(isOwner(userName, paramName));
   }, []);
 
   return (
@@ -130,4 +129,4 @@ function BlockRenderer({ paramId, userId, data }) {
   );
 }
 
-export default BlockRenderer;
+export default React.memo(BlockRenderer);
