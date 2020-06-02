@@ -3,10 +3,25 @@
   width: 100%;
   height: auto;
   display: flex;
-  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 .dg-posts-container > div {
-  min-height: 80vh;
+  margin: 1vw;
+  flex: 0 0 auto;
+  height: 80vh;
+  width: 98vw;
   background: white;
   border: 0.05rem solid rgba(0, 0, 0, 0.3);
+}
+.dg-posts-container > div > div {
+  height: 70vh;
+  overflow: hidden;
+}
+.dg-read-more {
+  margin: 0.3rem;
+  float: right;
+}
+.dg-read-more > a {
+  color: blue;
 }

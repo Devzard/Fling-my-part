@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import EditorJs from "react-editor-js";
-import { EDITOR_JS_TOOLS } from "../EditorjsPlugins/tools";
 import "./BlockRenderer.css";
-import Output from "editorjs-react-renderer";
+import { Link } from "react-router-dom";
+import { isOwner, dropDownMenu } from "./eventHandlers";
+import { MdMoreVert, MdArrowBack } from "react-icons/md";
 
-function BlockRenderer({ data }) {
+function BlockRenderer({ paramId, userId, data }) {
+  const [moreBtnTog, toggleMoreBtn] = useState(false);
+  const [isOwned, setIsOwned] = useState(false);
+
   const renderBlock = (block, index) => {
     if (block.type == "paragraph") {
       return (
@@ -83,9 +87,38 @@ function BlockRenderer({ data }) {
     }
   };
 
+  useEffect(() => {
+    setIsOwned(isOwner(userId, paramId));
+  }, []);
+
   return (
     <div className="ebr-container">
-      <div>{data.title != null ? <>{data.title}</> : <></>}</div>
+      <div className="ebr-container-header">
+        <span className="ebr-heading">
+          {data.title != null ? <h2>{data.title}</h2> : <></>}
+        </span>
+
+        <div className="ebr-options">
+          {moreBtnTog ? (
+            <>
+              <span className="ebr-icons" onClick={() => toggleMoreBtn(false)}>
+                <MdArrowBack />
+              </span>
+              {dropDownMenu(isOwned)}
+            </>
+          ) : (
+            <span className="ebr-icons" onClick={() => toggleMoreBtn(true)}>
+              <MdMoreVert />
+            </span>
+          )}
+        </div>
+
+        <span className="ebr-author">
+          - by <Link to={`/feed/${data.username}`}>{data.username}</Link>
+        </span>
+        <span className="ebr-location">{data.location}</span>
+      </div>
+
       {data != null ? (
         <div className="ebr-content">
           {data.blocks.map((item, index) => renderBlock(item, index))}

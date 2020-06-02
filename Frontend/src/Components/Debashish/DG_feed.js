@@ -45,10 +45,11 @@ function DG_feed() {
   const [posts, setPosts] = useState([]);
 
   const postsDataHandler = () => {
+    setIsPostsLoaded(false);
     axios
       .post(`${path}/feed/${postsLocation}`, { pageNumber: pageNumber })
       .then((res) => {
-        setPosts(res.data);
+        setPosts(posts.concat(res.data));
         if (res.data.length < 10) setDisplayLoadMore({ display: "none" });
         else setDisplayLoadMore({ display: "block" });
         setIsPostsLoaded(true);
@@ -112,7 +113,11 @@ function DG_feed() {
         {/* posts  */}
         {isPostsLoaded ? (
           <>
-            <DG_Post posts={posts} setPosts={setPosts} />
+            <DG_Post
+              userId={userDetails.userId}
+              posts={posts}
+              setPosts={setPosts}
+            />
           </>
         ) : (
           <Loader />

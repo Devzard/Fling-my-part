@@ -1,8 +1,6 @@
 .ebr-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 .ebr-content {
   position: relative;
@@ -28,7 +26,7 @@
 .ebr-embed > iframe {
   margin: 0 auto;
   width: 100%;
-  min-height: 42rem;
+  height: 19rem;
 }
 
 /* list  */
@@ -57,4 +55,34 @@
   font-size: 2rem;
   text-align: center;
   font-weight: 400;
+}
+
+/* //////// */
+/* card style  */
+.ebr-container-header {
+  min-height: 10rem;
+  padding: 0.3rem;
+  border-radius: 0.4rem;
+  color: white;
+  background: linear-gradient(90deg, #159957, #155799);
+}
+.ebr-heading {
+  text-align: left;
+  font-size: 1.7rem;
+}
+.ebr-options {
+  float: right;
+}
+.ebr-author {
+  float: left;
+  font-style: italic;
+}
+.ebr-author > a {
+  margin: 0 0.3rem;
+  font-weight: 700;
+  font-style: normal;
+  color: white;
+}
+.ebr-location {
+  float: left;
 }
