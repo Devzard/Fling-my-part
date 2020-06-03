@@ -3,7 +3,7 @@ import EditorJs from "react-editor-js";
 import "./BlockRenderer.css";
 import { Link } from "react-router-dom";
 import { isOwner, dropDownMenu } from "./eventHandlers";
-import { MdMoreVert, MdArrowBack } from "react-icons/md";
+import { MdMoreVert, MdArrowBack, MdLocationOn } from "react-icons/md";
 
 function BlockRenderer({ userName, paramName, data }) {
   const [moreBtnTog, toggleMoreBtn] = useState(false);
@@ -113,9 +113,11 @@ function BlockRenderer({ userName, paramName, data }) {
         </div>
 
         <span className="ebr-author">
-          - by <Link to={`/feed/${data.username}`}>{data.username}</Link>
+          - by <Link to={`/flingazine/${data.username}`}>{data.username}</Link>
         </span>
-        <span className="ebr-location">{data.location}</span>
+        <span className="ebr-location">
+          <MdLocationOn /> {data.location}
+        </span>
       </div>
 
       {data != null ? (

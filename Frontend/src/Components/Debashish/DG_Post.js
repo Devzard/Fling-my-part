@@ -39,7 +39,7 @@ const DG_Post = ({ userId, posts, setPosts }) => {
                     paramName={item.username}
                   />
                   <span className="dg-read-more">
-                    <Link to={`/feed/post/${item._id}`}>read more..</Link>
+                    <Link to={`/flingazine/post/${item._id}`}>read more..</Link>
                   </span>
                 </div>
               );

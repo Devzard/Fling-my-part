@@ -32,7 +32,6 @@ Content-Type: application/json
 {
     "_id":"5ecd3ae3ec9b0c2a9390ed22",
     "_user_id":"5ebbf98818f9562bb5b55f99",
-    "recogniser":"$2b$10$Q5PmELyiPP8ysPfJuopZr..lKntHlQbn.ljcV3MvTnuzz5SrNHoxq",
     "response":{"name":"java","comment":"This is new"}
 }
 

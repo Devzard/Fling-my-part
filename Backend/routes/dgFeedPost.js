@@ -258,30 +258,16 @@ router.patch("/update", async (req, res) => {
     if (post[0].response == null) newResponses = [];
     else newResponses = post[0].response;
 
-    await bcrypt.compare(
-      req.body._user_id,
-      req.body.recogniser,
-      async function (err, result) {
-        if (result) {
-          newResponses.push(req.body.response);
-          const updatePost = await DgFeedSchema.updateOne(
-            { _id: req.body._id },
-            {
-              $set: {
-                response: newResponses,
-              },
-            }
-          );
-          res.status(200).send(updatePost);
-        } else if (!result) {
-          res
-            .status(400)
-            .json({ message: "you are not the owner of this post" });
-        } else {
-          res.status(500).json({ message: err });
-        }
+    newResponses.push(req.body.response);
+    const updatePost = await DgFeedSchema.updateOne(
+      { _id: req.body._id },
+      {
+        $set: {
+          response: newResponses,
+        },
       }
     );
+    res.status(200).send(updatePost);
   } catch (err) {
     res.status(500).json({ message: err });
   }

@@ -2,6 +2,9 @@
   width: 100%;
   min-height: 100vh;
 }
+.dg-cmp-container {
+  padding: 0.3rem;
+}
 
 /* header  */
 .dg-cmp-header {
@@ -65,33 +68,18 @@
 .dg-cmp-comments > ul {
   list-style: none;
 }
-.dg-cmp-comments > ul > li {
-  color: white;
+.dg-cmp-eachcomment {
+  color: black;
   padding: 0.5rem 1rem;
   margin: 0.4rem;
   text-align: left;
-  border-radius: 1rem 0 1rem 0;
-  box-shadow: inset 0.05rem 0.05rem 0.3rem rgba(0, 0, 0, 0.6),
-    inset -0.05rem -0.05rem 0.3rem rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  border-top: 0.03rem solid rgba(0, 0, 0, 0.3);
 }
-.dg-cmp-comment-General {
-  background: linear-gradient(145deg, var(--p), var(--dg-g));
-}
-.dg-cmp-comment-Event {
-  background: linear-gradient(145deg, var(--p), var(--dg-e));
-}
-.dg-cmp-comment-Rumour {
-  background: linear-gradient(145deg, var(--p), var(--dg-r));
-}
-.dg-cmp-comment-Poem {
-  background: linear-gradient(145deg, var(--p), var(--dg-p));
-}
-.dg-cmp-comment-Story {
-  background: linear-gradient(145deg, var(--p), var(--dg-s));
-}
-.dg-cmp-comment-News {
-  background: linear-gradient(145deg, var(--p), var(--dg-n));
-}
-.dg-cmp-comment-Confession {
-  background: linear-gradient(145deg, var(--p), var(--dg-c));
+
+.dg-cp-cmt-delete {
+  font-size: 1rem;
+  color: red;
+  margin: 0 0 0 1rem;
+  float: right;
 }

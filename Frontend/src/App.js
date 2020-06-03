@@ -26,10 +26,10 @@ function App() {
           <Route exact path="/flingazine">
             <DG_feed />
           </Route>
-          <Route path="/feed/post/:id">
+          <Route path="/flingazine/post/:id">
             <DG_completePost />
           </Route>
-          <Route path="/feed/:username">
+          <Route path="/flingazine/:username">
             <DG_profile />
           </Route>
         </Switch>
