@@ -38,6 +38,10 @@ const DgFeed = mongoose.Schema({
     type: [{ name: String, comment: String }],
     default: [],
   },
+  views: {
+    type: Number,
+    default: 0,
+  },
 });
 
 module.exports = mongoose.model("DgFeed", DgFeed);

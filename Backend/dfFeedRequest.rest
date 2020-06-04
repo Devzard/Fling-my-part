@@ -51,7 +51,7 @@ POST http://localhost:3300/feed/Global
 Content-Type: application/json
 
 {
-    "pageNumber":1
+    "pageNumber":2
 }
 
 ###

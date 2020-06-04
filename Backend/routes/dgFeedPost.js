@@ -53,6 +53,7 @@ router.post("/:location", async (req, res) => {
   try {
     if (location == "Global") {
       posts = await DgFeedSchema.find()
+        .sort({ uploadTime: -1 })
         .skip(skip)
         .limit(10)
         .select({ reportedUsers: 0, response: 0, lastModified: 0 });
@@ -78,6 +79,17 @@ router.post("/posts/:id", async (req, res) => {
     const completepost = await DgFeedSchema.find({ _id: postId }).select({
       reportedUsers: 0,
     });
+
+    let newViewCount = completepost[0].views + 1;
+    await DgFeedSchema.updateOne(
+      { _id: postId },
+      {
+        $set: {
+          views: newViewCount,
+        },
+      }
+    );
+
     res.status(200).json(completepost);
   } catch (err) {
     res.status(500).json({ message: err });
