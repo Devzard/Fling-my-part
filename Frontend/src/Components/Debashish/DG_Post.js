@@ -3,9 +3,17 @@ import "./styles/dg_post.css";
 import Cookies from "js-cookie";
 import BlockRenderer from "./BlockRenderer/BlockRenderer";
 import { Link } from "react-router-dom";
+import { FaEye } from "react-icons/fa";
 import Loader from "../Loader";
 
-const DG_Post = ({ userId, posts, setPosts }) => {
+const DG_Post = ({
+  userId,
+  posts,
+  setPosts,
+  pageNumber,
+  setPageNumber,
+  displayLoadMore,
+}) => {
   const [userName, setUserName] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -26,24 +34,34 @@ const DG_Post = ({ userId, posts, setPosts }) => {
     <div className="dg-posts-container">
       {isLoaded ? (
         <>
-          {posts
-            .slice(0)
-            .reverse()
-            .map((item, index) => {
-              return (
-                <div>
-                  <BlockRenderer
-                    key={index}
-                    data={item}
-                    userName={userName}
-                    paramName={item.username}
-                  />
-                  <span className="dg-read-more">
-                    <Link to={`/flingazine/post/${item._id}`}>read more..</Link>
-                  </span>
-                </div>
-              );
-            })}
+          {posts.map((item, index) => {
+            return (
+              <div>
+                <BlockRenderer
+                  key={index}
+                  data={item}
+                  userName={userName}
+                  paramName={item.username}
+                />
+                <span className="dg-read-more">
+                  <Link to={`/flingazine/post/${item._id}`}>read more..</Link>
+                </span>
+              </div>
+            );
+          })}
+          {/* load more  */}
+          {displayLoadMore.display == "block" ? (
+            <div className="dg-post-loadmore">
+              <button
+                style={displayLoadMore}
+                onClick={() => setPageNumber(pageNumber + 1)}
+              >
+                Load More
+              </button>
+            </div>
+          ) : (
+            <></>
+          )}
         </>
       ) : (
         <Loader />

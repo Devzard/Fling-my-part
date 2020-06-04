@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import EditorJs from "react-editor-js";
 import "./BlockRenderer.css";
 import { Link } from "react-router-dom";
-import { isOwner, dropDownMenu } from "./eventHandlers";
+import { isOwner, dropDownMenu, getViews } from "./eventHandlers";
 import { MdMoreVert, MdArrowBack, MdLocationOn } from "react-icons/md";
+import { FaEye } from "react-icons/fa";
 
 function BlockRenderer({ userName, paramName, data }) {
   const [moreBtnTog, toggleMoreBtn] = useState(false);
@@ -117,6 +118,10 @@ function BlockRenderer({ userName, paramName, data }) {
         </span>
         <span className="ebr-location">
           <MdLocationOn /> {data.location}
+        </span>
+        <span className="ebr-icons ebr-views">
+          <FaEye />
+          {getViews(data.views)}
         </span>
       </div>
 

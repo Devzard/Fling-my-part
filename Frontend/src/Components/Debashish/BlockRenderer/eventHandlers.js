@@ -24,3 +24,10 @@ export const dropDownMenu = (isOwned) => {
     </div>
   );
 };
+
+export const getViews = (views) => {
+  if (views < 1000) return <>{views}</>;
+  else if (views > 1000) return <>{(views / 1000).toFixed(1)}k</>;
+  else if (views > 1000000) return <>{(views / 1000000).toFixed(1)}m</>;
+  else if (views > 1000000000) return <>{(views / 1000000000).toFixed(1)}b</>;
+};

@@ -12,7 +12,7 @@ function DG_complete_comment({ userName, path, userId, post, setPost }) {
     e.preventDefault();
     setIsUploading(true);
     axios
-      .patch(`http://localhost:3300/feed/update`, {
+      .patch(`${path}/feed/update`, {
         _id: post._id,
         _user_id: userId,
         response: {

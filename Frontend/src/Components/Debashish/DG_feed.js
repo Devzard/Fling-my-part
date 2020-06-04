@@ -32,7 +32,6 @@ function DG_feed() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
   const [displayLoadMore, setDisplayLoadMore] = useState({ display: "none" });
-  const [isPostsLoaded, setIsPostsLoaded] = useState(false);
   //userdetails
   const [userDetails, setUserDetails] = useState({
     username: "",
@@ -45,14 +44,12 @@ function DG_feed() {
   const [posts, setPosts] = useState([]);
 
   const postsDataHandler = () => {
-    setIsPostsLoaded(false);
     axios
       .post(`${path}/feed/${postsLocation}`, { pageNumber: pageNumber })
       .then((res) => {
         setPosts(posts.concat(res.data));
         if (res.data.length < 10) setDisplayLoadMore({ display: "none" });
         else setDisplayLoadMore({ display: "block" });
-        setIsPostsLoaded(true);
       })
       .catch((err) => console.error(err));
   };
@@ -111,26 +108,15 @@ function DG_feed() {
         </div>
 
         {/* posts  */}
-        {isPostsLoaded ? (
-          <>
-            <DG_Post
-              userId={userDetails.userId}
-              posts={posts}
-              setPosts={setPosts}
-            />
-          </>
-        ) : (
-          <Loader />
-        )}
 
-        {/* load more  */}
-        <button
-          style={displayLoadMore}
-          className="dg-btn"
-          onClick={() => setPageNumber(pageNumber + 1)}
-        >
-          Load More
-        </button>
+        <DG_Post
+          userId={userDetails.userId}
+          posts={posts}
+          setPosts={setPosts}
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+          displayLoadMore={displayLoadMore}
+        />
       </>
     );
   };
