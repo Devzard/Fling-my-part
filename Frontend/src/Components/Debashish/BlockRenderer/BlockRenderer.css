@@ -72,6 +72,7 @@
 }
 .ebr-options {
   float: right;
+  cursor: pointer;
 }
 .ebr-author {
   float: left;
@@ -96,6 +97,7 @@
 
 /* // functions  */
 .ebr-dropdown {
+  cursor: pointer;
   background: white;
   color: black;
   position: sticky;

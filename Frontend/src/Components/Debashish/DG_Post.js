@@ -7,6 +7,7 @@ import { FaEye } from "react-icons/fa";
 import Loader from "../Loader";
 
 const DG_Post = ({
+  dgview,
   userId,
   posts,
   setPosts,
@@ -31,7 +32,7 @@ const DG_Post = ({
   }, [userName]);
 
   return (
-    <div className="dg-posts-container">
+    <div className={`dg-${dgview}-posts-container`}>
       {isLoaded ? (
         <>
           {posts.map((item, index) => {

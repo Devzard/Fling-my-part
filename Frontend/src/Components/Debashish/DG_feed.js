@@ -10,9 +10,18 @@ import "./styles/dg_common.css";
 import "./styles/dg_feed.css";
 import { MdLocationOn, MdAdd, MdFeedback } from "react-icons/md";
 import axios from "axios";
+import { isMobile } from "react-device-detect";
 import Loader from "../Loader";
 
 function DG_feed() {
+  useEffect(() => {
+    Cookies.set("_user_id", "5ebd3edf5508ca9bb2ad2ea2"); //{expires : 7}
+    Cookies.set("username", "testuser"); //{expires : 7}
+    Cookies.set("name", "Test User");
+    Cookies.set("location", "Global");
+    Cookies.set("isLoggedIn", "true");
+  }, []);
+
   const path = "https://my-fling.herokuapp.com";
   const locations = [
     "Global",
@@ -32,6 +41,7 @@ function DG_feed() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
   const [displayLoadMore, setDisplayLoadMore] = useState({ display: "none" });
+  const [dgview, setDgview] = useState("mobile");
   //userdetails
   const [userDetails, setUserDetails] = useState({
     username: "",
@@ -74,6 +84,9 @@ function DG_feed() {
     });
 
     postsDataHandler();
+
+    if (isMobile) setDgview("mobile");
+    else setDgview("desktop");
   }, []);
 
   useEffect(() => postsDataHandler(), [postsLocation, pageNumber]);
@@ -110,6 +123,7 @@ function DG_feed() {
         {/* posts  */}
 
         <DG_Post
+          dgview={dgview}
           userId={userDetails.userId}
           posts={posts}
           setPosts={setPosts}
@@ -122,7 +136,7 @@ function DG_feed() {
   };
 
   return (
-    <div>
+    <div className={`dg-${dgview}-grid`}>
       {addPostToggler && (
         <DG_AddPost_Editor
           toggleAddPost={toggleAddPost}
