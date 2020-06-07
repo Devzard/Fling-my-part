@@ -121,13 +121,13 @@ router.delete("/delete", async (req, res) => {
       req.body._user_id,
       req.body.recogniser,
       async function (err, result) {
-        if (isHashMatching(req.body._user_id, req.body.recogniser)) {
-          const removedPost = await DgFeedSchema.remove({ _id: postId });
+        if (result) {
+          const removedPost = await DgFeedSchema.deleteOne({ _id: postId });
           res.status(200).json(removedPost);
         } else if (!result) {
           res
-            .status(200)
-            .json({ message: "you are not the owner of this post" });
+            .status(400)
+            .json({ message: "You are not the owner of the post!" });
         } else {
           res.status(500).json({ message: err });
         }

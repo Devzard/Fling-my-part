@@ -72,7 +72,7 @@ function DG_complete_comment({ userName, path, userId, post, setPost }) {
           }}
           className={`dg-toggler-${!isAnonymous}`}
         >
-          {username}
+          {userName}
         </span>
         &nbsp; : &nbsp;
         <span

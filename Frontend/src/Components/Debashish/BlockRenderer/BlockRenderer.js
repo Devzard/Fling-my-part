@@ -104,7 +104,7 @@ function BlockRenderer({ userName, paramName, data }) {
               <span className="ebr-icons" onClick={() => toggleMoreBtn(false)}>
                 <MdArrowBack />
               </span>
-              {dropDownMenu(isOwned)}
+              {dropDownMenu(isOwned, data._id, data.recogniser, toggleMoreBtn)}
             </>
           ) : (
             <span className="ebr-icons" onClick={() => toggleMoreBtn(true)}>
@@ -130,7 +130,7 @@ function BlockRenderer({ userName, paramName, data }) {
           {data.blocks.map((item, index) => renderBlock(item, index))}
         </div>
       ) : (
-        <></>
+        <>The post doesn't exists.</>
       )}
     </div>
   );

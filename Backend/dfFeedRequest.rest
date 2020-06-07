@@ -51,7 +51,7 @@ POST http://localhost:3300/feed/Global
 Content-Type: application/json
 
 {
-    "pageNumber":2
+    "pageNumber":1
 }
 
 ###
@@ -80,6 +80,16 @@ Content-Type: application/json
     "responseId":"5ed27f59507b9b20d4e5cf34",
     "_user_id":"5ebbf98818f9562bb5b55f99",
     "recogniser":"$2b$10$Q5PmELyiPP8ysPfJuopZr..lKntHlQbn.ljcV3MvTnuzz5SrNHoxq"
+}
+
+###
+DELETE http://localhost:3300/feed/delete/
+Content-Type: application/json
+
+{
+    "_id":"5ed651a3f1fd29002400b24c",
+    "_user_id":"5ebd3edf5508ca9bb2ad2ea2",
+    "recogniser":"$2b$10$yl/QzPQovXIn1Sd14vR6duGcs9z0Pth6eo1JCQS8ZDBohnJTwW6UG"
 }
 
 /////////////////////////////////////////////////
