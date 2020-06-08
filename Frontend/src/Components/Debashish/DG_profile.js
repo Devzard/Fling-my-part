@@ -5,12 +5,14 @@ import { FaBackspace } from "react-icons/fa";
 import DG_Post from "./DG_Post";
 import "./styles/dg_profile.css";
 import axios from "axios";
+import { isMobile } from "react-device-detect";
 
 function DG_profile() {
   const path = "https://my-fling.herokuapp.com";
   let { username } = useParams();
   let history = useHistory();
 
+  const [dgview, setDgview] = useState("mobile");
   const [userId, setUserId] = useState("");
   const [posts, setPosts] = useState([]);
 
@@ -26,6 +28,9 @@ function DG_profile() {
     setUserId(user);
 
     bringPost();
+
+    if (isMobile) setDgview("mobile");
+    else setDgview("desktop");
   }, []);
 
   return (
@@ -48,7 +53,14 @@ function DG_profile() {
 
       {/* posts  */}
       <div className="dg-p-posts">
-        <DG_Post posts={posts} setPosts={setPosts} />
+        <DG_Post
+          dgview={dgview}
+          posts={posts}
+          setPosts={setPosts}
+          pageNumber={0}
+          setPageNumer={0}
+          displayLoadMore={"none"}
+        />
       </div>
     </div>
   );

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./styles/dg_post.css";
 import Cookies from "js-cookie";
 import BlockRenderer from "./BlockRenderer/BlockRenderer";
 import { Link } from "react-router-dom";
-import { FaEye } from "react-icons/fa";
+import { FaFilePdf } from "react-icons/fa";
 import Loader from "../Loader";
 
 const DG_Post = ({
@@ -18,6 +18,8 @@ const DG_Post = ({
   const [userName, setUserName] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  function printDocument(name) {}
 
   useEffect(() => {
     const userId = Cookies.get("_user_id");
@@ -37,7 +39,7 @@ const DG_Post = ({
         <>
           {posts.map((item, index) => {
             return (
-              <div>
+              <div className={`dg-entire-block`}>
                 <BlockRenderer
                   key={index}
                   data={item}
@@ -46,6 +48,9 @@ const DG_Post = ({
                 />
                 <span className="dg-read-more">
                   <Link to={`/flingazine/post/${item._id}`}>read more..</Link>
+                </span>
+                <span className="dg-pdf-container">
+                  {printDocument(item.title)}
                 </span>
               </div>
             );

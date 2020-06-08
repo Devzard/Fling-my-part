@@ -24,6 +24,10 @@
 }
 /* desktop  */
 .dg-desktop-posts-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .dg-desktop-posts-container > div {
   margin: 1vw;
