@@ -1,6 +1,26 @@
 import React from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { AiOutlineLink } from "react-icons/ai";
+import { DiAndroid } from "react-icons/di";
+import { isMobile } from "react-device-detect";
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  LikedinShareButton,
+  LinkedinShareButton,
+} from "react-share";
+import {
+  EmailIcon,
+  FacebookIcon,
+  TwitterIcon,
+  WhatsappIcon,
+  LinkedinIcon,
+} from "react-share";
+
 const path = "https://my-fling.herokuapp.com";
 
 const postDeleteHandler = (postId, userId, recogniser) => {
@@ -11,9 +31,12 @@ const postDeleteHandler = (postId, userId, recogniser) => {
       recogniser: recogniser,
     })
     .then((res) => {
-      window.location.reload(false);
+      window.location.reload();
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      console.error(err);
+      window.location.reload();
+    });
 };
 
 const reportHandler = (postId, userId) => {
@@ -45,6 +68,21 @@ const isReported = (postId) => {
     }
   }
   return res;
+};
+
+const shareHandler = (url) => {
+  if (navigator.share) {
+    navigator
+      .share({
+        title: "Flingazine",
+        text: "An e-magazine for all",
+        url: url,
+      })
+      .then(() => {})
+      .catch((error) => console.error("Error sharing", error));
+  } else {
+    console.log("Web Share API is not supported in your browser.");
+  }
 };
 
 export const isOwner = (userName, paramName) => {
@@ -93,4 +131,57 @@ export const getViews = (views) => {
   else if (views > 1000) return <>{(views / 1000).toFixed(1)}k</>;
   else if (views > 1000000) return <>{(views / 1000000).toFixed(1)}m</>;
   else if (views > 1000000000) return <>{(views / 1000000000).toFixed(1)}b</>;
+};
+
+export const shareButtons = (url) => {
+  return (
+    <div className="">
+      <span>
+        <WhatsappShareButton url={url}>
+          <WhatsappIcon size={30} round={true} />
+        </WhatsappShareButton>
+      </span>
+      <span>
+        <TwitterShareButton url={url}>
+          <TwitterIcon size={30} round={true} />
+        </TwitterShareButton>
+      </span>
+      <span>
+        <FacebookShareButton url={url}>
+          <FacebookIcon size={30} round={true} />
+        </FacebookShareButton>
+      </span>
+      <span>
+        <LinkedinShareButton url={url}>
+          <LinkedinIcon size={30} round={true} />
+        </LinkedinShareButton>
+      </span>
+      <span>
+        <EmailShareButton url={url}>
+          <EmailIcon size={30} round={true} />
+        </EmailShareButton>
+      </span>
+      <span>
+        <CopyToClipboard
+          text={url}
+          onCopy={() => {
+            alert("Link copied to clipboard");
+          }}
+        >
+          <button className="ebr-share-ctc">
+            <AiOutlineLink />
+          </button>
+        </CopyToClipboard>
+      </span>
+      <span>
+        {isMobile ? (
+          <span onClick={() => shareHandler(url)} className="ebr-share-android">
+            <DiAndroid />
+          </span>
+        ) : (
+          <></>
+        )}
+      </span>
+    </div>
+  );
 };

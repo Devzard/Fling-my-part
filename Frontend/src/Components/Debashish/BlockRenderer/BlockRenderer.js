@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import EditorJs from "react-editor-js";
 import "./BlockRenderer.css";
 import { Link } from "react-router-dom";
-import { isOwner, dropDownMenu, getViews } from "./eventHandlers";
+import { isOwner, dropDownMenu, getViews, shareButtons } from "./eventHandlers";
 import { MdMoreVert, MdArrowBack, MdLocationOn } from "react-icons/md";
-import { FaEye } from "react-icons/fa";
+import { FaEye, FaShareAlt } from "react-icons/fa";
 
 function BlockRenderer({ userName, paramName, data }) {
   const [moreBtnTog, toggleMoreBtn] = useState(false);
   const [isOwned, setIsOwned] = useState(false);
+  const [shareTog, toggleShareTog] = useState(false);
 
   const renderBlock = (block, index) => {
     if (block.type == "paragraph") {
@@ -122,6 +122,17 @@ function BlockRenderer({ userName, paramName, data }) {
         <span className="ebr-icons ebr-views">
           <FaEye />
           {getViews(data.views)}
+        </span>
+
+        <span className="ebr-share" onClick={() => toggleShareTog(!shareTog)}>
+          <FaShareAlt />
+          {shareTog ? (
+            shareButtons(
+              `https://flingazine.netlify.app/flingazine/post/${data._id}`
+            )
+          ) : (
+            <></>
+          )}
         </span>
       </div>
 

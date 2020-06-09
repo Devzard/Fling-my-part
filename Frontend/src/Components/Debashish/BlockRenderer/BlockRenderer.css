@@ -1,6 +1,7 @@
 .ebr-container {
   display: flex;
   flex-direction: column;
+  text-align: left;
 }
 .ebr-content {
   position: relative;
@@ -56,15 +57,20 @@
   text-align: center;
   font-weight: 400;
 }
+#holder {
+  text-align: left;
+  padding: 0 0.5rem;
+}
 
 /* //////// */
 /* card style  */
 .ebr-container-header {
-  min-height: 10rem;
+  min-height: 6rem;
   padding: 0.3rem;
+  margin: 0 0 1rem 0;
   border-radius: 0.4rem;
-  color: white;
-  background: linear-gradient(-45deg, #314755, #26a0da);
+  color: black;
+  background: linear-gradient(#eedcdc, rgba(255, 255, 255, 0));
 }
 .ebr-heading {
   text-align: left;
@@ -81,8 +87,9 @@
 .ebr-author > a {
   margin: 0 0.3rem;
   font-weight: 700;
+  font-size: 1.1rem;
   font-style: normal;
-  color: white;
+  color: #3730cf;
 }
 .ebr-location {
   float: left;
@@ -90,6 +97,9 @@
   justify-content: space-evenly;
   align-items: center;
   margin: 0 1rem;
+}
+.ebr-location > svg {
+  color: #3fba29;
 }
 .ebr-icons {
   font-size: 1.4rem;
@@ -100,7 +110,8 @@
   cursor: pointer;
   background: white;
   color: black;
-  position: sticky;
+  position: absolute;
+  transform: translateX(2.5rem);
   right: 1rem;
   z-index: 1;
   box-shadow: 0.3rem 0.3rem 1rem rgba(0, 0, 0, 0.5);
@@ -118,6 +129,54 @@
   justify-content: space-evenly;
   align-items: center;
   width: 2rem;
-  margin: 0 1rem;
+  margin: 0 0.4rem;
   font-size: 1rem;
+}
+.ebr-views > svg {
+  color: #4287f5;
+}
+.ebr-share {
+  cursor: pointer;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  margin: 0 0rem;
+  font-size: 1rem;
+  color: #ba33cc;
+}
+.ebr-share > div {
+  z-index: 3;
+  height: 3rem;
+  width: 20rem;
+  background: white;
+  box-shadow: 0 0.3rem 0.4rem rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  left: 1rem;
+  transform: translateY(2.7rem);
+}
+.ebr-share > div > span {
+  margin: 0.3rem;
+}
+.ebr-share-ctc {
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: none;
+  border: none;
+  padding: 0.4rem;
+}
+.ebr-share-android {
+  color: rgb(16, 189, 16);
+  font-size: 1.5rem;
+  box-shadow: none;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

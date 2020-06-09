@@ -15,7 +15,7 @@ const DG_location = ({
   //searchHandler
   const searchHandler = (item) => {
     for (let i = 0; i < inputLocation.length; i++) {
-      if (inputLocation.toUpperCase() != item[i].toUpperCase()) return false;
+      if (inputLocation[i].toUpperCase() != item[i].toUpperCase()) return false;
     }
     return true;
   };
