@@ -1,3 +1,6 @@
+:root {
+  --profile-url: url("https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80");
+}
 .ebr-container {
   display: flex;
   flex-direction: column;
@@ -65,12 +68,16 @@
 /* //////// */
 /* card style  */
 .ebr-container-header {
-  min-height: 6rem;
+  background-image: var(--profile-url);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 20rem;
   padding: 0.3rem;
   margin: 0 0 1rem 0;
   border-radius: 0.4rem;
   color: black;
-  background: linear-gradient(#eedcdc, rgba(255, 255, 255, 0));
+  /* background: linear-gradient(#eedcdc, rgba(255, 255, 255, 0)); */
 }
 .ebr-heading {
   text-align: left;

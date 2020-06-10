@@ -53,11 +53,13 @@ function DG_feed() {
   //posts
   const [posts, setPosts] = useState([]);
 
-  const postsDataHandler = () => {
+  const postsDataHandler = (replace) => {
     axios
       .post(`${path}/feed/${postsLocation}`, { pageNumber: pageNumber })
       .then((res) => {
-        setPosts(posts.concat(res.data));
+        if (!replace) {
+          setPosts(posts.concat(res.data));
+        } else setPosts(res.data);
         if (res.data.length < 10) setDisplayLoadMore({ display: "none" });
         else setDisplayLoadMore({ display: "block" });
       })
@@ -83,13 +85,14 @@ function DG_feed() {
       userId: userId,
     });
 
-    postsDataHandler();
+    postsDataHandler(true);
 
     if (isMobile) setDgview("mobile");
     else setDgview("desktop");
   }, []);
 
-  useEffect(() => postsDataHandler(), [postsLocation, pageNumber]);
+  useEffect(() => postsDataHandler(false), [pageNumber]);
+  useEffect(() => postsDataHandler(true), [postsLocation]);
 
   const postsContainer = () => {
     return (

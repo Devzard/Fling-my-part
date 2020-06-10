@@ -30,7 +30,7 @@ const DG_location = ({
             inputLocation == undefined
           ) {
             return (
-              <div className="dg-search-list">
+              <div key={index} className="dg-search-list">
                 <span style={{ display: "flex" }}>
                   <FaBuilding />
                   &nbsp;
@@ -51,7 +51,7 @@ const DG_location = ({
             );
           } else if (searchHandler(item)) {
             return (
-              <div className="dg-search-list">
+              <div key={index} className="dg-search-list">
                 <span style={{ display: "flex" }}>
                   <FaBuilding />
                   &nbsp;

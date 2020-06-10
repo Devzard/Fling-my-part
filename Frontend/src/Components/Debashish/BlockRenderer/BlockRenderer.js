@@ -128,7 +128,8 @@ function BlockRenderer({ userName, paramName, data }) {
           <FaShareAlt />
           {shareTog ? (
             shareButtons(
-              `https://flingazine.netlify.app/flingazine/post/${data._id}`
+              `https://flingazine.netlify.app/flingazine/post/${data._id}`,
+              `${data.title}`
             )
           ) : (
             <></>

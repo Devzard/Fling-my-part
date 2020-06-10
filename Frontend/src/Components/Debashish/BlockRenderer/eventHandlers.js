@@ -31,6 +31,7 @@ const postDeleteHandler = (postId, userId, recogniser) => {
       recogniser: recogniser,
     })
     .then((res) => {
+      console.log(res);
       window.location.reload();
     })
     .catch((err) => {
@@ -70,18 +71,18 @@ const isReported = (postId) => {
   return res;
 };
 
-const shareHandler = (url) => {
+const shareHandler = (url, desc) => {
   if (navigator.share) {
     navigator
       .share({
         title: "Flingazine",
-        text: "An e-magazine for all",
+        text: desc,
         url: url,
       })
       .then(() => {})
       .catch((error) => console.error("Error sharing", error));
   } else {
-    console.log("Web Share API is not supported in your browser.");
+    alert("Web Share API is not supported in your browser. Try sharing link");
   }
 };
 
@@ -133,7 +134,7 @@ export const getViews = (views) => {
   else if (views > 1000000000) return <>{(views / 1000000000).toFixed(1)}b</>;
 };
 
-export const shareButtons = (url) => {
+export const shareButtons = (url, desc) => {
   return (
     <div className="">
       <span>
@@ -175,7 +176,10 @@ export const shareButtons = (url) => {
       </span>
       <span>
         {isMobile ? (
-          <span onClick={() => shareHandler(url)} className="ebr-share-android">
+          <span
+            onClick={() => shareHandler(url, desc)}
+            className="ebr-share-android"
+          >
             <DiAndroid />
           </span>
         ) : (
@@ -185,3 +189,5 @@ export const shareButtons = (url) => {
     </div>
   );
 };
+
+export const updateTime = () => {};

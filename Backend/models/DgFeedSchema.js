@@ -42,6 +42,10 @@ const DgFeed = mongoose.Schema({
     type: Number,
     default: 0,
   },
+  coverPhoto: {
+    type: Number,
+    default: 0,
+  },
 });
 
 module.exports = mongoose.model("DgFeed", DgFeed);

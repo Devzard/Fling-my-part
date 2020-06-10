@@ -32,6 +32,7 @@ router.post("/new", async (req, res) => {
     recogniser: recogniser,
     username: req.body.username,
     name: req.body.name,
+    coverPhoto: req.body.coverPhoto,
   });
 
   try {
@@ -59,6 +60,7 @@ router.post("/:location", async (req, res) => {
         .select({ reportedUsers: 0, response: 0, lastModified: 0 });
     } else {
       posts = await DgFeedSchema.find({ location: location })
+        .sort({ uploadTime: -1 })
         .skip(skip)
         .limit(10)
         .select({ reportedUsers: 0, response: 0, lastModified: 0 });
@@ -103,7 +105,9 @@ router.post("/user/posts/:username", async (req, res) => {
   try {
     const completepost = await DgFeedSchema.find({
       username: req.params.username,
-    }).select({ reportedUsers: 0, response: 0, lastModified: 0 });
+    })
+      .sort({ uploadTime: -1 })
+      .select({ reportedUsers: 0, response: 0, lastModified: 0 });
     res.status(200).json(completepost);
   } catch (err) {
     res.status(500).json({ message: err });

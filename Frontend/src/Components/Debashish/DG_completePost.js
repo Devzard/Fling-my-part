@@ -82,7 +82,14 @@ function DG_completePost() {
           <FaBackspace className="dg-cmp-back" />
         </span>
         {/* </Link> */}
-        <span>{post.username}</span>
+        <span>
+          <Link
+            style={{ fontStyle: "italic", color: "white" }}
+            to="/flingazine"
+          >
+            flingazine
+          </Link>
+        </span>
         <span></span>
       </div>
 

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import EditorJs from "react-editor-js";
 import { EDITOR_JS_TOOLS } from "../EditorjsPlugins/tools";
-import BlockRenderer from "../BlockRenderer/BlockRenderer";
 import "./dg-addpost.css";
 import axios from "axios";
+import { coverPhotoList } from "../coverPhotoList";
 import { MdSend, MdHelp } from "react-icons/md";
 import { FaHourglassEnd, FaBackspace } from "react-icons/fa";
 
@@ -21,6 +21,7 @@ export class DG_AddPost_Editor extends Component {
       userId: "",
       username: "",
       name: "",
+      coverPhoto: 0,
       locations: this.props.locations,
       uploadingStatus: "",
     };
