@@ -116,7 +116,7 @@ router.post("/user/posts/:username", async (req, res) => {
 
 //deleting post
 //delete a single post
-router.delete("/delete", async (req, res) => {
+router.patch("/delete", async (req, res) => {
   //post mongodb _id
   //_user_id to authenticate
   const postId = req.body._id;

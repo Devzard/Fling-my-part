@@ -79,9 +79,16 @@ export class DG_AddPost_Editor extends Component {
     });
   };
 
+  coverPhotoHandler = (i) => {
+    this.setState({
+      coverPhoto: i,
+    });
+  };
+
   render() {
     return (
       <div className="dg-ap-container animated fadeInDown">
+        {/* header part  */}
         <div className="dg-ap-header">
           <span
             onClick={() => {
@@ -95,6 +102,8 @@ export class DG_AddPost_Editor extends Component {
             <MdHelp />
           </span>
         </div>
+
+        {/* form for other details  */}
         <div className="dg-ap-form">
           <input
             onChange={this.titleHandler}
@@ -118,6 +127,48 @@ export class DG_AddPost_Editor extends Component {
             })}
           </select>
         </div>
+
+        {/* cover photo selector  */}
+        <div className="dg-ap-cover-selector">
+          {coverPhotoList.map((item, index) => {
+            let selected = index == this.state.coverPhoto ? "selected" : "";
+            return (
+              <div>
+                <img
+                  className={`dg-${selected}`}
+                  onClick={() => this.coverPhotoHandler(index)}
+                  src={`${item}`}
+                  key={index}
+                />
+              </div>
+            );
+          })}
+        </div>
+        <span style={{ fontSize: "0.6rem", fontStyle: "italic" }}>
+          Royalty free pictures taken from{" "}
+          <a
+            style={{ color: "blue" }}
+            href={"https://unsplash.com/images/stock/royalty-free"}
+          >
+            unsplash.com
+          </a>
+        </span>
+        <br />
+        <span style={{ fontSize: "0.6rem" }}>
+          To get your own image featured in flingazine cover photo list email us
+          at{" "}
+          <a
+            style={{ color: "blue" }}
+            href={
+              "mailto: aurinassam@gmail.com?subject=Cover photo submission for flingazine&body=Name : "
+            }
+          >
+            <u>Here</u>
+          </a>
+        </span>
+        <br />
+        <br />
+        {/* editor part  */}
         <span className="dg-ap-editor">
           <EditorJs
             instanceRef={(instance) => (this.editorInstance = instance)}
@@ -129,6 +180,7 @@ export class DG_AddPost_Editor extends Component {
           </EditorJs>
         </span>
 
+        {/* send part  */}
         <span className="dg-ap-send-btn-container">
           {this.state.uploadingStatus == "uploading" ? (
             <button className="dg-ap-uploading" disabled>

@@ -91,3 +91,24 @@
     transform: rotate(360deg);
   }
 }
+
+/* /// */
+.dg-ap-cover-selector {
+  display: flex;
+  overflow-x: auto;
+  height: 11rem;
+  margin: 0rem 0.3rem;
+
+  scroll-snap-type: x proximity;
+}
+.dg-ap-cover-selector > div {
+  scroll-snap-align: start;
+  margin: 0.15rem;
+  /* border: solid 0.1rem black; */
+}
+.dg-ap-cover-selector > div > img {
+  height: 10rem;
+}
+.dg-selected {
+  border: solid 0.1rem blue;
+}

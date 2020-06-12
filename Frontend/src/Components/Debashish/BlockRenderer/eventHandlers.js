@@ -21,22 +21,20 @@ import {
   LinkedinIcon,
 } from "react-share";
 
-const path = "https://my-fling.herokuapp.com";
+const path = "http://localhost:3300";
+// "https://my-fling.herokuapp.com";
 
 const postDeleteHandler = (postId, userId, recogniser) => {
+  const data = { _id: postId, _user_id: userId, recogniser: recogniser };
   axios
-    .delete(`${path}/feed/delete`, {
-      _id: postId,
-      _user_id: userId,
-      recogniser: recogniser,
-    })
+    .patch(`${path}/feed/delete`, data)
     .then((res) => {
       console.log(res);
-      window.location.reload();
+      // window.location.reload();
     })
     .catch((err) => {
       console.error(err);
-      window.location.reload();
+      // window.location.reload();
     });
 };
 
@@ -82,7 +80,7 @@ const shareHandler = (url, desc) => {
       .then(() => {})
       .catch((error) => console.error("Error sharing", error));
   } else {
-    alert("Web Share API is not supported in your browser. Try sharing link");
+    alert("This feature is not supported in your browser. Try sharing link");
   }
 };
 

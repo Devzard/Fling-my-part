@@ -83,13 +83,13 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3300/feed/delete/
+PATCH http://localhost:3300/feed/delete/
 Content-Type: application/json
 
 {
-    "_id":"5ed651a3f1fd29002400b24c",
+    "_id":"5edfa308e62b580024e9b4b1",
     "_user_id":"5ebd3edf5508ca9bb2ad2ea2",
-    "recogniser":"$2b$10$yl/QzPQovXIn1Sd14vR6duGcs9z0Pth6eo1JCQS8ZDBohnJTwW6UG"
+    "recogniser":"$2b$10$qsy.hJ6aw6x4hp22jh.cDeNZZqCGFpvc1Dez11Zh6J3Dt59v3DBZC"
 }
 
 /////////////////////////////////////////////////
