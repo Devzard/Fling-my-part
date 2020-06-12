@@ -44,8 +44,9 @@ export class DG_AddPost_Editor extends Component {
         coverPhoto: this.state.coverPhoto,
       })
       .then((res) => {
-        console.log(res);
-        this.props.setPosts(this.props.posts.concat(res.data));
+        let newPosts = [...this.props.posts];
+        newPosts.unshift(res.data);
+        this.props.setPosts(newPosts);
         this.setState({ uploadingStatus: "uploaded" });
       })
       .catch((err) => {
