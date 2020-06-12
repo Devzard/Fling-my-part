@@ -29,11 +29,11 @@ const postDeleteHandler = (postId, userId, recogniser) => {
     .patch(`${path}/feed/delete`, data)
     .then((res) => {
       console.log(res);
-      // window.location.reload();
+      window.location.reload();
     })
     .catch((err) => {
       console.error(err);
-      // window.location.reload();
+      window.location.reload();
     });
 };
 
