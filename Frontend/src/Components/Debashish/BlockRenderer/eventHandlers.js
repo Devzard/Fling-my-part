@@ -21,8 +21,7 @@ import {
   LinkedinIcon,
 } from "react-share";
 
-const path = "http://localhost:3300";
-// "https://my-fling.herokuapp.com";
+const path = "https://my-fling.herokuapp.com";
 
 const postDeleteHandler = (postId, userId, recogniser) => {
   const data = { _id: postId, _user_id: userId, recogniser: recogniser };
@@ -188,4 +187,8 @@ export const shareButtons = (url, desc) => {
   );
 };
 
-export const updateTime = () => {};
+const coverPhotoHandler = (profileUrl) => {
+  let root = document.documentElement;
+  if (profileUrl != null)
+    root.style.setProperty("--profile-url", `url(${profileUrl})`);
+};

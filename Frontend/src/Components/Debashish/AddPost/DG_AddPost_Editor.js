@@ -41,6 +41,7 @@ export class DG_AddPost_Editor extends Component {
         userId: this.state.userId,
         username: this.state.username,
         name: this.state.name,
+        coverPhoto: this.state.coverPhoto,
       })
       .then((res) => {
         console.log(res);
@@ -80,9 +81,11 @@ export class DG_AddPost_Editor extends Component {
   };
 
   coverPhotoHandler = (i) => {
-    this.setState({
-      coverPhoto: i,
-    });
+    if (coverPhotoList.length != null) {
+      this.setState({
+        coverPhoto: coverPhotoList.length - 1 - i,
+      });
+    }
   };
 
   render() {
@@ -130,19 +133,25 @@ export class DG_AddPost_Editor extends Component {
 
         {/* cover photo selector  */}
         <div className="dg-ap-cover-selector">
-          {coverPhotoList.map((item, index) => {
-            let selected = index == this.state.coverPhoto ? "selected" : "";
-            return (
-              <div>
-                <img
-                  className={`dg-${selected}`}
-                  onClick={() => this.coverPhotoHandler(index)}
-                  src={`${item}`}
-                  key={index}
-                />
-              </div>
-            );
-          })}
+          {coverPhotoList
+            .slice()
+            .reverse()
+            .map((item, index) => {
+              let selected =
+                coverPhotoList.length - 1 - index == this.state.coverPhoto
+                  ? "selected"
+                  : "";
+              return (
+                <div>
+                  <img
+                    className={`dg-${selected}`}
+                    onClick={() => this.coverPhotoHandler(index)}
+                    src={`${item}`}
+                    key={index}
+                  />
+                </div>
+              );
+            })}
         </div>
         <span style={{ fontSize: "0.6rem", fontStyle: "italic" }}>
           Royalty free pictures taken from{" "}

@@ -98,7 +98,6 @@
   overflow-x: auto;
   height: 11rem;
   margin: 0rem 0.3rem;
-
   scroll-snap-type: x proximity;
 }
 .dg-ap-cover-selector > div {

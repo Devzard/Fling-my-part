@@ -35,7 +35,7 @@ function DG_feed() {
     "Lakhimpur",
   ];
 
-  const [addPostToggler, toggleAddPost] = useState(true);
+  const [addPostToggler, toggleAddPost] = useState(false);
   const [locationToggler, toggleLocation] = useState(false);
   const [postsLocation, setPostsLocation] = useState("Global");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -54,16 +54,16 @@ function DG_feed() {
   const [posts, setPosts] = useState([]);
 
   const postsDataHandler = (replace) => {
-    // axios
-    //   .post(`${path}/feed/${postsLocation}`, { pageNumber: pageNumber })
-    //   .then((res) => {
-    //     if (!replace) {
-    //       setPosts(posts.concat(res.data));
-    //     } else setPosts(res.data);
-    //     if (res.data.length < 10) setDisplayLoadMore({ display: "none" });
-    //     else setDisplayLoadMore({ display: "block" });
-    //   })
-    //   .catch((err) => console.error(err));
+    axios
+      .post(`${path}/feed/${postsLocation}`, { pageNumber: pageNumber })
+      .then((res) => {
+        if (!replace) {
+          setPosts(posts.concat(res.data));
+        } else setPosts(res.data);
+        if (res.data.length < 10) setDisplayLoadMore({ display: "none" });
+        else setDisplayLoadMore({ display: "block" });
+      })
+      .catch((err) => console.error(err));
   };
 
   useEffect(() => {

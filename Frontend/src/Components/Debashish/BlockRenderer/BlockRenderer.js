@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./BlockRenderer.css";
+import "./coverPhotoClass.css";
 import { Link } from "react-router-dom";
 import { isOwner, dropDownMenu, getViews, shareButtons } from "./eventHandlers";
 import { MdMoreVert, MdArrowBack, MdLocationOn } from "react-icons/md";
@@ -93,7 +94,7 @@ function BlockRenderer({ userName, paramName, data }) {
 
   return (
     <div className="ebr-container">
-      <div className="ebr-container-header">
+      <div className={`ebr-container-header ebr-coverphoto-${data.coverPhoto}`}>
         <span className="ebr-heading">
           {data.title != null ? <h2>{data.title}</h2> : <></>}
         </span>

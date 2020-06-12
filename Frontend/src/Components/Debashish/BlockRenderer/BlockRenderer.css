@@ -73,11 +73,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 20rem;
-  padding: 0.3rem;
+  padding: 0.3rem 0.3rem;
   margin: 0 0 1rem 0;
   border-radius: 0.4rem;
-  color: black;
-  /* background: linear-gradient(#eedcdc, rgba(255, 255, 255, 0)); */
 }
 .ebr-heading {
   text-align: left;
