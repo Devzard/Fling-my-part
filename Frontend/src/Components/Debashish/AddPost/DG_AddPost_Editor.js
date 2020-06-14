@@ -170,7 +170,7 @@ export class DG_AddPost_Editor extends Component {
           <a
             style={{ color: "blue" }}
             href={
-              "mailto: aurinassam@gmail.com?subject=Cover photo submission for flingazine&body=Name : "
+              "mailto: flingfrombeb@gmail.com?subject=Cover photo submission for flingazine&body=Name : "
             }
           >
             <u>Here</u>

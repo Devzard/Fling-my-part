@@ -1,4 +1,5 @@
 .dg-feed-header {
+  text-align: center;
   background-color: var(--p-d);
   padding: 0.8rem;
   color: white;
@@ -14,6 +15,7 @@
 }
 /* mobile  */
 .dg-mobile-grid {
+  text-align: center;
   user-select: none; /* supported by Chrome and Opera */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
@@ -23,6 +25,7 @@
 
 /* desktop */
 .dg-desktop-grid {
+  text-align: center;
   user-select: none; /* supported by Chrome and Opera */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
